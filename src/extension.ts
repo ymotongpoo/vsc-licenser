@@ -4,6 +4,8 @@
 import * as vscode from 'vscode';
 import { License } from './licenses/type';
 import { AL2 } from './licenses/al2';
+import { BSD } from './licenses/bsd';
+import { GPLv3 } from './licenses/gplv3';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -58,6 +60,12 @@ class LicenseFileCreator {
             case 'al2':
                 license = new AL2(this.author);
                 break;
+            case 'bsd':
+                license = new BSD(this.author);
+                break;
+            case 'gplv3':
+                license = new GPLv3(this.author);
+                break;
             default:
                 license = new AL2(this.author);
                 break;
@@ -67,7 +75,7 @@ class LicenseFileCreator {
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
                 editor.edit((edit) => {
-                    edit.insert(doc.positionAt(0), license.termsAndCondition());
+                    edit.insert(doc.positionAt(0), license.termsAndConditions());
                 }).then((done) => {
                     if (done) {
                         doc.save().then((saved) => {

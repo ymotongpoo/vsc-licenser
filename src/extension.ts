@@ -102,7 +102,6 @@ class Licenser {
         let langId = editor.document.languageId;
         let license = this.getLicense(this.licenseType);
         let header = this.getLicenseHeader(license, langId);
-        console.log(header);
 
         editor.edit((ed) => {
             console.log(header);

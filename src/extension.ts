@@ -1,3 +1,17 @@
+//    Copyright 2016 Yoshi Yamaguchi
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//        http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
 'use strict';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
@@ -6,6 +20,7 @@ import { License } from './licenses/type';
 import { AL2 } from './licenses/al2';
 import { BSD } from './licenses/bsd';
 import { GPLv3 } from './licenses/gplv3';
+import { MIT } from './licenses/mit';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -31,32 +46,34 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // constants for default properties.
-const defaultLicense: string = "AL2";
-const defaultLicenseFilename: string = "LICENSE";
+const defaultLicenseType: string = 'AL2';
+const defaultAuthor: string = 'John Doe'
+const defaultLicenseFilename: string = 'LICENSE';
 
 // map between languageId and its comment notation.
 // TODO(ymotongpoo): check correct languageId.
 // TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)  
 const commentNotation = {
-    "go": "//",
-    "javascript": "//",
-    "typescript": "//",
-    "java": "//",
-    "csharp": "//",
-    "shellscript": "#",
-    "python": "#",
-    "ruby": "#",
-    "perl": "#",
-    "erlang": "%%",
-    "lisp": ";;",
-    "haskell": "--",
+    'go': '//',
+    'javascript': '//',
+    'typescript': '//',
+    'java': '//',
+    'csharp': '//',
+    'fsharp': '//',
+    'shellscript': '#',
+    'python': '#',
+    'ruby': '#',
+    'perl': '#',
+    'erlang': '%%',
+    'lisp': ';;',
+    'haskell': '--',
 
-    "html": "<!-- -->",
-    "ocaml": "(* *)",
-    "css": "/* */",
-    "c": "/* */",
+    'html': '<!-- -->',
+    'ocaml': '(* *)',
+    'css': '/* */',
+    'c': '/* */',
 
-    "php": "//"
+    'php': '//',
 }
 
 
@@ -68,8 +85,19 @@ class Licenser {
 
     constructor() {
         let licenserSetting = vscode.workspace.getConfiguration('licenser');
-        this.licenseType = licenserSetting.get<string>('license', "AL2");
-        this.author = licenserSetting.get<string>('author', "");
+        let licenseType = licenserSetting.get<string>('license', undefined);
+        if (licenseType === undefined) {
+            vscode.window.showWarningMessage("set your preferred license as 'licenser.license' in configuration. Apache License version 2.0 will be used as default.")
+            licenseType = defaultLicenseType;
+        }
+        this.licenseType = licenseType
+        
+        let author = licenserSetting.get<string>('author', undefined);
+        if (author === undefined) {
+            vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. 'John Doe' will be used as default.")
+            author = defaultAuthor;
+        }
+        this.author = author;
     }
 
     create() {
@@ -127,6 +155,9 @@ class Licenser {
             case 'gplv3':
                 license = new GPLv3(this.author);
                 break;
+            case 'MIT':
+                license = new MIT(this.author);
+                break;
             default:
                 license = new AL2(this.author);
                 break;
@@ -160,7 +191,7 @@ class Licenser {
         for (let i in original) {
             header += ' ' + original[i] + '\n';
         }
-        header += 'end' + '\n';
+        header += end + '\n';
         return header;
     }
 }

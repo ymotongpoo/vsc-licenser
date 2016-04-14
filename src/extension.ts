@@ -19,6 +19,7 @@ import * as vscode from 'vscode';
 import { License } from './licenses/type';
 import { AL2 } from './licenses/al2';
 import { BSD } from './licenses/bsd';
+import { GPLv2 } from './licenses/gplv2';
 import { GPLv3 } from './licenses/gplv3';
 import { MIT } from './licenses/mit';
 
@@ -82,17 +83,18 @@ class Licenser {
     private licenseTemplate: string;
     private licenseType: string;
     private author: string;
+    private licenserSetting: vscode.WorkspaceConfiguration;
 
     constructor() {
-        let licenserSetting = vscode.workspace.getConfiguration('licenser');
-        let licenseType = licenserSetting.get<string>('license', undefined);
+        this.licenserSetting = vscode.workspace.getConfiguration('licenser');
+        let licenseType = this.licenserSetting.get<string>('license', undefined);
         if (licenseType === undefined) {
             vscode.window.showWarningMessage("set your preferred license as 'licenser.license' in configuration. Apache License version 2.0 will be used as default.")
             licenseType = defaultLicenseType;
         }
         this.licenseType = licenseType
-        
-        let author = licenserSetting.get<string>('author', undefined);
+
+        let author = this.licenserSetting.get<string>('author', undefined);
         if (author === undefined) {
             vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. 'John Doe' will be used as default.")
             author = defaultAuthor;
@@ -145,6 +147,14 @@ class Licenser {
 
     private getLicense(typ: string): License {
         let license: License;
+        let projectName = this.licenserSetting.get<string>("projectName", undefined);
+        if (projectName === undefined) {
+            // TODO(ymotongpoo): add process to confirm workspace directory name and
+            // store it into `projectName`. Use node.js's path module using node.d.ts.
+            // Here is the solution.
+            // http://qiita.com/JunSuzukiJapan/items/134f3a2b342c4804b498#comment-2349ca2002eb7801a177
+            projectName = 'Foobar';
+        }
         switch (this.licenseType.toLowerCase()) {
             case 'al2':
                 license = new AL2(this.author);
@@ -152,8 +162,10 @@ class Licenser {
             case 'bsd':
                 license = new BSD(this.author);
                 break;
+            case 'gplv2':
+                license = new GPLv2(this.author, projectName);
             case 'gplv3':
-                license = new GPLv3(this.author);
+                license = new GPLv3(this.author, projectName);
                 break;
             case 'MIT':
                 license = new MIT(this.author);

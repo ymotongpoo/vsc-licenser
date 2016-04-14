@@ -2,13 +2,24 @@
     "name": "licenser",
     "displayName": "licenser",
     "description": "inserts license header in source files and license file.",
-    "version": "0.0.1",
+    "icon": "image/logo.png",
+    "version": "0.1.2",
     "publisher": "ymotongpoo",
+    "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ymotongpoo/vsc-licenser"
+    },
+    "bugs": {
+        "url": "https://github.com/ymotongpoo/vsc-licenser/issues"
+    },
     "engines": {
         "vscode": "^0.10.10"
     },
     "categories": [
-        "Other"
+        "Other",
+        "Linters",
+        "Snippets"
     ],
     "activationEvents": [
         "onCommand:extension.insertLicenseHeader",

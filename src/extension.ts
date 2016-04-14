@@ -18,24 +18,50 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let licenseFileCreator = new LicenseFileCreator();
-    let licenseHeaderInserter = new LicenseHeaderInserter();
+    let licenser = new Licenser();
     let create = vscode.commands.registerCommand('extension.createLicenseFile', () => {
-        licenseFileCreator.exec();
+        licenser.create();
     });
     let insert = vscode.commands.registerCommand('extension.insertLicenseHeader', () => {
-        licenseHeaderInserter.exec();
+        licenser.insert();
     });
 
     context.subscriptions.push(create);
     context.subscriptions.push(insert);
 }
 
+// constants for default properties.
 const defaultLicense: string = "AL2";
 const defaultLicenseFilename: string = "LICENSE";
 
-// createLicenseFile create
-class LicenseFileCreator {
+// map between languageId and its comment notation.
+// TODO(ymotongpoo): check correct languageId.
+// TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)  
+const commentNotation = {
+    "go": "//",
+    "javascript": "//",
+    "typescript": "//",
+    "java": "//",
+    "csharp": "//",
+    "shellscript": "#",
+    "python": "#",
+    "ruby": "#",
+    "perl": "#",
+    "erlang": "%%",
+    "lisp": ";;",
+    "haskell": "--",
+
+    "html": "<!-- -->",
+    "ocaml": "(* *)",
+    "css": "/* */",
+    "c": "/* */",
+
+    "php": "//"
+}
+
+
+// Licenser handles LICENSE file creation and license header insertion. 
+class Licenser {
     private licenseTemplate: string;
     private licenseType: string;
     private author: string;
@@ -44,18 +70,54 @@ class LicenseFileCreator {
         let licenserSetting = vscode.workspace.getConfiguration('licenser');
         this.licenseType = licenserSetting.get<string>('License', "AL2");
         this.author = licenserSetting.get<string>('Author', "");
-        console.log('license type: ' + this.licenseType);
     }
 
-    exec() {
+    create() {
         let path = vscode.workspace.rootPath;
         if (path == undefined) {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
+        let license = this.getLicense(this.licenseType);
 
+        let uri = vscode.Uri.parse('untitled:' + path + '/' + defaultLicenseFilename);
+        vscode.workspace.openTextDocument(uri).then((doc) => {
+            vscode.window.showTextDocument(doc).then((editor) => {
+                editor.edit((ed) => {
+                    ed.insert(doc.positionAt(0), license.termsAndConditions());
+                }).then((done) => {
+                    if (done) {
+                        doc.save().then((saved) => {
+                            vscode.window.showInformationMessage(`Successfully saved: ${uri}`);
+                        })
+                    }
+                })
+            })
+        });
+    }
+
+    insert() {
+        let editor = vscode.window.activeTextEditor;
+        let doc = editor.document;
+        let langId = editor.document.languageId;
+        let license = this.getLicense(this.licenseType);
+        let header = this.getLicenseHeader(license, langId);
+        console.log(header);
+
+        editor.edit((ed) => {
+            console.log(header);
+            ed.insert(doc.positionAt(0), header);
+        }).then((done) => {
+            if (done) {
+                doc.save().then((saved) => {
+                    console.log('Inserted license header');
+                })
+            }
+        });
+    }
+
+    private getLicense(typ: string): License {
         let license: License;
-        console.log(this.licenseType);
         switch (this.licenseType.toLowerCase()) {
             case 'al2':
                 license = new AL2(this.author);
@@ -70,36 +132,39 @@ class LicenseFileCreator {
                 license = new AL2(this.author);
                 break;
         }
-
-        let uri = vscode.Uri.parse('untitled:' + path + '/' + defaultLicenseFilename);
-        vscode.workspace.openTextDocument(uri).then((doc) => {
-            vscode.window.showTextDocument(doc).then((editor) => {
-                editor.edit((edit) => {
-                    edit.insert(doc.positionAt(0), license.termsAndConditions());
-                }).then((done) => {
-                    if (done) {
-                        doc.save().then((saved) => {
-                            vscode.window.showInformationMessage(`Successfully saved: ${ uri }`);
-                        })
-                    }
-                })
-            })
-        });
+        return license;
     }
 
+    private getLicenseHeader(license: License, langId: string): string {
+        let notation = <string>commentNotation[langId];
+        let tokens = notation.split(' ');
+        if (tokens.length === 1) {
+            return this.singleLineCommentHeader(license, tokens[0]);
+        } else if (tokens.length === 2) {
+            return this.multiLineCommentHeader(license, tokens[0], tokens[1]);
+        }
+    }
 
+    private singleLineCommentHeader(license: License, token: string): string {
+        let original = license.header().split('\n');
+        let header = '';
+        for (let i in original) {
+            header += token + ' ' + original[i] + '\n';
+        }
+        return header;
+    }
+
+    private multiLineCommentHeader(license: License, start, end: string): string {
+        let original = license.header().split('\n');
+        let header = start + '\n';
+
+        for (let i in original) {
+            header += ' ' + original[i] + '\n';
+        }
+        header += 'end' + '\n';
+        return header;
+    }
 }
-
-class LicenseHeaderInserter {
-    constructor() {
-        console.log("license header inserter")
-    }
-
-    exec() {
-        vscode.window.showInformationMessage('Insert License Header');
-    }
-}
-
 
 // this method is called when your extension is deactivated
 export function deactivate() {

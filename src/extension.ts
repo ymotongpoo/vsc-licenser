@@ -68,8 +68,8 @@ class Licenser {
 
     constructor() {
         let licenserSetting = vscode.workspace.getConfiguration('licenser');
-        this.licenseType = licenserSetting.get<string>('License', "AL2");
-        this.author = licenserSetting.get<string>('Author', "");
+        this.licenseType = licenserSetting.get<string>('license', "AL2");
+        this.author = licenserSetting.get<string>('author', "");
     }
 
     create() {

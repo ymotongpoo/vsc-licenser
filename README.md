@@ -1,13 +1,31 @@
-# README
-## This is the README for your extension "licenser"
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+# Licenser
+## Commands and features
+This extension currently has 2 commands.
 
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
+* "licenser: Create LICENSE file"
+  * create LICENSE file into your repository.
+* "licenser: Insert license header"
+  * insert license header to currently opened source code files.
+  
+## Configurations
+### licenser.license
 
-### For more information
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+```
+"licenser.license": "AL2"
+```
 
-**Enjoy!**
+Currently, supported licenses are:
+
+* "AL2": Apache License version 2.
+* "BSD": BSD 3-clause License (New BSD License)
+* "GPLv3": GNU General Public License version 3 
+
+### licenser.author
+
+```
+"licenser.author": "Yoshi Yamaguchi"
+```
+
+This setting defines the author name that would be inserted into the
+license header template.
+

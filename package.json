@@ -19,12 +19,12 @@
         "configuration": {
             "title": "Licenser configurations",
             "properties": {
-                "licenser.License": {
+                "licenser.license": {
                     "type": "string",
                     "default": "AL2",
                     "description": "License setting for workspace. Available licenses are 'AL2', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'BSD'"
                 },
-                "licenser.Author": {
+                "licenser.author": {
                     "type": "string",
                     "default": "Yoshi Yamaguchi",
                     "description": "Author name of the project."
@@ -34,11 +34,11 @@
         "commands": [
             {
                 "command": "extension.insertLicenseHeader",
-                "title": "Insert license header"
+                "title": "licenser: Insert license header"
             },
             {
                 "command": "extension.createLicenseFile",
-                "title": "Create license file"
+                "title": "licenser: Create LICENSE file"
             }
         ],
         "keybindings": [

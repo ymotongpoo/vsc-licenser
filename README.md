@@ -18,7 +18,10 @@ Currently, supported licenses are:
 
 * "AL2": Apache License version 2.
 * "BSD": BSD 3-clause License (New BSD License)
-* "GPLv3": GNU General Public License version 3 
+* "GPLv2": GNU General Public License version 2
+* "GPLv3": GNU General Public License version 3
+* "LGPLv3": GNU Lesser General Public License version 3
+* "MIT": MIT License
 
 ### licenser.author
 

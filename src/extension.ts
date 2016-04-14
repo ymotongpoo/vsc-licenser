@@ -22,6 +22,7 @@ import { BSD } from './licenses/bsd';
 import { GPLv2 } from './licenses/gplv2';
 import { GPLv3 } from './licenses/gplv3';
 import { MIT } from './licenses/mit';
+import path = require('path');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -59,6 +60,7 @@ const commentNotation = {
     'javascript': '//',
     'typescript': '//',
     'java': '//',
+    'cpp': '//',
     'csharp': '//',
     'fsharp': '//',
     'shellscript': '#',
@@ -103,14 +105,14 @@ class Licenser {
     }
 
     create() {
-        let path = vscode.workspace.rootPath;
-        if (path == undefined) {
+        let root = vscode.workspace.rootPath;
+        if (root == undefined) {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
         let license = this.getLicense(this.licenseType);
 
-        let uri = vscode.Uri.parse('untitled:' + path + '/' + defaultLicenseFilename);
+        let uri = vscode.Uri.parse('untitled:' + root + '/' + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
                 editor.edit((ed) => {
@@ -149,11 +151,9 @@ class Licenser {
         let license: License;
         let projectName = this.licenserSetting.get<string>("projectName", undefined);
         if (projectName === undefined) {
-            // TODO(ymotongpoo): add process to confirm workspace directory name and
-            // store it into `projectName`. Use node.js's path module using node.d.ts.
-            // Here is the solution.
-            // http://qiita.com/JunSuzukiJapan/items/134f3a2b342c4804b498#comment-2349ca2002eb7801a177
-            projectName = 'Foobar';
+            let root = vscode.workspace.rootPath;
+            projectName = path.basename(root);
+            
         }
         switch (this.licenseType.toLowerCase()) {
             case 'al2':

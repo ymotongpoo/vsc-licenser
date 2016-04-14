@@ -47,6 +47,11 @@
                     "type": "string",
                     "default": "John Doe",
                     "description": "Author name of the project."
+                },
+                "licenser.projectName": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'." 
                 }
             }
         },

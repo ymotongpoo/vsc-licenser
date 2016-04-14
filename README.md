@@ -32,3 +32,22 @@ Currently, supported licenses are:
 This setting defines the author name that would be inserted into the
 license header template.
 
+Programming languages supported in this extension are:
+* Go
+* C++
+* C
+* JavaScript
+* TypeScript
+* Java
+* C#
+* F#
+* ShellScript
+* Python
+* Ruby
+* Perl
+* OCaml
+* Erlang
+* LISP
+* Haskell
+* HTML
+* CSS

@@ -53,4 +53,4 @@ Programming languages supported in this extension are:
 * CSS
 
 ### Changelogs
-See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blog/master/CHANGLOG.md).
+See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

@@ -153,7 +153,7 @@ class Licenser {
         if (projectName === undefined) {
             let root = vscode.workspace.rootPath;
             projectName = path.basename(root);
-            
+            vscode.window.showWarningMessage('')
         }
         switch (this.licenseType.toLowerCase()) {
             case 'al2':

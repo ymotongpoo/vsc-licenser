@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "publisher": "ymotongpoo",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
     "repository": {
@@ -51,7 +51,7 @@
                 "licenser.projectName": {
                     "type": "string",
                     "default": "",
-                    "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'." 
+                    "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'."
                 }
             }
         },

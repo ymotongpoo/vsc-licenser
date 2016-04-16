@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.1.7",
+    "version": "0.1.9",
     "publisher": "ymotongpoo",
     "license": "SEE LICENSE IN <filename>",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
@@ -25,11 +25,7 @@
     "keywords": [
         "License",
         "Snippets",
-        "Template",
-        "GPL",
-        "MIT",
-        "AL2",
-        "BSD"
+        "Template"
     ],
     "activationEvents": [
         "onCommand:extension.insertLicenseHeader",

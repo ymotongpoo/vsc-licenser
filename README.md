@@ -6,6 +6,26 @@ This extension currently has 2 commands.
   * create LICENSE file into your repository.
 * "licenser: Insert license header"
   * insert license header to currently opened source code files.
+
+Programming languages supported in this extension are:
+* Go
+* C++
+* C
+* JavaScript
+* TypeScript
+* Java
+* C#
+* F#
+* ShellScript
+* Python
+* Ruby
+* Perl
+* OCaml
+* Erlang
+* LISP
+* Haskell
+* HTML
+* CSS
   
 ## Configurations
 ### licenser.license
@@ -31,26 +51,6 @@ Currently, supported licenses are:
 
 This setting defines the author name that would be inserted into the
 license header template.
-
-Programming languages supported in this extension are:
-* Go
-* C++
-* C
-* JavaScript
-* TypeScript
-* Java
-* C#
-* F#
-* ShellScript
-* Python
-* Ruby
-* Perl
-* OCaml
-* Erlang
-* LISP
-* Haskell
-* HTML
-* CSS
 
 ### Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

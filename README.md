@@ -1,4 +1,6 @@
 # Licenser
+An extension for adding license headers and LICENSE file in your workspace.
+
 ## Commands and features
 This extension currently has 2 commands.
 
@@ -52,5 +54,16 @@ Currently, supported licenses are:
 This setting defines the author name that would be inserted into the
 license header template.
 
-### Changelogs
+## Call to action
+The author of this extension do not have windows environment.
+Any bug reports and contributions to fix windows related issues are highly welcome.
+
+For bug reporting, please create a ticket on [GitHub repository](https://github.com/ymotongpoo/vsc-licenser/issues).
+
+## Contributers
+Thank you for contributions to "licenser".
+
+* aodag
+
+## Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

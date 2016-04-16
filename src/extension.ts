@@ -223,6 +223,7 @@ function getUser(): string {
                 vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
             }
             user = userprofile.split(path.sep)[2];
+            break;
         case 'darwin':
         case 'linux':
             user = process.env.USER;

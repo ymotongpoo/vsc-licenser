@@ -191,7 +191,11 @@ class Licenser {
         let original = license.header().split('\n');
         let header = '';
         for (let i in original) {
-            header += token + ' ' + original[i] + '\n';
+            if (original.length > 0) {
+                header += token + ' ' + original[i] + '\n';
+            } else {
+                header += token;
+            }
         }
         return header + '\n';
     }
@@ -201,7 +205,9 @@ class Licenser {
         let header = start + '\n';
 
         for (let i in original) {
-            header += ' ' + original[i] + '\n';
+            if (original.length > 0) {
+                header += ' ' + original[i] + '\n';
+            }
         }
         header += end + '\n';
         return header + '\n';
@@ -212,7 +218,7 @@ function getUser(): string {
     let user = "John Doe"
     switch (os.platform()) {
         case 'win32':
-            let userprofile =  process.env.USERPROFILE
+            let userprofile = process.env.USERPROFILE
             if (userprofile === undefined) {
                 vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
             }

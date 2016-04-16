@@ -1,5 +1,9 @@
 # Changelog
 ## 0.1 (first test release)
+### 0.1.8
+* change default author name to use OS username.
+* add one empty line margin after license header.
+
 ### 0.1.7
 * fix the link to CHANGELOG.
 

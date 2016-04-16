@@ -1,11 +1,11 @@
 //    Copyright 2016 Yoshi Yamaguchi
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //        http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@ export class GPLv2 {
         this.year = date.getFullYear().toString();
         this.productName = productName;
     }
-    
+
     public termsAndConditions(): string {
         let template = `                    GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
@@ -368,9 +368,9 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.`
-        return template;        
+        return template;
     }
-    
+
     public header(): string {
         let template = `Copyright (C) ${ this.year }  ${ this.author }
 

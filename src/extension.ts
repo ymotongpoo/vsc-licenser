@@ -1,11 +1,11 @@
 //    Copyright 2016 Yoshi Yamaguchi
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //        http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,6 +23,7 @@ import { GPLv2 } from './licenses/gplv2';
 import { GPLv3 } from './licenses/gplv3';
 import { MIT } from './licenses/mit';
 import path = require('path');
+import os = require('os');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -49,12 +50,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 // constants for default properties.
 const defaultLicenseType: string = 'AL2';
-const defaultAuthor: string = 'John Doe'
 const defaultLicenseFilename: string = 'LICENSE';
 
 // map between languageId and its comment notation.
 // TODO(ymotongpoo): check correct languageId.
-// TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)  
+// TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)
 const commentNotation = {
     'go': '//',
     'javascript': '//',
@@ -80,7 +80,7 @@ const commentNotation = {
 }
 
 
-// Licenser handles LICENSE file creation and license header insertion. 
+// Licenser handles LICENSE file creation and license header insertion.
 class Licenser {
     private licenseTemplate: string;
     private licenseType: string;
@@ -99,7 +99,7 @@ class Licenser {
         let author = this.licenserSetting.get<string>('author', undefined);
         if (author === undefined) {
             vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. 'John Doe' will be used as default.")
-            author = defaultAuthor;
+            author = getUser();
         }
         this.author = author;
     }
@@ -167,7 +167,7 @@ class Licenser {
             case 'gplv3':
                 license = new GPLv3(this.author, projectName);
                 break;
-            case 'MIT':
+            case 'mit':
                 license = new MIT(this.author);
                 break;
             default:
@@ -193,7 +193,7 @@ class Licenser {
         for (let i in original) {
             header += token + ' ' + original[i] + '\n';
         }
-        return header;
+        return header + '\n';
     }
 
     private multiLineCommentHeader(license: License, start, end: string): string {
@@ -204,8 +204,27 @@ class Licenser {
             header += ' ' + original[i] + '\n';
         }
         header += end + '\n';
-        return header;
+        return header + '\n';
     }
+}
+
+function getUser(): string {
+    let user = "John Doe"
+    switch (os.platform()) {
+        case 'win32':
+            let userprofile =  process.env.USERPROFILE
+            if (userprofile === undefined) {
+                vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
+            }
+            user = userprofile.split(path.sep)[2];
+        case 'darwin':
+        case 'linux':
+            user = process.env.USER;
+        default:
+            vscode.window.showErrorMessage("Unsupported OS.")
+            break;
+    }
+    return user;
 }
 
 // this method is called when your extension is deactivated

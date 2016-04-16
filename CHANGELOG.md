@@ -1,5 +1,8 @@
 # Changelog
 ## 0.1 (first test release)
+### 0.1.10
+* fix bug of default username on Windows.
+
 ### 0.1.9
 * fix bug on using MIT license.
 * change default author name to use OS username.

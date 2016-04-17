@@ -1,5 +1,8 @@
 # Changelog
 ## 0.1 (first test release)
+### 0.1.11
+* fix `license` value in `package.json`. 
+
 ### 0.1.10
 * fix bug of default username on Windows.
 

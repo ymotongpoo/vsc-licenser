@@ -75,6 +75,7 @@ const commentNotation = {
     'ocaml': '(* *)',
     'css': '/* */',
     'c': '/* */',
+    'xml': '<!-- -->',
 
     'php': '//',
 }

@@ -1,5 +1,8 @@
 # Changelog
 ## 0.1 (first test release)
+### 0.1.12
+* add XML support.
+
 ### 0.1.11
 * fix `license` value in `package.json`. 
 

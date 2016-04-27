@@ -27,6 +27,7 @@ Programming languages supported in this extension are:
 * LISP
 * Haskell
 * HTML
+* XML
 * CSS
   
 ## Configurations

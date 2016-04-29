@@ -136,9 +136,13 @@ class Licenser {
         let license = this.getLicense(this.licenseType);
         let header = this.getLicenseHeader(license, langId);
 
+        let firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
+        console.log("fisrtLine: " + firstLine);
+        let position = firstLine.startsWith('#!') ? firstLine.length : 0;
+
         editor.edit((ed) => {
             console.log(header);
-            ed.insert(doc.positionAt(0), header);
+            ed.insert(doc.positionAt(position), header);
         }).then((done) => {
             if (done) {
                 doc.save().then((saved) => {

@@ -1,6 +1,6 @@
 # Changelog
 ## unreleased
-* add support shebang
+* added skiping first line if it was shebang
 
 ## 0.1 (first test release)
 ### 0.1.12

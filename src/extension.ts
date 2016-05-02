@@ -113,7 +113,7 @@ class Licenser {
         }
         let license = this.getLicense(this.licenseType);
 
-        let uri = vscode.Uri.parse('untitled:' + root + '/' + defaultLicenseFilename);
+        let uri = vscode.Uri.parse('untitled:' + root + path.sep + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
                 editor.edit((ed) => {
@@ -124,8 +124,14 @@ class Licenser {
                             vscode.window.showInformationMessage(`Successfully saved: ${uri}`);
                         })
                     }
+                }, (reason) => {
+                    console.log(reason);
+                    vscode.window.showErrorMessage(reason);
                 })
             })
+        }, (reason) => {
+            console.log(reason);
+            vscode.window.showErrorMessage(reason);
         });
     }
 

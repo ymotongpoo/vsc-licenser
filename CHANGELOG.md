@@ -1,8 +1,12 @@
 # Changelog
-## unreleased
-* added skiping first line if it was shebang
-
 ## 0.1 (first test release)
+### 0.1.21
+* add feature to skip first line if it is shebang.
+* fix path issue on windows.
+
+### 0.1.13-20
+* skipped due to vsce command failure.
+
 ### 0.1.12
 * add XML support.
 

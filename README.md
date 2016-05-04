@@ -56,9 +56,7 @@ This setting defines the author name that would be inserted into the
 license header template.
 
 ## Call to action
-The author of this extension do not have windows environment.
-Any bug reports and contributions to fix windows related issues are highly welcome.
-
+Finally the author bought Windows 10 machine, and he can test the app by himself!
 For bug reporting, please create a ticket on [GitHub repository](https://github.com/ymotongpoo/vsc-licenser/issues).
 
 ## Contributers

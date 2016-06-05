@@ -1,4 +1,8 @@
 # Changelog
+## 0.2
+### 0.2.0
+* add feature to insert license header on file creation.
+
 ## 0.1 (first test release)
 ### 0.1.21
 * add feature to skip first line if it is shebang.

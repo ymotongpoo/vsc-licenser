@@ -37,15 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     let licenser = new Licenser();
-    let create = vscode.commands.registerCommand('extension.createLicenseFile', () => {
-        licenser.create();
-    });
-    let insert = vscode.commands.registerCommand('extension.insertLicenseHeader', () => {
-        licenser.insert();
-    });
-
-    context.subscriptions.push(create);
-    context.subscriptions.push(insert);
+    context.subscriptions.push(licenser);
 }
 
 // constants for default properties.
@@ -87,6 +79,7 @@ class Licenser {
     private licenseType: string;
     private author: string;
     private licenserSetting: vscode.WorkspaceConfiguration;
+    private _disposable: vscode.Disposable;
 
     constructor() {
         this.licenserSetting = vscode.workspace.getConfiguration('licenser');
@@ -103,6 +96,11 @@ class Licenser {
             author = getUser();
         }
         this.author = author;
+
+        let subscriptions: vscode.Disposable[] = [];
+        vscode.commands.registerCommand('extension.createLicenseFile', () => { this.create() });
+        vscode.commands.registerCommand('extension.insertLicenseHeader', () => { this.insert() });
+        vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
     create() {
@@ -154,6 +152,22 @@ class Licenser {
                 doc.save().then((saved) => {
                     console.log('Inserted license header');
                 })
+            }
+        });
+    }
+
+    private _onDidChangeActiveTextEditor() {
+        vscode.window.onDidChangeActiveTextEditor(e => {
+            vscode.window.showInformationMessage("changed: " + e.document.fileName);
+            const doc = e.document;
+            const contents = doc.getText();
+            if (contents.length > 0) {
+                return;
+            }
+            for (let id in commentNotation) {
+                if (id == doc.languageId) {
+                    this.insert();
+                }
             }
         });
     }
@@ -222,6 +236,10 @@ class Licenser {
         }
         header += end + '\n';
         return header + '\n';
+    }
+
+    public dispose() {
+        this._disposable.dispose();
     }
 }
 

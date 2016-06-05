@@ -2,8 +2,12 @@
 An extension for adding license headers and LICENSE file in your workspace.
 
 ## Commands and features
-This extension currently has 2 commands.
+This extension provides shortcut to insert license header to source code file and
+to create LICENSE file based on the configuration in `settings.json`. This extenstion
+not only provides shortcut but also enables auto-insertion of license header on creation
+of new file. 
 
+You can call these 2 commands via Command Palette. 
 * "licenser: Create LICENSE file"
   * create LICENSE file into your repository.
 * "licenser: Insert license header"

@@ -1,5 +1,8 @@
 # Changelog
 ## 0.2
+### 0.2.1
+* nit change.
+
 ### 0.2.0
 * add feature to insert license header on file creation.
 

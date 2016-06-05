@@ -158,7 +158,6 @@ class Licenser {
 
     private _onDidChangeActiveTextEditor() {
         vscode.window.onDidChangeActiveTextEditor(e => {
-            vscode.window.showInformationMessage("changed: " + e.document.fileName);
             const doc = e.document;
             const contents = doc.getText();
             if (contents.length > 0) {

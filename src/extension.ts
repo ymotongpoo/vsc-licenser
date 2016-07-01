@@ -96,22 +96,23 @@ class Licenser {
             author = getUser();
         }
         this.author = author;
+        console.log("Licenser.author: " + this.author);
 
-        let subscriptions: vscode.Disposable[] = [];
+        const subscriptions: vscode.Disposable[] = [];
         vscode.commands.registerCommand('extension.createLicenseFile', () => { this.create() });
         vscode.commands.registerCommand('extension.insertLicenseHeader', () => { this.insert() });
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
     create() {
-        let root = vscode.workspace.rootPath;
+        const root = vscode.workspace.rootPath;
         if (root == undefined) {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
-        let license = this.getLicense(this.licenseType);
+        const license = this.getLicense(this.licenseType);
 
-        let uri = vscode.Uri.parse('untitled:' + root + path.sep + defaultLicenseFilename);
+        const uri = vscode.Uri.parse('untitled:' + root + path.sep + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
                 editor.edit((ed) => {
@@ -134,15 +135,15 @@ class Licenser {
     }
 
     insert() {
-        let editor = vscode.window.activeTextEditor;
-        let doc = editor.document;
-        let langId = editor.document.languageId;
-        let license = this.getLicense(this.licenseType);
-        let header = this.getLicenseHeader(license, langId);
+        const editor = vscode.window.activeTextEditor;
+        const doc = editor.document;
+        const langId = editor.document.languageId;
+        const license = this.getLicense(this.licenseType);
+        const header = this.getLicenseHeader(license, langId);
 
-        let firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
+        const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
         console.log("fisrtLine: " + firstLine);
-        let position = firstLine.startsWith('#!') ? firstLine.length : 0;
+        const position = firstLine.startsWith('#!') ? firstLine.length : 0;
 
         editor.edit((ed) => {
             console.log(header);
@@ -188,6 +189,7 @@ class Licenser {
                 break;
             case 'gplv2':
                 license = new GPLv2(this.author, projectName);
+                break;
             case 'gplv3':
                 license = new GPLv3(this.author, projectName);
                 break;
@@ -246,15 +248,18 @@ function getUser(): string {
     let user = "John Doe"
     switch (os.platform()) {
         case 'win32':
-            let userprofile = process.env.USERPROFILE
+            const userprofile = process.env.USERPROFILE
             if (userprofile === undefined) {
                 vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
             }
             user = userprofile.split(path.sep)[2];
             break;
         case 'darwin':
+            user = process.env.USER;
+            break;
         case 'linux':
             user = process.env.USER;
+            break;
         default:
             vscode.window.showErrorMessage("Unsupported OS.")
             break;

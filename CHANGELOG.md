@@ -1,5 +1,8 @@
 # Changelog
 ## 0.2
+### 0.2.2
+* fix #4
+
 ### 0.2.1
 * nit change.
 

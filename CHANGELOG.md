@@ -1,5 +1,7 @@
 # Changelog
-## 0.2
+## 0.2.3
+* add description for `projectName` setting.
+
 ### 0.2.2
 * fix #4
 

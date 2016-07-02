@@ -91,7 +91,7 @@ class Licenser {
         this.licenseType = licenseType
 
         this.author = this.getAuthor();
-        console.log("Licenser.author: " + this.author);
+        console.log('Licenser.author: ' + this.author);
 
         const subscriptions: vscode.Disposable[] = [];
         vscode.commands.registerCommand('extension.createLicenseFile', () => { this.create() });
@@ -137,7 +137,7 @@ class Licenser {
         const header = this.getLicenseHeader(license, langId);
 
         const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
-        console.log("fisrtLine: " + firstLine);
+        console.log('fisrtLine: ' + firstLine);
         const position = firstLine.startsWith('#!') ? firstLine.length : 0;
 
         editor.edit((ed) => {
@@ -169,12 +169,14 @@ class Licenser {
 
     private getLicense(typ: string): License {
         let license: License;
-        let projectName = this.licenserSetting.get<string>("projectName", undefined);
-        if (projectName === undefined) {
+        let projectName = this.licenserSetting.get<string>('projectName', undefined);
+        console.log('Project Name from settings: ' + projectName);
+        if (projectName !== undefined && projectName === '') {
             let root = vscode.workspace.rootPath;
             projectName = path.basename(root);
-            vscode.window.showWarningMessage('')
         }
+        console.log('Project Name used: ' + projectName);
+        
         switch (this.licenseType.toLowerCase()) {
             case 'al2':
                 license = new AL2(this.author);
@@ -237,9 +239,10 @@ class Licenser {
     private getAuthor(): string {
         let author = this.licenserSetting.get<string>('author', undefined);
         console.log("Author from setting: " + author);
-        if (author === undefined || author.length === 0) {
-            vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. OS username will be used as default.")
+        if (author !== undefined && author.length !== 0) {
+            return author;
         }
+        vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. OS username will be used as default.")
         switch (os.platform()) {
             case 'win32':
                 const userprofile = process.env.USERPROFILE

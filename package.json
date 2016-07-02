@@ -51,7 +51,7 @@
                 },
                 "licenser.author": {
                     "type": "string",
-                    "default": "John Doe",
+                    "default": "",
                     "description": "Author name of the project."
                 },
                 "licenser.projectName": {

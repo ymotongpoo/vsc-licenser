@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.2.1",
+    "version": "0.2.3",
     "publisher": "ymotongpoo",
     "license": "SEE LICENSE IN LICENSE",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
@@ -51,7 +51,7 @@
                 },
                 "licenser.author": {
                     "type": "string",
-                    "default": "John Doe",
+                    "default": "",
                     "description": "Author name of the project."
                 },
                 "licenser.projectName": {

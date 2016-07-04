@@ -90,13 +90,8 @@ class Licenser {
         }
         this.licenseType = licenseType
 
-        let author = this.licenserSetting.get<string>('author', undefined);
-        if (author === undefined) {
-            vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. 'John Doe' will be used as default.")
-            author = getUser();
-        }
-        this.author = author;
-        console.log("Licenser.author: " + this.author);
+        this.author = this.getAuthor();
+        console.log('Licenser.author: ' + this.author);
 
         const subscriptions: vscode.Disposable[] = [];
         vscode.commands.registerCommand('extension.createLicenseFile', () => { this.create() });
@@ -142,7 +137,7 @@ class Licenser {
         const header = this.getLicenseHeader(license, langId);
 
         const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
-        console.log("fisrtLine: " + firstLine);
+        console.log('fisrtLine: ' + firstLine);
         const position = firstLine.startsWith('#!') ? firstLine.length : 0;
 
         editor.edit((ed) => {
@@ -174,12 +169,14 @@ class Licenser {
 
     private getLicense(typ: string): License {
         let license: License;
-        let projectName = this.licenserSetting.get<string>("projectName", undefined);
-        if (projectName === undefined) {
+        let projectName = this.licenserSetting.get<string>('projectName', undefined);
+        console.log('Project Name from settings: ' + projectName);
+        if (projectName !== undefined && projectName === '') {
             let root = vscode.workspace.rootPath;
             projectName = path.basename(root);
-            vscode.window.showWarningMessage('')
         }
+        console.log('Project Name used: ' + projectName);
+        
         switch (this.licenseType.toLowerCase()) {
             case 'al2':
                 license = new AL2(this.author);
@@ -239,32 +236,37 @@ class Licenser {
         return header + '\n';
     }
 
+    private getAuthor(): string {
+        let author = this.licenserSetting.get<string>('author', undefined);
+        console.log("Author from setting: " + author);
+        if (author !== undefined && author.length !== 0) {
+            return author;
+        }
+        vscode.window.showWarningMessage("set author name as 'licenser.author' in configuration. OS username will be used as default.")
+        switch (os.platform()) {
+            case 'win32':
+                const userprofile = process.env.USERPROFILE
+                if (userprofile === undefined) {
+                    vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
+                }
+                author = userprofile.split(path.sep)[2];
+                break;
+            case 'darwin':
+                author = process.env.USER;
+                break;
+            case 'linux':
+                author = process.env.USER;
+                break;
+            default:
+                vscode.window.showErrorMessage("Unsupported OS.")
+                break;
+        }
+        return author;
+    }
+
     public dispose() {
         this._disposable.dispose();
     }
-}
-
-function getUser(): string {
-    let user = "John Doe"
-    switch (os.platform()) {
-        case 'win32':
-            const userprofile = process.env.USERPROFILE
-            if (userprofile === undefined) {
-                vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
-            }
-            user = userprofile.split(path.sep)[2];
-            break;
-        case 'darwin':
-            user = process.env.USER;
-            break;
-        case 'linux':
-            user = process.env.USER;
-            break;
-        default:
-            vscode.window.showErrorMessage("Unsupported OS.")
-            break;
-    }
-    return user;
 }
 
 // this method is called when your extension is deactivated

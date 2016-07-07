@@ -2,6 +2,7 @@
 * OS (version):
 * Hardware: 
 * VS Code version:
+* VS Code build number:
 * other extensions installed: 
 
 You can confirm installed extensions by calling "Extensions: Show Installed Extensions", or

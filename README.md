@@ -89,6 +89,7 @@ For bug reporting, please create a ticket on [GitHub repository](https://github.
 Thank you for contributions to "licenser".
 
 * aodag
+* Cologler
 
 ## Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

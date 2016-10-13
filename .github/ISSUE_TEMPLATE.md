@@ -1,3 +1,5 @@
+*** Please make sure to use this template to report issue. Any issue report that does not follow this template will be ignored. ***
+
 ## Runtime environment
 * OS (version):
 * Hardware: 

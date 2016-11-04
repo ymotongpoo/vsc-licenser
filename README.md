@@ -42,6 +42,7 @@ Programming languages supported in this extension are:
 * HTML
 * XML
 * CSS
+* Rust
   
 ## Configurations
 ### licenser.license
@@ -90,6 +91,7 @@ Thank you for contributions to "licenser".
 
 * aodag
 * Cologler
+* jimmidyson
 
 ## Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

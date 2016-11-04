@@ -1,6 +1,9 @@
 # Changelog
+## 0.2.5
+* add Rust support 
+
 ## 0.2.4
-* merged fix to the template of MIT and GPLv3.
+* merge fix to the template of MIT and GPLv3.
 
 ## 0.2.3
 * add description for `projectName` setting.

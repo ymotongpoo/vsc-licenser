@@ -70,6 +70,7 @@ const commentNotation = {
     'xml': '<!-- -->',
 
     'php': '//',
+    'rs': '//',
 }
 
 
@@ -176,7 +177,7 @@ class Licenser {
             projectName = path.basename(root);
         }
         console.log('Project Name used: ' + projectName);
-        
+
         switch (this.licenseType.toLowerCase()) {
             case 'al2':
                 license = new AL2(this.author);

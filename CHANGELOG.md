@@ -1,6 +1,6 @@
 # Changelog
 ## 0.3.0
-* add Swift and SCSS(Sass) support.
+* add Swift, Objective-C, SCSS(Sass), Dockerfile, Groovy, Makefile, ini, bat support.
 * change comment notation handling from {[key:string]:string} to dedicated class.
 
 ## 0.2.5

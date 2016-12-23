@@ -35,15 +35,26 @@ Programming languages supported in this extension are:
 * Python
 * Ruby
 * Perl
-* OCaml
-* Erlang
-* LISP
-* Haskell
 * HTML
 * XML
 * CSS
+* SCSS (Sass)
 * Rust
-  
+* Swift
+* Objective-C
+* Dockerfile
+* Makefile
+* OCaml
+* Erlang
+* Groovy
+* ini
+* bat
+
+Following programing languages will be supported as soon as their language ID
+get available.
+* LISP
+* Haskell
+
 ## Configurations
 ### licenser.license
 

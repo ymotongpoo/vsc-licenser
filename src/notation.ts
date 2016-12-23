@@ -74,6 +74,15 @@ const xml = new Notation('xml', ['<!--', '-->'], '', '');
 const php = new Notation('php', ['/**', ' */'], '//', ' * ');
 const rust = new Notation('rust', ['/**', ' */'], '//', ' * ');
 const swift = new Notation('swift', ['/**', ' */'], '//', ' * ');
+const objectivec = new Notation('objective-c', ['/**', ' */'], '//', ' * ');
+const dockerfile = new Notation('dockerfile', ['', ''], '#', ' ');
+const groovy = new Notation('groovy', ['/**', ' */'], '//', ' * ');
+const bat = new Notation('bat', ['', ''], 'rem', '');
+const ini = new Notation('ini', ['', ''], ';', '');
+const makefile = new Notation('makefile', ['', ''], '#', '');
+
+const ocaml = new Notation('ocaml', ['(**', ' *)'], '//', ' * ');
+
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -97,5 +106,13 @@ export const notations: {[key:string]:Notation} = {
     'xml': xml,
     'php': php,
     'rust': rust,
-    'swift': swift
+    'swift': swift,
+    'objective-c': objectivec,
+    'dockerfile': dockerfile,
+    'makefile': makefile,
+    'groovy': groovy,
+    'bat': bat,
+    'ini': ini,
+
+    'ocaml': ocaml,
 }

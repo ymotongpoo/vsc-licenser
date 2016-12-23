@@ -45,7 +45,8 @@ const defaultLicenseType: string = 'AL2';
 const defaultLicenseFilename: string = 'LICENSE';
 
 // map between languageId and its comment notation.
-// TODO(ymotongpoo): check correct languageId.
+// LanguageId is listed here.
+// https://code.visualstudio.com/docs/languages/identifiers
 // TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)
 const commentNotation = {
     'go': '//',
@@ -59,18 +60,18 @@ const commentNotation = {
     'python': '#',
     'ruby': '#',
     'perl': '#',
-    'erlang': '%%',
-    'lisp': ';;',
-    'haskell': '--',
+    'erlang': '%%',  // Erlang is not supported on VSC as default.
+    'lisp': ';;',    // LISP is not supported on VSC as default.
+    'haskell': '--', // Haskell is not supported on VSC as default.
 
     'html': '<!-- -->',
-    'ocaml': '(* *)',
+    'ocaml': '(* *)', // OCaml is not supported on VSC as default.
     'css': '/* */',
     'c': '/* */',
     'xml': '<!-- -->',
 
     'php': '//',
-    'rs': '//',
+    'rust': '//',
 }
 
 

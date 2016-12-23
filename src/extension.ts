@@ -16,6 +16,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { notations } from './notation';
 import { License } from './licenses/type';
 import { AL2 } from './licenses/al2';
 import { BSD } from './licenses/bsd';
@@ -43,37 +44,6 @@ export function activate(context: vscode.ExtensionContext) {
 // constants for default properties.
 const defaultLicenseType: string = 'AL2';
 const defaultLicenseFilename: string = 'LICENSE';
-
-// map between languageId and its comment notation.
-// LanguageId is listed here.
-// https://code.visualstudio.com/docs/languages/identifiers
-// TODO(ymotongpoo): consider PHP's case. (comment can't start from line 1.)
-const commentNotation = {
-    'go': '//',
-    'javascript': '//',
-    'typescript': '//',
-    'java': '//',
-    'cpp': '//',
-    'csharp': '//',
-    'fsharp': '//',
-    'shellscript': '#',
-    'python': '#',
-    'ruby': '#',
-    'perl': '#',
-    'erlang': '%%',  // Erlang is not supported on VSC as default.
-    'lisp': ';;',    // LISP is not supported on VSC as default.
-    'haskell': '--', // Haskell is not supported on VSC as default.
-
-    'html': '<!-- -->',
-    'ocaml': '(* *)', // OCaml is not supported on VSC as default.
-    'css': '/* */',
-    'c': '/* */',
-    'xml': '<!-- -->',
-
-    'php': '//',
-    'rust': '//',
-}
-
 
 // Licenser handles LICENSE file creation and license header insertion.
 class Licenser {
@@ -138,6 +108,7 @@ class Licenser {
         const license = this.getLicense(this.licenseType);
         const header = this.getLicenseHeader(license, langId);
 
+        // handle shebang
         const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
         console.log('fisrtLine: ' + firstLine);
         const position = firstLine.startsWith('#!') ? firstLine.length : 0;
@@ -161,7 +132,7 @@ class Licenser {
             if (contents.length > 0) {
                 return;
             }
-            for (let id in commentNotation) {
+            for (let id in notations) {
                 if (id == doc.languageId) {
                     this.insert();
                 }
@@ -203,12 +174,15 @@ class Licenser {
     }
 
     private getLicenseHeader(license: License, langId: string): string {
-        let notation = <string>commentNotation[langId];
-        let tokens = notation.split(' ');
-        if (tokens.length === 1) {
-            return this.singleLineCommentHeader(license, tokens[0]);
-        } else if (tokens.length === 2) {
-            return this.multiLineCommentHeader(license, tokens[0], tokens[1]);
+        let notation = notations[langId];
+
+        // TODO(ymotongpoo): enhance setting option to reflect user's preference.
+        // such as licenser.preferSingleLineStyle.
+        if (notation.hasSingle()) {
+            return this.singleLineCommentHeader(license, notation.single);
+        } else if (notation.hasMulti) {
+            const [l, r] = notation.multi;
+            return this.multiLineCommentHeader(license, l, r, notation.ornament);
         }
     }
 
@@ -225,13 +199,13 @@ class Licenser {
         return header + '\n';
     }
 
-    private multiLineCommentHeader(license: License, start, end: string): string {
+    private multiLineCommentHeader(license: License, start, end, ornament: string): string {
         let original = license.header().split('\n');
         let header = start + '\n';
 
         for (let i in original) {
             if (original.length > 0) {
-                header += ' ' + original[i] + '\n';
+                header += ornament + original[i] + '\n';
             }
         }
         header += end + '\n';

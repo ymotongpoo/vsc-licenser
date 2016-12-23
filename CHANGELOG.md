@@ -1,6 +1,10 @@
 # Changelog
+## 0.3.0
+* add Swift and SCSS(Sass) support.
+* change comment notation handling from {[key:string]:string} to dedicated class.
+
 ## 0.2.5
-* add Rust support 
+* add Rust support.
 
 ## 0.2.4
 * merge fix to the template of MIT and GPLv3.

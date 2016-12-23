@@ -14,6 +14,7 @@
 
 // Notation class holds comment notation information of each programming language.
 // TODO(ymotongpoo): add default recommended commenting style in Enum.
+// TODO(ymotongpoo): consider PHP's case and shebang. (comment can't start from line 1.)
 class Notation {
     private _languageId: string;
     private _multi: [string, string];
@@ -45,42 +46,39 @@ class Notation {
 
     hasMulti(): Boolean {
         const [l, r] = this._multi;
-        if (l.length > 0 && r.length > 0) {
-            return true;
-        }
-        return false;
+        return l.length > 0 && r.length > 0;
     }
 
     hasSingle(): Boolean {
-        if (this._single.length > 0) {
-            return true;
-        }
-        return false;
+        return this._single.length > 0;
     }
 }
 
 // init
-const go = new Notation('go', ['/**', '*/'], '//', '*');
-const javascript = new Notation('javascript', ['/**', '*/'], '//', '*');
-const typescript = new Notation('typescript', ['/**', '*/'], '//', '*');
-const java = new Notation('java', ['/**', '*/'], '//', '*');
-const cpp = new Notation('cpp', ['/**', '*/'], '//', '*');
-const csharp = new Notation('csharp', ['/**', '*/'], '//', '*');
-const fsharp = new Notation('fsharp', ['(**', '*)'], '//', '*');
+const go = new Notation('go', ['/**', ' */'], '//', ' *');
+const javascript = new Notation('javascript', ['/**', ' */'], '//', ' * ');
+const typescript = new Notation('typescript', ['/**', ' */'], '//', ' * ');
+const java = new Notation('java', ['/**', ' */'], '//', ' *');
+const cpp = new Notation('cpp', ['/**', ' */'], '//', ' *');
+const csharp = new Notation('csharp', ['/**', ' */'], '//', ' * ');
+const fsharp = new Notation('fsharp', ['(**', ' *)'], '//', ' * ');
 const shellscript = new Notation('shellscript', ['<<LICENSE', '>>'], '#', ' ');
 const python = new Notation('python', ['"""', '"""'], '#', ' ');
 const ruby = new Notation('ruby', ['=begin', '=end'], '#', ' ');
 const perl = new Notation('perl', ['=pod', '=cut'], '#', ' ');
 const html = new Notation('html', ['<!--', '-->'], '', ' ');
-const css = new Notation('css', ['/**', '*/'], '', '*');
-const scss = new Notation('scss', ['/**', '*/'], '//', '*');
-const c = new Notation('c', ['/**', '*/'], '', '*');
+const css = new Notation('css', ['/**', ' */'], '', ' *');
+const scss = new Notation('scss', ['/**', ' */'], '//', ' * ');
+const c = new Notation('c', ['/**', ' */'], '', ' * ');
 const xml = new Notation('xml', ['<!--', '-->'], '', '');
-const php = new Notation('php', ['/**', '*/'], '//', '*');
-const rust = new Notation('rust', ['/**', '*/'], '//', '*');
-const swift = new Notation('swift', ['/**', '*/'], '//', '*');
+const php = new Notation('php', ['/**', ' */'], '//', ' * ');
+const rust = new Notation('rust', ['/**', ' */'], '//', ' * ');
+const swift = new Notation('swift', ['/**', ' */'], '//', ' * ');
 
-const notations: {[key:string]:Notation} = {
+// map betweeen languageId and its comment notations.
+// LanguageId is listed here.
+// https://code.visualstudio.com/docs/languages/identifiers
+export const notations: {[key:string]:Notation} = {
     'go': go,
     'javascript': javascript,
     'typescript': typescript,

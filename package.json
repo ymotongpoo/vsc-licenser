@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.2.5",
+    "version": "0.3.0",
     "publisher": "ymotongpoo",
     "license": "SEE LICENSE IN LICENSE",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
@@ -61,8 +61,7 @@
                 }
             }
         },
-        "commands": [
-            {
+        "commands": [{
                 "command": "extension.insertLicenseHeader",
                 "title": "licenser: Insert license header"
             },
@@ -71,13 +70,11 @@
                 "title": "licenser: Create LICENSE file"
             }
         ],
-        "keybindings": [
-            {
-                "command": "extension.createLicenseFile",
-                "key": "shift+cmd+ctrl+l",
-                "when": "editorTextFocus"
-            }
-        ]
+        "keybindings": [{
+            "command": "extension.createLicenseFile",
+            "key": "shift+cmd+ctrl+l",
+            "when": "editorTextFocus"
+        }]
     },
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",

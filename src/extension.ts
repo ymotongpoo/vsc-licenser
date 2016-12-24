@@ -192,13 +192,15 @@ class Licenser {
     private getLicenseHeader(license: License, langId: string): string {
         let notation = notations[langId];
 
-        // TODO(ymotongpoo): enhance setting option to reflect user's preference.
-        // such as licenser.preferSingleLineStyle.
-        if (notation.hasSingle()) {
+        const preferSingleLineStyle = this.licenserSetting.get<boolean>('useSingleLineStyle', true);
+        const [l, r] = notation.multi;
+        if (preferSingleLineStyle && notation.hasSingle()) {
             return this.singleLineCommentHeader(license, notation.single);
-        } else if (notation.hasMulti) {
-            const [l, r] = notation.multi;
+        }
+        if (notation.hasMulti()) {
             return this.multiLineCommentHeader(license, l, r, notation.ornament);
+        } else if (notation.hasSingle()) {
+            return this.singleLineCommentHeader(license, notation.single);
         }
     }
 

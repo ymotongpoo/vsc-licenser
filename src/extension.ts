@@ -19,7 +19,8 @@ import * as vscode from 'vscode';
 import { notations } from './notation';
 import { License } from './licenses/type';
 import { AL2 } from './licenses/al2';
-import { BSD } from './licenses/bsd';
+import { BSD3 } from './licenses/bsd3';
+import { BSD2 } from './licenses/bsd2';
 import { GPLv2 } from './licenses/gplv2';
 import { GPLv3 } from './licenses/gplv3';
 import { LGPLv3 } from './licenses/lgplv3';
@@ -154,11 +155,17 @@ class Licenser {
         console.log('Project Name used: ' + projectName);
 
         switch (this.licenseType.toLowerCase()) {
+            case 'apglv3':
+                license = new AGPLv3(this.author);
+                break;
             case 'al2':
                 license = new AL2(this.author);
                 break;
-            case 'bsd':
-                license = new BSD(this.author);
+            case 'bsd2':
+                license = new BSD2(this.author);
+                break;
+            case 'bsd3':
+                license = new BSD3(this.author);
                 break;
             case 'gplv2':
                 license = new GPLv2(this.author, projectName);
@@ -166,8 +173,14 @@ class Licenser {
             case 'gplv3':
                 license = new GPLv3(this.author, projectName);
                 break;
+            case 'lgplv3':
+                license = new LGPLv3(this.author);
+                break;
             case 'mit':
                 license = new MIT(this.author);
+                break;
+            case 'mpl':
+                license = new MPLv2(this.author);
                 break;
             default:
                 license = new AL2(this.author);

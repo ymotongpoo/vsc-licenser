@@ -16,7 +16,7 @@
 
 import { License } from './type';
 
-export class BSD {
+export class BSD3 {
     public author: string;
     public year: string;
 

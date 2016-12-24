@@ -42,7 +42,8 @@
                     "enum": [
                         "AGPLv3",
                         "AL2",
-                        "BSD",
+                        "BSD2",
+                        "BSD3",
                         "GPLv2",
                         "GPLv3",
                         "LGPLv3",

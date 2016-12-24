@@ -19,13 +19,11 @@ import { License } from './type';
 export class AGPLv3 {
     public author: string;
     public year: string;
-    public productName: string;
 
-    constructor(author: string, productName: string) {
+    constructor(author: string) {
         this.author = author;
         let date = new Date();
         this.year = date.getFullYear().toString();
-        this.productName = productName;
     }
 
     public termsAndConditions(): string {

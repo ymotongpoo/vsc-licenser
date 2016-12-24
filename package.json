@@ -61,6 +61,11 @@
                     "type": "string",
                     "default": "",
                     "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'."
+                },
+                "licenser.useSingleLineStyle": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Priority to use single line comment style to multiple line comment style for license header."
                 }
             }
         },

@@ -50,7 +50,7 @@
                         "MIT",
                         "MPLv2"
                     ],
-                    "description": "License setting for workspace. Available licenses are 'AL2', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'BSD'"
+                    "description": "License setting for workspace. Available licenses are 'AGPLv3', 'AL2', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'MPLv2'"
                 },
                 "licenser.author": {
                     "type": "string",

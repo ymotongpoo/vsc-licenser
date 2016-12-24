@@ -1,15 +1,21 @@
 # Changelog
-## 0.3.0
+## 0.3 (more language and license support)
+### 0.3.1 (breaking change)
+* add AGPLv3, MPLv2, BSD2 support. (there's breaking change on 'BSD' setting.)
+* fix issue on LGPL handling.
+
+### 0.3.0
 * add Swift, Objective-C, SCSS(Sass), Dockerfile, Groovy, Makefile, ini, bat support.
 * change comment notation handling from {[key:string]:string} to dedicated class.
 
-## 0.2.5
+## 0.2 (add feature to insert license header)
+### 0.2.5
 * add Rust support.
 
-## 0.2.4
+### 0.2.4
 * merge fix to the template of MIT and GPLv3.
 
-## 0.2.3
+### 0.2.3
 * add description for `projectName` setting.
 
 ### 0.2.2

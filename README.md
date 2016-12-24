@@ -64,12 +64,15 @@ get available.
 
 Currently, supported licenses are:
 
-* "AL2": Apache License version 2.
-* "BSD": BSD 3-clause License (New BSD License)
+* "AGPLv3": GNU Affero General Public License version 3
+* "AL2": Apache License version 2
+* "BSD2": BSD 2-clause License
+* "BSD3": BSD 3-clause License (New BSD License)
 * "GPLv2": GNU General Public License version 2
 * "GPLv3": GNU General Public License version 3
 * "LGPLv3": GNU Lesser General Public License version 3
 * "MIT": MIT License
+* "MPLv2": Mozilla Public License version 2
 
 ### licenser.author
 

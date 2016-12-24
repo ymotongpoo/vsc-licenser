@@ -22,7 +22,10 @@ import { AL2 } from './licenses/al2';
 import { BSD } from './licenses/bsd';
 import { GPLv2 } from './licenses/gplv2';
 import { GPLv3 } from './licenses/gplv3';
+import { LGPLv3 } from './licenses/lgplv3';
+import { AGPLv3 } from './licenses/agplv3';
 import { MIT } from './licenses/mit';
+import { MPLv2 } from './licenses/mplv2';
 import path = require('path');
 import os = require('os');
 

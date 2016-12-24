@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "publisher": "ymotongpoo",
     "license": "SEE LICENSE IN LICENSE",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
@@ -40,12 +40,14 @@
                     "type": "string",
                     "default": "AL2",
                     "enum": [
+                        "AGPLv3",
                         "AL2",
+                        "BSD",
                         "GPLv2",
                         "GPLv3",
                         "LGPLv3",
                         "MIT",
-                        "BSD"
+                        "MPLv2"
                     ],
                     "description": "License setting for workspace. Available licenses are 'AL2', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'BSD'"
                 },

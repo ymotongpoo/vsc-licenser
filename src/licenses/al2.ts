@@ -12,9 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-'use strict';
+"use strict";
 
-import { License } from './type';
+import { License } from "./type";
 
 export class AL2 {
     public author: string;

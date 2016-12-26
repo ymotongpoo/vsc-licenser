@@ -14,7 +14,7 @@
 
 // Notation class holds comment notation information of each programming language.
 // TODO(ymotongpoo): add default recommended commenting style in Enum.
-// TODO(ymotongpoo): consider PHP's case and shebang. (comment can't start from line 1.)
+// TODO(ymotongpoo): consider PHP"s case and shebang. (comment can"t start from line 1.)
 class Notation {
     private _languageId: string;
     private _multi: [string, string];
@@ -55,64 +55,64 @@ class Notation {
 }
 
 // init
-const go = new Notation('go', ['/**', ' */'], '//', ' *');
-const javascript = new Notation('javascript', ['/**', ' */'], '//', ' * ');
-const typescript = new Notation('typescript', ['/**', ' */'], '//', ' * ');
-const java = new Notation('java', ['/**', ' */'], '//', ' *');
-const cpp = new Notation('cpp', ['/**', ' */'], '//', ' *');
-const csharp = new Notation('csharp', ['/**', ' */'], '//', ' * ');
-const fsharp = new Notation('fsharp', ['(**', ' *)'], '//', ' * ');
-const shellscript = new Notation('shellscript', ['<<LICENSE', '>>'], '#', ' ');
-const python = new Notation('python', ['"""', '"""'], '#', ' ');
-const ruby = new Notation('ruby', ['=begin', '=end'], '#', ' ');
-const perl = new Notation('perl', ['=pod', '=cut'], '#', ' ');
-const html = new Notation('html', ['<!--', '-->'], '', ' ');
-const css = new Notation('css', ['/**', ' */'], '', ' *');
-const scss = new Notation('scss', ['/**', ' */'], '//', ' * ');
-const c = new Notation('c', ['/**', ' */'], '', ' * ');
-const xml = new Notation('xml', ['<!--', '-->'], '', '');
-const php = new Notation('php', ['/**', ' */'], '//', ' * ');
-const rust = new Notation('rust', ['/**', ' */'], '//', ' * ');
-const swift = new Notation('swift', ['/**', ' */'], '//', ' * ');
-const objectivec = new Notation('objective-c', ['/**', ' */'], '//', ' * ');
-const dockerfile = new Notation('dockerfile', ['', ''], '#', ' ');
-const groovy = new Notation('groovy', ['/**', ' */'], '//', ' * ');
-const bat = new Notation('bat', ['', ''], 'rem', '');
-const ini = new Notation('ini', ['', ''], ';', '');
-const makefile = new Notation('makefile', ['', ''], '#', '');
+const go = new Notation("go", ["/**", " */"], "//", " *");
+const javascript = new Notation("javascript", ["/**", " */"], "//", " * ");
+const typescript = new Notation("typescript", ["/**", " */"], "//", " * ");
+const java = new Notation("java", ["/**", " */"], "//", " *");
+const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
+const csharp = new Notation("csharp", ["/**", " */"], "//", " * ");
+const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
+const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", " ");
+const python = new Notation("python", ['"""', '"""'], "#", " ");
+const ruby = new Notation("ruby", ["=begin", "=end"], "#", " ");
+const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
+const html = new Notation("html", ["<!--", "-->"], "", " ");
+const css = new Notation("css", ["/**", " */"], "", " *");
+const scss = new Notation("scss", ["/**", " */"], "//", " * ");
+const c = new Notation("c", ["/**", " */"], "", " * ");
+const xml = new Notation("xml", ["<!--", "-->"], "", "");
+const php = new Notation("php", ["/**", " */"], "//", " * ");
+const rust = new Notation("rust", ["/**", " */"], "//", " * ");
+const swift = new Notation("swift", ["/**", " */"], "//", " * ");
+const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
+const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
+const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
+const bat = new Notation("bat", ["", ""], "rem", "");
+const ini = new Notation("ini", ["", ""], ";", "");
+const makefile = new Notation("makefile", ["", ""], "#", "");
 
-const ocaml = new Notation('ocaml', ['(**', ' *)'], '//', ' * ');
+const ocaml = new Notation("ocaml", ["(**", " *)"], "//", " * ");
 
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
 // https://code.visualstudio.com/docs/languages/identifiers
-export const notations: {[key:string]:Notation} = {
-    'go': go,
-    'javascript': javascript,
-    'typescript': typescript,
-    'java': java,
-    'csharp': csharp,
-    'fsharp': fsharp,
-    'shellscript': shellscript,
-    'python': python,
-    'ruby': ruby,
-    'perl': perl,
-    'html': html,
-    'css': css,
-    'scss': scss,
-    'sass': scss,
-    'c': c,
-    'xml': xml,
-    'php': php,
-    'rust': rust,
-    'swift': swift,
-    'objective-c': objectivec,
-    'dockerfile': dockerfile,
-    'makefile': makefile,
-    'groovy': groovy,
-    'bat': bat,
-    'ini': ini,
+export const notations: {[key: string]: Notation} = {
+    "go": go,
+    "javascript": javascript,
+    "typescript": typescript,
+    "java": java,
+    "csharp": csharp,
+    "fsharp": fsharp,
+    "shellscript": shellscript,
+    "python": python,
+    "ruby": ruby,
+    "perl": perl,
+    "html": html,
+    "css": css,
+    "scss": scss,
+    "sass": scss,
+    "c": c,
+    "xml": xml,
+    "php": php,
+    "rust": rust,
+    "swift": swift,
+    "objective-c": objectivec,
+    "dockerfile": dockerfile,
+    "makefile": makefile,
+    "groovy": groovy,
+    "bat": bat,
+    "ini": ini,
 
-    'ocaml': ocaml,
+    "ocaml": ocaml,
 }

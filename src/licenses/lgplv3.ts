@@ -12,9 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-'use strict';
+"use strict";
 
-import { License } from './type';
+import { License } from "./type";
 
 export class LGPLv3 {
     public author: string;
@@ -137,7 +137,7 @@ the following:
 
        1) Use a suitable shared library mechanism for linking with the
        Library.  A suitable mechanism is one that (a) uses at run time
-       a copy of the Library already present on the user's computer
+       a copy of the Library already present on the user"s computer
        system, and (b) will operate properly with a modified version
        of the Library that is interface-compatible with the Linked
        Version.
@@ -189,7 +189,7 @@ General Public License ever published by the Free Software Foundation.
 
   If the Library as you received it specifies that a proxy can decide
 whether future versions of the GNU Lesser General Public License shall
-apply, that proxy's public statement of acceptance of any version is
+apply, that proxy"s public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.`;
         return template;

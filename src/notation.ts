@@ -12,9 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-// Notation class holds comment notation information of each programming language.
-// TODO(ymotongpoo): add default recommended commenting style in Enum.
-// TODO(ymotongpoo): consider PHP"s case and shebang. (comment can"t start from line 1.)
+/**
+ * Notation class holds comment notation information of each programming language.
+ * TODO(ymotongpoo): add default recommended commenting style in Enum.
+ * TODO(ymotongpoo): consider PHP"s case and shebang. (comment can"t start from line 1.)
+ */
 class Notation {
     private _languageId: string;
     private _multi: [string, string];
@@ -44,11 +46,17 @@ class Notation {
         return this._ornament;
     }
 
+    /**
+     * hasMulti returns if the Notation instance has multiple line comment style tokens.
+     */
     hasMulti(): Boolean {
         const [l, r] = this._multi;
         return l.length > 0 && r.length > 0;
     }
 
+    /**
+     * hasSingle returns if the Notation instance has single line comment style tokens.
+     */
     hasSingle(): Boolean {
         return this._single.length > 0;
     }

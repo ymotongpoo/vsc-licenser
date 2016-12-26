@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log(""licenser" is activated.");
+    console.log("'licenser' is activated.");
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
@@ -61,7 +61,7 @@ class Licenser {
         this.licenserSetting = vscode.workspace.getConfiguration("licenser");
         let licenseType = this.licenserSetting.get<string>("license", undefined);
         if (licenseType === undefined) {
-            vscode.window.showWarningMessage("set your preferred license as "licenser.license" in configuration. Apache License version 2.0 will be used as default.")
+            vscode.window.showWarningMessage("set your preferred license as 'licenser.license' in configuration. Apache License version 2.0 will be used as default.")
             licenseType = defaultLicenseType;
         }
         this.licenseType = licenseType
@@ -75,6 +75,9 @@ class Licenser {
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
+    /**
+     * create generates LICENSE file and save it in opened workspace.
+     */
     create() {
         const root = vscode.workspace.rootPath;
         if (root === undefined) {
@@ -106,7 +109,7 @@ class Licenser {
     }
 
     /**
-     * insert 
+     * insert embeds license header text into the first line of the opened file.
      */
     insert() {
         const editor = vscode.window.activeTextEditor;
@@ -262,7 +265,7 @@ class Licenser {
         if (author !== undefined && author.length !== 0) {
             return author;
         }
-        vscode.window.showWarningMessage("set author name as "licenser.author" in configuration. OS username will be used as default.")
+        vscode.window.showWarningMessage("set author name as ’licenser.author’ in configuration. OS username will be used as default.")
         switch (os.platform()) {
             case "win32":
                 const userprofile = process.env.USERPROFILE

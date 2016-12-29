@@ -97,8 +97,12 @@ Be aware that this setting should be in Workspace setting, not in User setting, 
 User setting affects all workspaces which are not relevant to this project name. 
 
 ## Call to action
+### Report issues
 Finally the author bought Windows 10 machine, and he can test the app by himself!
 For bug reporting, please create a ticket on [GitHub repository](https://github.com/ymotongpoo/vsc-licenser/issues).
+
+### Pull requests
+This repository is mainly developed under 'develop' branch, so please make pull requests there, not to 'master' branch.
 
 ## Contributers
 Thank you for contributions to "licenser".
@@ -106,6 +110,7 @@ Thank you for contributions to "licenser".
 * aodag
 * Cologler
 * jimmidyson
+* marchrock
 
 ## Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).

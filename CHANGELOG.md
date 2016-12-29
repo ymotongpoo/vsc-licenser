@@ -1,5 +1,8 @@
 # Changelog
 ## 0.3 (more language and license support)
+### 0.3.2
+* bug fix #11
+
 ### 0.3.1 (breaking change)
 * add AGPLv3, MPLv2, BSD2 support. (there's breaking change on 'BSD' setting.)
 * fix issue on LGPL handling.

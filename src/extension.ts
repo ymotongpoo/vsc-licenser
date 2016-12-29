@@ -179,7 +179,7 @@ class Licenser {
             case 'mit':
                 license = new MIT(this.author);
                 break;
-            case 'mpl':
+            case 'mplv2':
                 license = new MPLv2(this.author);
                 break;
             default:

@@ -48,12 +48,14 @@ Programming languages supported in this extension are:
 * Groovy
 * ini
 * bat
-
-Following programing languages are custom support in this extension.
-* OCaml
-* LISP
-* Haskell
 * JSX (JavaScript, TypeScript support)
+* Clojure
+
+Following programing languages are supported in the manuaul configurations in this extension.
+(See `contributes.languages` in `package.json`)
+* OCaml
+* LISP (CommonLisp, Scheme)
+* Haskell
 
 ## Configurations
 ### licenser.license

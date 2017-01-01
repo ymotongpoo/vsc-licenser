@@ -15,7 +15,6 @@
 /**
  * Notation class holds comment notation information of each programming language.
  * TODO(ymotongpoo): add default recommended commenting style in Enum.
- * TODO(ymotongpoo): consider PHP"s case and shebang. (comment can"t start from line 1.)
  */
 class Notation {
     private _languageId: string;
@@ -88,7 +87,7 @@ const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
 const bat = new Notation("bat", ["", ""], "rem", "");
 const ini = new Notation("ini", ["", ""], ";", "");
 const makefile = new Notation("makefile", ["", ""], "#", "");
-const plaintext = new Notation("plaintext", ["", ""], "//", "");
+const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
 
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");

@@ -122,9 +122,7 @@ class Licenser {
 
         // handle shebang
         const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
-        console.log("fisrtLine: " + firstLine);
-        const position = firstLine.startsWith("#!") ? firstLine.length : 0;
-
+        const position = this.findInsertionPosition(firstLine, langId);
         editor.edit((ed) => {
             console.log("header:", header);
             ed.insert(doc.positionAt(position), header);
@@ -140,6 +138,21 @@ class Licenser {
             console.log("editor.edit", reason);
             vscode.window.showErrorMessage(reason);
         });
+    }
+    
+    /**
+     * findInsertionPosition returns the position to which insert() should insert
+     * @param range header text area (usually first line of the file.)
+     * @param langId language ID
+     */
+    private findInsertionPosition(range: string, langId: string): number {
+        console.log("fisrtLine: " + range);
+        switch (langId) {
+            case "php":
+                return range.startsWith("<?php") ? range.length : 0;
+            default:
+                return range.startsWith("#!") ? range.length : 0;
+        }
     }
 
     private _onDidChangeActiveTextEditor() {

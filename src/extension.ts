@@ -95,15 +95,17 @@ class Licenser {
                     if (done) {
                         doc.save().then((saved) => {
                             vscode.window.showInformationMessage(`Successfully saved: ${uri}`);
-                        })
+                        }, (reason) => {
+                            console.log("saved", reason);
+                        });
                     }
                 }, (reason) => {
-                    console.log(reason);
+                    console.log("ed.insert", reason);
                     vscode.window.showErrorMessage(reason);
                 })
             })
         }, (reason) => {
-            console.log(reason);
+            console.log("openTextDocument", reason);
             vscode.window.showErrorMessage(reason);
         });
     }
@@ -124,14 +126,19 @@ class Licenser {
         const position = firstLine.startsWith("#!") ? firstLine.length : 0;
 
         editor.edit((ed) => {
-            console.log(header);
+            console.log("header:", header);
             ed.insert(doc.positionAt(position), header);
         }).then((done) => {
             if (done) {
                 doc.save().then((saved) => {
                     console.log("Inserted license header");
+                }, (reason) => {
+                    console.log("doc.save", reason);
                 })
             }
+        }, (reason) => {
+            console.log("editor.edit", reason);
+            vscode.window.showErrorMessage(reason);
         });
     }
 
@@ -209,10 +216,18 @@ class Licenser {
 
         const preferSingleLineStyle = this.licenserSetting.get<boolean>("useSingleLineStyle", true);
         const [l, r] = notation.multi;
-        if (notation.hasMulti() && !preferSingleLineStyle) {
-            return this.multiLineCommentHeader(license, l, r, notation.ornament);
-        } else if (notation.hasSingle()) {
-            return this.singleLineCommentHeader(license, notation.single);
+        if (preferSingleLineStyle) {
+            if (notation.hasSingle()) {
+                return this.singleLineCommentHeader(license, notation.single);
+            } else if (notation.hasMulti()) {
+                return this.multiLineCommentHeader(license, l, r, notation.ornament);
+            }
+        } else {
+            if (notation.hasMulti()) {
+                return this.multiLineCommentHeader(license, l, r, notation.ornament);
+            } else if (notation.hasSingle()) {
+                return this.singleLineCommentHeader(license, notation.single);
+            }
         }
     }
 

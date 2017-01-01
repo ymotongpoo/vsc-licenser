@@ -44,16 +44,16 @@ Programming languages supported in this extension are:
 * Objective-C
 * Dockerfile
 * Makefile
-* OCaml
 * Erlang
 * Groovy
 * ini
 * bat
 
-Following programing languages will be supported as soon as their language ID
-get available.
+Following programing languages are custom support in this extension.
+* OCaml
 * LISP
 * Haskell
+* JSX (JavaScript, TypeScript support)
 
 ## Configurations
 ### licenser.license

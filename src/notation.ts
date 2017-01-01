@@ -89,8 +89,9 @@ const bat = new Notation("bat", ["", ""], "rem", "");
 const ini = new Notation("ini", ["", ""], ";", "");
 const makefile = new Notation("makefile", ["", ""], "#", "");
 
-const ocaml = new Notation("ocaml", ["(**", " *)"], "//", " * ");
-
+const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
+const lisp = new Notation("lisp", ["", ""], ";;", "");
+const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -121,6 +122,11 @@ export const notations: {[key: string]: Notation} = {
     "groovy": groovy,
     "bat": bat,
     "ini": ini,
+    "javascriptreact": javascript,
+    "typescriptreact": typescript,
+    "clojure": lisp,
 
     "ocaml": ocaml,
+    "lisp": lisp,
+    "haskell": haskell,
 }

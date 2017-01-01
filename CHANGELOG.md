@@ -1,5 +1,10 @@
 # Changelog
 ## 0.4
+### 0.4.1
+* add Haskell, Clojure, JSX, CommonLisp, Scheme support. (fix #10.)
+* fix bugs around `useSingleLineStyle` option.
+* fix OCaml support.
+
 ### 0.4.0
 * add optionn for comment style preference (`licenser.useSingleLineStyle`)
 

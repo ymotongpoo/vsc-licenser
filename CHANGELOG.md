@@ -1,5 +1,8 @@
 # Changelog
 ## 0.4
+### 0.4.2
+* bug fix #14.
+
 ### 0.4.1
 * add Haskell, Clojure, JSX, CommonLisp, Scheme support. (fix #10.)
 * fix bugs around `useSingleLineStyle` option.
@@ -31,7 +34,7 @@
 * add description for `projectName` setting.
 
 ### 0.2.2
-* fix #4
+* bug fix #4
 
 ### 0.2.1
 * nit change.

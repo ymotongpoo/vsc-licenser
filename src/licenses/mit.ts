@@ -43,7 +43,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         let template = `Copyright (c) ${ this.year } ${ this.author }
 
 This software is released under the MIT License.
-http://opensource.org/licenses/mit-license.php`;
+https://opensource.org/licenses/MIT`;
         return template;
     }
 }

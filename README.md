@@ -33,6 +33,7 @@ Programming languages supported in this extension are:
 * F#
 * ShellScript
 * Python
+* PHP
 * Ruby
 * Perl
 * HTML

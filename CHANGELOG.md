@@ -1,4 +1,8 @@
 # Changelog
+## 0.4
+### 0.4.0
+* add optionn for comment style preference (`licenser.useSingleLineStyle`)
+
 ## 0.3 (more language and license support)
 ### 0.3.2
 * bug fix #11

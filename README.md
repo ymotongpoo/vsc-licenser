@@ -96,6 +96,17 @@ the template for GPLv2 and GPLv3. Default value would be your workspace root dir
 Be aware that this setting should be in Workspace setting, not in User setting, since
 User setting affects all workspaces which are not relevant to this project name. 
 
+### licenser.useSingleLineStyle
+
+```
+"licenser.useSingleLineStyle": true
+```
+
+This setting defines your preference of commentt style. If this setting is set as `true`,
+licenser uses single line comment style for license header in case that the language has
+single line comment style. If it is set as `true` but the language doesn't have single line comment style,
+multi line comment will be applied.
+
 ## Call to action
 ### Report issues
 Finally the author bought Windows 10 machine, and he can test the app by himself!

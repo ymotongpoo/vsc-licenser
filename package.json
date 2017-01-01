@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "publisher": "ymotongpoo",
     "license": "SEE LICENSE IN LICENSE",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
@@ -73,9 +73,15 @@
                         "CC-BY-NC-3",
                         "CC-BY-NC-SA-3",
                         "CC-BY-NC-ND-3",
+                        "CC-BY-4",
+                        "CC-BY-SA-4",
+                        "CC-BY-NC-4",
+                        "CC-BY-NC-SA-4",
+                        "CC-BY-ND-4",
+                        "CC-BY-NC-ND-4",
                         "CC0-1"
                     ],
-                    "description": "License setting for workspace. Available licenses are 'AGPLv3', 'AL2', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'MPLv2', 'CC-BY-3', 'CC-BY-SA-3', 'CC-BY-ND-3', 'CC-BY-NC-3', 'CC-BY-NC-SA-3', 'CC-BY-NC-ND-3', 'CC0-1'"
+                    "description": "License setting for workspace. Available licenses are 'AGPLv3', 'AL2', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'MPLv2', 'CC-BY-3', 'CC-BY-SA-3', 'CC-BY-ND-3', 'CC-BY-NC-3', 'CC-BY-NC-SA-3', 'CC-BY-NC-ND-3', 'CC-BY-4', 'CC-BY-SA-4', 'CC-BY-ND-4', 'CC-BY-NC-4', 'CC-BY-NC-SA-4', 'CC-BY-NC-ND-4', 'CC0-1'"
                 },
                 "licenser.author": {
                     "type": "string",

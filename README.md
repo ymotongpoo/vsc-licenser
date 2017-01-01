@@ -82,6 +82,12 @@ Currently, supported licenses are:
 * "CC-BY-ND-3": Creative Commons Attribution-NoDerivs 3.0
 * "CC-BY-NC-SA-3": Creative Commons Attribution-NonCommercial-ShareAlike 3.0
 * "CC-BY-NC-ND-3": Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+* "CC-BY-4": Creative Commons Attribution 4.0
+* "CC-BY-SA-4": Creative Commons Attribution-ShareAlike 4.0
+* "CC-BY-NC-4": Creative Commons Attribution-NonCommercial 4.0
+* "CC-BY-ND-4": Creative Commons Attribution-NoDerivs 4.0
+* "CC-BY-NC-SA-4": Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+* "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
 * "CC0-1": CC0 1.0
 
 ### licenser.author
@@ -123,12 +129,13 @@ For bug reporting, please create a ticket on [GitHub repository](https://github.
 ### Pull requests
 This repository is mainly developed under 'develop' branch, so please make pull requests there, not to 'master' branch.
 
-## Contributers
+## Contributors
 Thank you for contributions to "licenser".
 
 * aodag
 * Cologler
 * jimmidyson
+* simonmika
 * marchrock
 * dtl
 
@@ -137,3 +144,4 @@ See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blo
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)
+* [All CC 4.0 Legal Codes](https://creativecommons.org/2014/01/07/plaintext-versions-of-creative-commons-4-0-licenses/)

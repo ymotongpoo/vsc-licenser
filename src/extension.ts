@@ -28,11 +28,17 @@ import { AGPLv3 } from "./licenses/agplv3";
 import { MIT } from "./licenses/mit";
 import { MPLv2 } from "./licenses/mplv2";
 import { CCBY3 } from "./licenses/ccby30";
+import { CCBY4 } from "./licenses/ccby40";
 import { CCBYNC3 } from "./licenses/ccbync30";
+import { CCBYNC4 } from "./licenses/ccbync40";
 import { CCBYNCND3 } from "./licenses/ccbyncnd30";
+import { CCBYNCND4 } from "./licenses/ccbyncnd40";
 import { CCBYNCSA3 } from "./licenses/ccbyncsa30";
+import { CCBYNCSA4 } from "./licenses/ccbyncsa40";
 import { CCBYND3 } from "./licenses/ccbynd30";
+import { CCBYND4 } from "./licenses/ccbynd40";
 import { CCBYSA3 } from "./licenses/ccbysa30";
+import { CCBYSA4 } from "./licenses/ccbysa40";
 import { CC01 } from "./licenses/cczero1";
 import path = require("path");
 import os = require("os");
@@ -222,20 +228,32 @@ class Licenser {
             case "cc-by-3":
                 license = new CCBY3(this.author, projectName);
                 break;
+            case "cc-by-4":
+                license = new CCBY4(this.author, projectName);
+                break;
             case "cc-by-sa-3":
                 license = new CCBYSA3(this.author, projectName);
                 break;
-            case "cc-by-nd-3":
-                license = new CCBYND3(this.author, projectName);
+            case "cc-by-nd-4":
+                license = new CCBYND4(this.author, projectName);
                 break;
             case "cc-by-nc-3":
                 license = new CCBYNC3(this.author, projectName);
                 break;
+            case "cc-by-nc-4":
+                license = new CCBYNC4(this.author, projectName);
+                break;
             case "cc-by-nc-sa-3":
                 license = new CCBYNCSA3(this.author, projectName);
                 break;
+            case "cc-by-nc-sa-4":
+                license = new CCBYNCSA4(this.author, projectName);
+                break;
             case "cc-by-nc-nd-3":
                 license = new CCBYNCND3(this.author, projectName);
+                break;
+            case "cc-by-nc-nd-4":
+                license = new CCBYNCND4(this.author, projectName);
                 break;
             default:
                 license = new AL2(this.author);

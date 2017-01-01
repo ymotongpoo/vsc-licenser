@@ -1,4 +1,7 @@
 # Changelog
+## 0.5
+* add CC3.0, CC4.0 support.
+
 ## 0.4
 ### 0.4.2
 * bug fix #14.

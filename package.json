@@ -79,10 +79,15 @@
             }
         ],
         "keybindings": [{
-            "command": "extension.createLicenseFile",
-            "key": "shift+cmd+ctrl+l",
-            "when": "editorTextFocus"
-        }]
+                "command": "extension.createLicenseFile",
+                "key": "shift+cmd+ctrl+l",
+                "when": "editorTextFocus"
+            },{
+                "command": "extension.insertLicenseHeader",
+                "key": "shift+cmd+ctrl+i",
+                "when": "editorTextFocus"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",

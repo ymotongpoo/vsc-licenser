@@ -27,6 +27,13 @@ import { LGPLv3 } from "./licenses/lgplv3";
 import { AGPLv3 } from "./licenses/agplv3";
 import { MIT } from "./licenses/mit";
 import { MPLv2 } from "./licenses/mplv2";
+import { CCBY3 } from "./licenses/ccby30";
+import { CCBYNC3 } from "./licenses/ccbync30";
+import { CCBYNCND3 } from "./licenses/ccbyncnd30";
+import { CCBYNCSA3 } from "./licenses/ccbyncsa30";
+import { CCBYND3 } from "./licenses/ccbynd30";
+import { CCBYSA3 } from "./licenses/ccbysa30";
+import { CC01 } from "./licenses/cczero1";
 import path = require("path");
 import os = require("os");
 
@@ -209,8 +216,26 @@ class Licenser {
             case "mit":
                 license = new MIT(this.author);
                 break;
-            case 'mplv2':
+            case "mplv2":
                 license = new MPLv2(this.author);
+                break;
+            case "cc-by-3":
+                license = new CCBY3(this.author, projectName);
+                break;
+            case "cc-by-sa-3":
+                license = new CCBYSA3(this.author, projectName);
+                break;
+            case "cc-by-nd-3":
+                license = new CCBYND3(this.author, projectName);
+                break;
+            case "cc-by-nc-3":
+                license = new CCBYNC3(this.author, projectName);
+                break;
+            case "cc-by-nc-sa-3":
+                license = new CCBYNCSA3(this.author, projectName);
+                break;
+            case "cc-by-nc-nd-3":
+                license = new CCBYNCND3(this.author, projectName);
                 break;
             default:
                 license = new AL2(this.author);

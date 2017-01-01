@@ -88,6 +88,7 @@ const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
 const bat = new Notation("bat", ["", ""], "rem", "");
 const ini = new Notation("ini", ["", ""], ";", "");
 const makefile = new Notation("makefile", ["", ""], "#", "");
+const plaintext = new Notation("plaintext", ["", ""], "//", "");
 
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");

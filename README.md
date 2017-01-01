@@ -76,6 +76,13 @@ Currently, supported licenses are:
 * "LGPLv3": GNU Lesser General Public License version 3
 * "MIT": MIT License
 * "MPLv2": Mozilla Public License version 2
+* "CC-BY-3": Creative Commons Attribution 3.0
+* "CC-BY-SA-3": Creative Commons Attribution-ShareAlike 3.0
+* "CC-BY-NC-3": Creative Commons Attribution-NonCommercial 3.0
+* "CC-BY-ND-3": Creative Commons Attribution-NoDerivs 3.0
+* "CC-BY-NC-SA-3": Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+* "CC-BY-NC-ND-3": Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+* "CC0-1": CC0 1.0
 
 ### licenser.author
 
@@ -127,3 +134,6 @@ Thank you for contributions to "licenser".
 
 ## Changelogs
 See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).
+
+## Reference
+* [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

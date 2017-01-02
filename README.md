@@ -39,6 +39,7 @@ Programming languages supported in this extension are (alphabetical order):
 * JavaScript
 * JSX (JavaScript, TypeScript support)
 * Makefile
+* Markdown
 * Objective-C
 * Perl
 * PHP

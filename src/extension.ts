@@ -268,7 +268,7 @@ class Licenser {
      * @param langId language ID for the file working on.
      */
     private getLicenseHeader(license: License, langId: string): string {
-        let notation = notations[langId];
+        let notation = notations[langId] ? notations[langId] : notations["plaintext"]; // return plaintext's comment when langId is unexpected.
 
         const preferSingleLineStyle = this.licenserSetting.get<boolean>("useSingleLineStyle", true);
         const [l, r] = notation.multi;

@@ -11,10 +11,10 @@ ext install licenser
 ```
 
 ## Commands and features
-This extension provides shortcut to insert license header to source code file and
-to create LICENSE file based on the configuration in `settings.json`. This extenstion
-not only provides shortcut but also enables auto-insertion of license header on creation
-of new file. 
+This extension provides shortcuts to insert license headers to source code files and
+to create a LICENSE file based on the configurations in `settings.json`. This extenstion
+not only provides shortcuts but also enables auto-insertion of license header on creation
+of new file.
 
 You can call these 2 commands via Command Palette. 
 * "licenser: Create LICENSE file"
@@ -25,6 +25,7 @@ You can call these 2 commands via Command Palette.
 Programming languages supported in this extension are (alphabetical order):
 * bat
 * C
+* Clojure
 * C++
 * C#
 * CSS
@@ -44,21 +45,22 @@ Programming languages supported in this extension are (alphabetical order):
 * Perl
 * PHP
 * Plain text
+* PowerShell
 * Python
 * Ruby
 * Rust
 * TypeScript
 * SCSS (Sass)
 * ShellScript
-* XML
 * Swift
-* Clojure
+* XML
 
 Following programing languages are supported in the manuaul configurations in this extension.
 (See `contributes.languages` in `package.json`)
-* OCaml
-* LISP (CommonLisp, Scheme)
 * Haskell
+* LISP (CommonLisp, Scheme)
+* OCaml
+* Erlang
 
 ## Configurations
 ### licenser.license

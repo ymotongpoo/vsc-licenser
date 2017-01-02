@@ -68,7 +68,6 @@ const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
 const csharp = new Notation("csharp", ["/**", " */"], "//", " * ");
 const css = new Notation("css", ["/**", " */"], "", " *");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
-const erlang = new Notation("erlang", ["", ""], "%%", "");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
 const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
@@ -82,6 +81,7 @@ const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
 const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
 const php = new Notation("php", ["/**", " */"], "//", " * ");
 const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
+const powershell = new Notation("powershell", ["<##", "#>"], "#", " # ");
 const python = new Notation("python", ['"""', '"""'], "#", " ");
 const ruby = new Notation("ruby", ["=begin", "=end"], "#", " ");
 const rust = new Notation("rust", ["/**", " */"], "//", " * ");
@@ -91,6 +91,8 @@ const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", " ");
 const swift = new Notation("swift", ["/**", " */"], "//", " * ");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
+// custom languages
+const erlang = new Notation("erlang", ["", ""], "%%", "");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
@@ -106,7 +108,6 @@ export const notations: {[key: string]: Notation} = {
     "csharp": csharp,
     "css": css,
     "dockerfile": dockerfile,
-    "erlang": erlang,
     "fsharp": fsharp,
     "go": go,
     "groovy": groovy,
@@ -121,6 +122,7 @@ export const notations: {[key: string]: Notation} = {
     "perl": perl,
     "php": php,
     "plaintext": plaintext,
+    "powershell": powershell,
     "python": python,
     "ruby": ruby,
     "rust": rust,
@@ -132,6 +134,7 @@ export const notations: {[key: string]: Notation} = {
     "swift": swift,
     "xml": xml,
 
+    "erlang": erlang,
     "haskell": haskell,
     "lisp": lisp,
     "ocaml": ocaml,

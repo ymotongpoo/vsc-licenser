@@ -1,5 +1,9 @@
 # Changelog
 ## 0.5
+### 0.5.1
+* add Erlang, PowerShell support.
+
+### 0.5.0
 * add CC3.0, CC4.0 support.
 
 ## 0.4

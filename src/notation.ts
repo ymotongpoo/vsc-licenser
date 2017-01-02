@@ -61,72 +61,76 @@ class Notation {
     }
 }
 
-// init
-const go = new Notation("go", ["/**", " */"], "//", " *");
-const javascript = new Notation("javascript", ["/**", " */"], "//", " * ");
-const typescript = new Notation("typescript", ["/**", " */"], "//", " * ");
-const java = new Notation("java", ["/**", " */"], "//", " *");
+// init (alphabetical order)
+const bat = new Notation("bat", ["", ""], "rem", "");
+const c = new Notation("c", ["/**", " */"], "", " * ");
 const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
 const csharp = new Notation("csharp", ["/**", " */"], "//", " * ");
-const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
-const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", " ");
-const python = new Notation("python", ['"""', '"""'], "#", " ");
-const php = new Notation("php", ["/**", " */"], "//", " * ");
-const ruby = new Notation("ruby", ["=begin", "=end"], "#", " ");
-const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
-const html = new Notation("html", ["<!--", "-->"], "", " ");
 const css = new Notation("css", ["/**", " */"], "", " *");
-const scss = new Notation("scss", ["/**", " */"], "//", " * ");
-const c = new Notation("c", ["/**", " */"], "", " * ");
-const xml = new Notation("xml", ["<!--", "-->"], "", "");
-const rust = new Notation("rust", ["/**", " */"], "//", " * ");
-const swift = new Notation("swift", ["/**", " */"], "//", " * ");
-const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
+const erlang = new Notation("erlang", ["", ""], "%%", "");
+const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
+const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
-const bat = new Notation("bat", ["", ""], "rem", "");
+const html = new Notation("html", ["<!--", "-->"], "", " ");
 const ini = new Notation("ini", ["", ""], ";", "");
+const java = new Notation("java", ["/**", " */"], "//", " *");
+const javascript = new Notation("javascript", ["/**", " */"], "//", " * ");
 const makefile = new Notation("makefile", ["", ""], "#", "");
+const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
+const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
+const php = new Notation("php", ["/**", " */"], "//", " * ");
 const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
+const python = new Notation("python", ['"""', '"""'], "#", " ");
+const ruby = new Notation("ruby", ["=begin", "=end"], "#", " ");
+const rust = new Notation("rust", ["/**", " */"], "//", " * ");
+const typescript = new Notation("typescript", ["/**", " */"], "//", " * ");
+const scss = new Notation("scss", ["/**", " */"], "//", " * ");
+const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", " ");
+const swift = new Notation("swift", ["/**", " */"], "//", " * ");
+const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
-const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
-const lisp = new Notation("lisp", ["", ""], ";;", "");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
+const lisp = new Notation("lisp", ["", ""], ";;", "");
+const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
 // https://code.visualstudio.com/docs/languages/identifiers
 export const notations: {[key: string]: Notation} = {
-    "go": go,
-    "javascript": javascript,
-    "typescript": typescript,
-    "java": java,
+    "bat": bat,
+    "c": c,
+    "clojure": lisp,
+    "cpp": cpp,
     "csharp": csharp,
+    "css": css,
+    "dockerfile": dockerfile,
+    "erlang": erlang,
     "fsharp": fsharp,
-    "shellscript": shellscript,
+    "go": go,
+    "groovy": groovy,
+    "html": html,
+    "ini": ini,
+    "java": java,
+    "javascript": javascript,
+    "javascriptreact": javascript,
+    "makefile": makefile,
+    "objective-c": objectivec,
+    "perl": perl,
+    "php": php,
+    "plaintext": plaintext,
     "python": python,
     "ruby": ruby,
-    "perl": perl,
-    "html": html,
-    "css": css,
-    "scss": scss,
-    "sass": scss,
-    "c": c,
-    "xml": xml,
-    "php": php,
     "rust": rust,
-    "swift": swift,
-    "objective-c": objectivec,
-    "dockerfile": dockerfile,
-    "makefile": makefile,
-    "groovy": groovy,
-    "bat": bat,
-    "ini": ini,
-    "javascriptreact": javascript,
+    "typescript": typescript,
     "typescriptreact": typescript,
-    "clojure": lisp,
+    "sass": scss,
+    "scss": scss,
+    "shellscript": shellscript,
+    "swift": swift,
+    "xml": xml,
 
-    "ocaml": ocaml,
-    "lisp": lisp,
     "haskell": haskell,
+    "lisp": lisp,
+    "ocaml": ocaml,
 }

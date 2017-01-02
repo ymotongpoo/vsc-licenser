@@ -49,6 +49,11 @@
                 "id": "haskell",
                 "extensions": [ ".hs" ],
                 "aliases": [ "Haskell", "haskell" ]
+            },
+            {
+                "id": "erlang",
+                "extensions": [ ".erl" ],
+                "aliases": [ "Erlang", "erlang" ]
             }
         ],
         "configuration": {

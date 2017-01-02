@@ -22,34 +22,35 @@ You can call these 2 commands via Command Palette.
 * "licenser: Insert license header"
   * insert license header to currently opened source code files.
 
-Programming languages supported in this extension are:
-* Go
-* C++
-* C
-* JavaScript
-* TypeScript
-* Java
-* C#
-* F#
-* ShellScript
-* Python
-* PHP
-* Ruby
-* Perl
-* HTML
-* XML
-* CSS
-* SCSS (Sass)
-* Rust
-* Swift
-* Objective-C
-* Dockerfile
-* Makefile
-* Erlang
-* Groovy
-* ini
+Programming languages supported in this extension are (alphabetical order):
 * bat
+* C
+* C++
+* C#
+* CSS
+* Dockerfile
+* Erlang
+* F#
+* Go
+* Groovy
+* HTML
+* ini
+* Java
+* JavaScript
 * JSX (JavaScript, TypeScript support)
+* Makefile
+* Objective-C
+* Perl
+* PHP
+* Plain text
+* Python
+* Ruby
+* Rust
+* TypeScript
+* SCSS (Sass)
+* ShellScript
+* XML
+* Swift
 * Clojure
 
 Following programing languages are supported in the manuaul configurations in this extension.

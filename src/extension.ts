@@ -152,7 +152,7 @@ class Licenser {
             vscode.window.showErrorMessage(reason);
         });
     }
-    
+
     /**
      * findInsertionPosition returns the position to which insert() should insert
      * @param range header text area (usually first line of the file.)
@@ -198,7 +198,7 @@ class Licenser {
         console.log("Project Name used: " + projectName);
 
         switch (typ.toLowerCase()) {
-            case "apglv3":
+            case "agplv3":
                 license = new AGPLv3(this.author);
                 break;
             case "al2":

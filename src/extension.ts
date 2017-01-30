@@ -159,7 +159,7 @@ class Licenser {
      * @param langId language ID
      */
     private findInsertionPosition(range: string, langId: string): number {
-        console.log("fisrtLine: " + range);
+        console.log("firstLine: " + range);
         switch (langId) {
             case "php":
                 return range.startsWith("<?php") ? range.length : 0;

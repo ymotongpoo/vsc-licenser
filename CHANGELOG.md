@@ -1,5 +1,8 @@
 # Changelog
 ## 0.5
+### 0.5.2
+* bug fix #19.
+
 ### 0.5.1
 * add Erlang, PowerShell support.
 

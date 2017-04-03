@@ -1,137 +1,168 @@
 {
-    "name": "licenser",
-    "displayName": "licenser",
-    "description": "inserts license header in source files and creates license file.",
-    "icon": "image/logo.png",
-    "version": "0.5.2",
-    "publisher": "ymotongpoo",
-    "license": "SEE LICENSE IN LICENSE",
-    "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ymotongpoo/vsc-licenser"
-    },
-    "bugs": {
-        "url": "https://github.com/ymotongpoo/vsc-licenser/issues"
-    },
-    "engines": {
-        "vscode": "^0.10.10"
-    },
-    "categories": [
-        "Other",
-        "Linters",
-        "Snippets"
-    ],
-    "keywords": [
-        "License",
-        "Snippets",
-        "Template"
-    ],
-    "activationEvents": [
-        "onCommand:extension.insertLicenseHeader",
-        "onCommand:extension.createLicenseFile"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "ocaml",
-                "extensions": [ ".ml", ".mli", ".ocamlinit" ],
-                "aliases": [ "OCaml", "ocaml" ]
-            },
-            {
-                "id": "lisp",
-                "extensions": [ ".lisp", ".cl", ".lsp", ".l",
-                                ".el",
-                                ".scm"]
-            },
-            {
-                "id": "haskell",
-                "extensions": [ ".hs" ],
-                "aliases": [ "Haskell", "haskell" ]
-            },
-            {
-                "id": "erlang",
-                "extensions": [ ".erl" ],
-                "aliases": [ "Erlang", "erlang" ]
-            }
+  "name": "licenser",
+  "displayName": "licenser",
+  "description": "inserts license header in source files and creates license file.",
+  "icon": "image/logo.png",
+  "version": "0.5.2",
+  "publisher": "ymotongpoo",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ymotongpoo/vsc-licenser"
+  },
+  "bugs": {
+    "url": "https://github.com/ymotongpoo/vsc-licenser/issues"
+  },
+  "engines": {
+    "vscode": "^0.10.10"
+  },
+  "categories": [
+    "Other",
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "License",
+    "Snippets",
+    "Template",
+    "License"
+  ],
+  "activationEvents": [
+    "onCommand:extension.insertLicenseHeader",
+    "onCommand:extension.createLicenseFile"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "ocaml",
+        "extensions": [
+          ".ml",
+          ".mli",
+          ".ocamlinit"
         ],
-        "configuration": {
-            "title": "Licenser configurations",
-            "properties": {
-                "licenser.license": {
-                    "type": "string",
-                    "default": "AL2",
-                    "enum": [
-                        "AGPLv3",
-                        "AL2",
-                        "BSD2",
-                        "BSD3",
-                        "GPLv2",
-                        "GPLv3",
-                        "LGPLv3",
-                        "MIT",
-                        "MPLv2",
-                        "CC-BY-3",
-                        "CC-BY-SA-3",
-                        "CC-BY-ND-3",
-                        "CC-BY-NC-3",
-                        "CC-BY-NC-SA-3",
-                        "CC-BY-NC-ND-3",
-                        "CC-BY-4",
-                        "CC-BY-SA-4",
-                        "CC-BY-NC-4",
-                        "CC-BY-NC-SA-4",
-                        "CC-BY-ND-4",
-                        "CC-BY-NC-ND-4",
-                        "CC0-1"
-                    ],
-                    "description": "License setting for workspace. Available licenses are 'AGPLv3', 'AL2', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'MPLv2', 'CC-BY-3', 'CC-BY-SA-3', 'CC-BY-ND-3', 'CC-BY-NC-3', 'CC-BY-NC-SA-3', 'CC-BY-NC-ND-3', 'CC-BY-4', 'CC-BY-SA-4', 'CC-BY-ND-4', 'CC-BY-NC-4', 'CC-BY-NC-SA-4', 'CC-BY-NC-ND-4', 'CC0-1'"
-                },
-                "licenser.author": {
-                    "type": "string",
-                    "default": "",
-                    "description": "Author name of the project."
-                },
-                "licenser.projectName": {
-                    "type": "string",
-                    "default": "",
-                    "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'."
-                },
-                "licenser.useSingleLineStyle": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Priority to use single line comment style to multiple line comment style for license header."
-                }
-            }
-        },
-        "commands": [{
-                "command": "extension.insertLicenseHeader",
-                "title": "licenser: Insert license header"
-            },
-            {
-                "command": "extension.createLicenseFile",
-                "title": "licenser: Create LICENSE file"
-            }
-        ],
-        "keybindings": [{
-                "command": "extension.createLicenseFile",
-                "key": "shift+cmd+ctrl+l",
-                "when": "editorTextFocus"
-            },{
-                "command": "extension.insertLicenseHeader",
-                "key": "shift+cmd+ctrl+i",
-                "when": "editorTextFocus"
-            }
+        "aliases": [
+          "OCaml",
+          "ocaml"
         ]
+      },
+      {
+        "id": "lisp",
+        "extensions": [
+          ".lisp",
+          ".cl",
+          ".lsp",
+          ".l",
+          ".el",
+          ".scm"
+        ]
+      },
+      {
+        "id": "haskell",
+        "extensions": [
+          ".hs"
+        ],
+        "aliases": [
+          "Haskell",
+          "haskell"
+        ]
+      },
+      {
+        "id": "erlang",
+        "extensions": [
+          ".erl"
+        ],
+        "aliases": [
+          "Erlang",
+          "erlang"
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "Licenser configurations",
+      "properties": {
+        "licenser.license": {
+          "type": "string",
+          "default": "AL2",
+          "enum": [
+            "AGPLv3",
+            "AL2",
+            "BSD2",
+            "BSD3",
+            "GPLv2",
+            "GPLv3",
+            "LGPLv3",
+            "MIT",
+            "MPLv2",
+            "CC-BY-3",
+            "CC-BY-SA-3",
+            "CC-BY-ND-3",
+            "CC-BY-NC-3",
+            "CC-BY-NC-SA-3",
+            "CC-BY-NC-ND-3",
+            "CC-BY-4",
+            "CC-BY-SA-4",
+            "CC-BY-NC-4",
+            "CC-BY-NC-SA-4",
+            "CC-BY-ND-4",
+            "CC-BY-NC-ND-4",
+            "CC0-1"
+          ],
+          "description": "License setting for workspace. Available licenses are 'AGPLv3', 'AL2', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'MPLv2', 'CC-BY-3', 'CC-BY-SA-3', 'CC-BY-ND-3', 'CC-BY-NC-3', 'CC-BY-NC-SA-3', 'CC-BY-NC-ND-3', 'CC-BY-4', 'CC-BY-SA-4', 'CC-BY-ND-4', 'CC-BY-NC-4', 'CC-BY-NC-SA-4', 'CC-BY-NC-ND-4', 'CC0-1'"
+        },
+        "licenser.author": {
+          "type": "string",
+          "default": "",
+          "description": "Author name of the project."
+        },
+        "licenser.projectName": {
+          "type": "string",
+          "default": "",
+          "description": "Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'."
+        },
+        "licenser.useSingleLineStyle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Priority to use single line comment style to multiple line comment style for license header."
+        }
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "typescript": "^1.8.5",
-        "vscode": "^0.11.0"
-    }
+    "commands": [
+      {
+        "command": "extension.insertLicenseHeader",
+        "title": "licenser: Insert license header"
+      },
+      {
+        "command": "extension.createLicenseFile",
+        "title": "licenser: Create LICENSE file"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.createLicenseFile",
+        "key": "shift+cmd+ctrl+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.insertLicenseHeader",
+        "key": "shift+cmd+ctrl+i",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "tslint": "^5.0.0",
+    "typescript": "^2.0.0",
+    "vscode": "^0.11.0"
+  },
+  "dependencies": {
+    "typescript": "^2.0.0",
+    "vscode": "^0.11.18"
+  }
 }

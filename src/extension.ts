@@ -84,6 +84,7 @@ class Licenser {
 
         const subscriptions: vscode.Disposable[] = [];
         vscode.commands.registerCommand("extension.createLicenseFile", () => { this.create() });
+        vscode.commands.registerCommand("extension.anyLicenseHeader", () => { this.arbitrary() });
         vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() });
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
@@ -123,14 +124,10 @@ class Licenser {
         });
     }
 
-    /**
-     * insert embeds license header text into the first line of the opened file.
-     */
-    insert() {
+    _insert(license: License) {
         const editor = vscode.window.activeTextEditor;
         const doc = editor.document;
         const langId = editor.document.languageId;
-        const license = this.getLicense(this.licenseType);
         const header = this.getLicenseHeader(license, langId);
 
         // handle shebang
@@ -151,6 +148,26 @@ class Licenser {
             console.log("editor.edit", reason);
             vscode.window.showErrorMessage(reason);
         });
+    }
+
+    /**
+     * insert embeds license header text into the first line of the opened file.
+     */
+    insert() {
+        const license = this.getLicense(this.licenseType);
+        this._insert(license);
+    }
+
+    arbitrary() {
+        vscode.window.showInputBox({
+            prompt: "Specify the license short name to insert. (see package.json for all the candidates)",
+            placeHolder: "AL2",
+        }).then((shortName) => {
+            if (shortName !== undefined) {
+                const license = this.getLicense(shortName);
+                this._insert(license);
+            }
+        })
     }
 
     /**

@@ -20,7 +20,9 @@ You can call these 2 commands via Command Palette.
 * "licenser: Create LICENSE file"
   * create LICENSE file into your repository.
 * "licenser: Insert license header"
-  * insert license header to currently opened source code files.
+  * insert license header to the currently opened source code file.
+* "licenser: Arbitrary license header"
+  * insert arbitrary license header to the currently opened source code file.
 
 Programming languages supported in this extension are (alphabetical order):
 * bat

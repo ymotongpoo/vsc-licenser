@@ -3,8 +3,12 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "publisher": "ymotongpoo",
+    "galleryBanner": {
+        "color": "#0000FF",
+        "theme": "light"
+    },
     "license": "SEE LICENSE IN LICENSE",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
     "repository": {
@@ -19,6 +23,7 @@
     },
     "categories": [
         "Other",
+        "Languages",
         "Linters",
         "Snippets"
     ],

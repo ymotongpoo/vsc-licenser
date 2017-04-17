@@ -1,5 +1,8 @@
 # Changelog
 ## 0.5
+### 0.5.3
+* support arbitrary license header insertion. (#22)
+
 ### 0.5.2
 * bug fix #19.
 

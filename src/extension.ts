@@ -124,7 +124,7 @@ class Licenser {
         });
     }
 
-    _insert(license: License) {
+    private _insert(license: License) {
         const editor = vscode.window.activeTextEditor;
         const doc = editor.document;
         const langId = editor.document.languageId;
@@ -187,14 +187,17 @@ class Licenser {
 
     private _onDidChangeActiveTextEditor() {
         vscode.window.onDidChangeActiveTextEditor(e => {
-            const doc = e.document;
-            const contents = doc.getText();
-            if (contents.length > 0) {
-                return;
-            }
-            for (let id in notations) {
-                if (id === doc.languageId) {
-                    this.insert();
+            const fileName = path.win32.basename(e.document.fileName);
+            if (fileName !== defaultLicenseFilename) {
+                const doc = e.document;
+                const contents = doc.getText();
+                if (contents.length > 0) {
+                    return;
+                }
+                for (let id in notations) {
+                    if (id === doc.languageId) {
+                        this.insert();
+                    }
                 }
             }
         });

@@ -2,9 +2,8 @@
 
 ## Runtime environment
 * OS (version):
-* Hardware: 
 * VS Code version:
-* VS Code build number:
+* VS Code build number (if possible):
 * other extensions installed: 
 
 You can confirm installed extensions by calling "Extensions: Show Installed Extensions", or

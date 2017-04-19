@@ -372,7 +372,7 @@ Public License instead of this License.`
     }
 
     public header(): string {
-        let template = `Copyright (C) ${ this.year }  ${ this.author }
+        let template = `Copyright (C) ${ this.year } ${ this.author }
 
 This file is part of ${ this.productName }.
 

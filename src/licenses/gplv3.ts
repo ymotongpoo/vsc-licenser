@@ -264,7 +264,7 @@ The GNU General Public License does not permit incorporating your program into p
     }
 
     public header(): string {
-        let template = `Copyright (C) ${ this.year }  ${ this.author }
+        let template = `Copyright (C) ${ this.year } ${ this.author }
 
 This file is part of ${ this.productName }.
 

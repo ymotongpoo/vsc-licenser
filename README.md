@@ -139,6 +139,7 @@ This setting defines the text used to create the `LICENSE` file when the "Custom
 The following placeholders can be used:
 
 * `@AUTHOR@`: Replaced with `licenser.author`
+* `@FILE@`: Replaced with the current file name (only useful for custom header).
 * `@PROJECT@`: Replaced with `licenser.projectName`
 * `@YEAR@`: Replaced with the current year
 
@@ -149,7 +150,7 @@ Consider using a regex replace to convert an existing multi-line file to a singl
 ### licenser.customHeader
 
 ```
-"licenser.customHeader": "Copyright @YEAR@ @AUTHOR@\n\nThis is my license..."
+"licenser.customHeader": "@FILENAME@ - @PROJECT@\n\nCopyright @YEAR@ @AUTHOR@\n\nThis is my license..."
 ```
 
 This setting defines the text used to create the license header file when the "Custom" license type is selected.

@@ -281,7 +281,8 @@ class Licenser {
             case "custom":
                 let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
                 let customHeader = licenserSetting.get<string>("customHeader");
-                license = new Custom(this.author, projectName, customTermsAndConditions, customHeader);
+                let fileName = vscode.window.activeTextEditor.document.fileName;
+                license = new Custom(this.author, projectName, customTermsAndConditions, customHeader, fileName);
                 break;
             default:
                 license = new AL2(this.author);

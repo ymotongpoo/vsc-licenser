@@ -15,6 +15,7 @@
 "use strict";
 
 import { License } from "./type";
+import path = require("path");
 
 export class Custom {
     public author: string;
@@ -22,20 +23,23 @@ export class Custom {
     public project: string;
     public customTermsAndConditions: string;
     public customHeader: string;
+    public filePath: path.ParsedPath;
 
-    constructor(author: string, project: string, customTermsAndConditions: string, customHeader: string) {
+    constructor(author: string, project: string, customTermsAndConditions: string, customHeader: string, filePath: string) {
         this.author = author;
         let date = new Date();
         this.year = date.getFullYear().toString();
         this.project = project;
         this.customTermsAndConditions = customTermsAndConditions;
         this.customHeader = customHeader;
+        this.filePath = path.parse(filePath);
     }
 
     private replaceVariables(text: string): string {
         text = text.replace("@AUTHOR@", this.author);
         text = text.replace("@YEAR@", this.year);
         text = text.replace("@PROJECT@", this.project);
+        text = text.replace("@FILE@", this.filePath.base);
         return text;
     }
 

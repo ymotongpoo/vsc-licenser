@@ -65,19 +65,16 @@ const defaultLicenseFilename: string = "LICENSE";
 // Licenser handles LICENSE file creation and license header insertion.
 class Licenser {
     private licenseTemplate: string;
-    private licenseType: string;
     private author: string;
-    private licenserSetting: vscode.WorkspaceConfiguration;
     private _disposable: vscode.Disposable;
 
     constructor() {
-        this.licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let licenseType = this.licenserSetting.get<string>("license", undefined);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license", undefined);
         if (licenseType === undefined) {
             vscode.window.showWarningMessage("set your preferred license as 'licenser.license' in configuration. Apache License version 2.0 will be used as default.")
             licenseType = defaultLicenseType;
         }
-        this.licenseType = licenseType
 
         this.author = this.getAuthor();
         console.log("Licenser.author: " + this.author);
@@ -98,7 +95,9 @@ class Licenser {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
-        const license = this.getLicense(this.licenseType);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license");
+        const license = this.getLicense(licenseType);
 
         const uri = vscode.Uri.parse("untitled:" + root + path.sep + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
@@ -154,7 +153,9 @@ class Licenser {
      * insert embeds license header text into the first line of the opened file.
      */
     insert() {
-        const license = this.getLicense(this.licenseType);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license");
+        const license = this.getLicense(licenseType);
         this._insert(license);
     }
 
@@ -209,7 +210,8 @@ class Licenser {
      */
     private getLicense(typ: string): License {
         let license: License;
-        let projectName = this.licenserSetting.get<string>("projectName", undefined);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let projectName = licenserSetting.get<string>("projectName", undefined);
         console.log("Project Name from settings: " + projectName);
         if (projectName !== undefined && projectName === "") {
             let root = vscode.workspace.rootPath;
@@ -290,7 +292,8 @@ class Licenser {
     private getLicenseHeader(license: License, langId: string): string {
         let notation = notations[langId] ? notations[langId] : notations["plaintext"]; // return plaintext's comment when langId is unexpected.
 
-        const preferSingleLineStyle = this.licenserSetting.get<boolean>("useSingleLineStyle", true);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        const preferSingleLineStyle = licenserSetting.get<boolean>("useSingleLineStyle", true);
         const [l, r] = notation.multi;
         if (preferSingleLineStyle) {
             if (notation.hasSingle()) {
@@ -351,7 +354,8 @@ class Licenser {
      *   2. OS environment.
      */
     private getAuthor(): string {
-        let author = this.licenserSetting.get<string>("author", undefined);
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let author = licenserSetting.get<string>("author", undefined);
         console.log("Author from setting: " + author);
         if (author !== undefined && author.length !== 0) {
             return author;

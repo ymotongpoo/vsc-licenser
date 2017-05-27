@@ -95,6 +95,7 @@ Currently, supported licenses are:
 * "CC-BY-NC-SA-4": Creative Commons Attribution-NonCommercial-ShareAlike 4.0
 * "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
 * "CC0-1": CC0 1.0
+* "Custom": User-defined (see `licenser.custom*` settings below)
 
 ### licenser.author
 
@@ -122,10 +123,39 @@ not in User setting, since User setting affects all workspaces which are not rel
 "licenser.useSingleLineStyle": true
 ```
 
-This setting defines your preference of commentt style. If this setting is set as `true`,
+This setting defines your preference of comment style. If this setting is set as `true`,
 licenser uses single line comment style for license header in case that the language has
 single line comment style. If it is set as `true` but the language doesn't have single line comment style,
 multi line comment will be applied.
+
+### licenser.customTermsAndConditions
+
+```
+"licenser.customTermsAndConditions": "Copyright @YEAR@ @AUTHOR@\n\nThese are my terms and conditions..."
+```
+
+This setting defines the text used to create the `LICENSE` file when the "Custom" license type is selected.
+
+The following placeholders can be used:
+
+* `@AUTHOR@`: Replaced with `licenser.author`
+* `@PROJECT@`: Replaced with `licenser.projectName`
+* `@YEAR@`: Replaced with the current year
+
+**Note:** Newlines are not allowed in settings strings, so you must use `\n` instead.
+Other characters, such as double-quotes may need to be escaped as well.
+Consider using a regex replace to convert an existing multi-line file to a single line.
+
+### licenser.customHeader
+
+```
+"licenser.customHeader": "Copyright @YEAR@ @AUTHOR@\n\nThis is my license..."
+```
+
+This setting defines the text used to create the license header file when the "Custom" license type is selected.
+
+Placeholders and escaping requirements are the same as `licenser.customTermsAndConditions`.
+
 
 ## Call to action
 ### Report issues

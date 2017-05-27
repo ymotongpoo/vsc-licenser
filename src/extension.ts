@@ -18,6 +18,7 @@
 import * as vscode from "vscode";
 import { notations } from "./notation";
 import { License } from "./licenses/type";
+import { Custom } from "./licenses/custom";
 import { AL2 } from "./licenses/al2";
 import { BSD3 } from "./licenses/bsd3";
 import { BSD2 } from "./licenses/bsd2";
@@ -276,6 +277,11 @@ class Licenser {
                 break;
             case "cc-by-nc-nd-4":
                 license = new CCBYNCND4(this.author, projectName);
+                break;
+            case "custom":
+                let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
+                let customHeader = licenserSetting.get<string>("customHeader");
+                license = new Custom(this.author, projectName, customTermsAndConditions, customHeader);
                 break;
             default:
                 license = new AL2(this.author);

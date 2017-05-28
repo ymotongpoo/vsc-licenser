@@ -166,19 +166,20 @@ For bug reporting, please create a ticket on [GitHub repository](https://github.
 ### Pull requests
 This repository is mainly developed under 'develop' branch, so please make pull requests there, not to 'master' branch.
 
+## Changelogs
+See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).
+
 ## Contributors
 Thank you for contributions to "licenser".
 
-* aodag
-* Cologler
-* jimmidyson
-* simonmika
-* marchrock
-* dtl
-* jrobeson
-
-## Changelogs
-See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).
+* @aodag
+* @Cologler
+* @jimmidyson
+* @simonmika
+* @marchrock
+* @dtl
+* @jrobeson
+* @dlech
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

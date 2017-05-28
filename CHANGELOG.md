@@ -1,4 +1,8 @@
 # Changelog
+## 1.0
+### 1.0.0
+* more support on custom license header thanks to @dlech. (#23, #29)
+
 ## 0.5
 ### 0.5.4
 * bug fix #25.

@@ -1,5 +1,8 @@
 # Changelog
 ## 1.0
+### 1.0.1
+* add Lua support (#30)
+
 ### 1.0.0
 * more support on custom license header thanks to @dlech. (#23, #29)
 

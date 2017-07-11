@@ -41,6 +41,7 @@ Programming languages supported in this extension are (alphabetical order):
 * Java
 * JavaScript
 * JSX (JavaScript, TypeScript support)
+* Lua
 * Makefile
 * Markdown
 * Objective-C
@@ -180,6 +181,7 @@ Thank you for contributions to "licenser".
 * @dtl
 * @jrobeson
 * @dlech
+* @Lexicality
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

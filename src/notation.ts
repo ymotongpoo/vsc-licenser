@@ -75,6 +75,7 @@ const html = new Notation("html", ["<!--", "-->"], "", " ");
 const ini = new Notation("ini", ["", ""], ";", "");
 const java = new Notation("java", ["/**", " */"], "//", " *");
 const javascript = new Notation("javascript", ["/**", " */"], "//", " * ");
+const lua = new Notation("lua", ["--[[", "--]]"], "--", " ");
 const makefile = new Notation("makefile", ["", ""], "#", "");
 const markdown = new Notation("markdown", ["<!---", "-->"], "", " ");
 const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
@@ -116,6 +117,7 @@ export const notations: {[key: string]: Notation} = {
     "java": java,
     "javascript": javascript,
     "javascriptreact": javascript,
+    "lua": lua,
     "makefile": makefile,
     "markdown": markdown,
     "objective-c": objectivec,

@@ -71,6 +71,7 @@ const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
 const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
+const handlebars = new Notation("handlebars", ["<!--", "-->"], "", " ");
 const html = new Notation("html", ["<!--", "-->"], "", " ");
 const ini = new Notation("ini", ["", ""], ";", "");
 const java = new Notation("java", ["/**", " */"], "//", " *");
@@ -112,6 +113,7 @@ export const notations: {[key: string]: Notation} = {
     "fsharp": fsharp,
     "go": go,
     "groovy": groovy,
+    "handlebars": handlebars,
     "html": html,
     "ini": ini,
     "java": java,

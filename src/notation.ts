@@ -94,6 +94,7 @@ const swift = new Notation("swift", ["/**", " */"], "//", " * ");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
 // custom languages
+const d = new Notation( "d", ["/*", " */"], "//", " *");
 const erlang = new Notation("erlang", ["", ""], "%%", "");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
@@ -138,6 +139,7 @@ export const notations: {[key: string]: Notation} = {
     "swift": swift,
     "xml": xml,
 
+    "d": d,
     "erlang": erlang,
     "haskell": haskell,
     "lisp": lisp,

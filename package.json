@@ -40,7 +40,18 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "languages": [{
+        "languages": [
+            {
+                "id": "d",
+                "extensions": [
+                    ".d",
+                    ".di"
+                ],
+                "aliases": [
+                    "D"
+                ]
+            },
+            {
                 "id": "ocaml",
                 "extensions": [
                     ".ml",

@@ -31,6 +31,7 @@ Programming languages supported in this extension are (alphabetical order):
 * C++
 * C#
 * CSS
+* D
 * Dockerfile
 * Erlang
 * F#
@@ -182,6 +183,7 @@ Thank you for contributions to "licenser".
 * @jrobeson
 * @dlech
 * @Lexicality
+* @detwin
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

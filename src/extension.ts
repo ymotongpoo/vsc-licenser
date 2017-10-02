@@ -22,6 +22,7 @@ import { Custom } from "./licenses/custom";
 import { AL2 } from "./licenses/al2";
 import { BSD3 } from "./licenses/bsd3";
 import { BSD2 } from "./licenses/bsd2";
+import { BSL1 } from "./licenses/bsl1";
 import { GPLv2 } from "./licenses/gplv2";
 import { GPLv3 } from "./licenses/gplv3";
 import { LGPLv3 } from "./licenses/lgplv3";
@@ -232,6 +233,9 @@ class Licenser {
                 break;
             case "bsd3":
                 license = new BSD3(this.author);
+                break;
+            case "bsl1":
+                license = new BSL1(this.author);
                 break;
             case "gplv2":
                 license = new GPLv2(this.author, projectName);

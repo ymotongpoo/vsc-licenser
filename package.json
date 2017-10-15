@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "1.0.1",
+    "version": "1.1.1",
     "publisher": "ymotongpoo",
     "galleryBanner": {
         "color": "#EEF7FF",
@@ -52,20 +52,6 @@
                 ]
             },
             {
-                "id": "pascal",
-                "extensions": [
-                    ".pas",
-                    ".pp",
-                    ".lpr",
-                    ".dpr"
-                ],
-                "aliases": [
-                    "Pascal",
-                    "Delphi",
-                    "Object Pascal"
-                ]
-            },
-            {
                 "id": "ocaml",
                 "extensions": [
                     ".ml",
@@ -106,6 +92,20 @@
                 "aliases": [
                     "Erlang",
                     "erlang"
+                ]
+            },
+            {
+                "id": "pascal",
+                "extensions": [
+                    ".pas",
+                    ".pp",
+                    ".lpr",
+                    ".dpr"
+                ],
+                "aliases": [
+                    "Pascal",
+                    "Delphi",
+                    "Object Pascal"
                 ]
             }
         ],
@@ -169,7 +169,8 @@
                 }
             }
         },
-        "commands": [{
+        "commands": [
+            {
                 "command": "extension.insertLicenseHeader",
                 "title": "licenser: Insert license header"
             },
@@ -182,7 +183,8 @@
                 "title": "licenser: Create LICENSE file"
             }
         ],
-        "keybindings": [{
+        "keybindings": [
+            {
                 "command": "extension.createLicenseFile",
                 "key": "shift+cmd+ctrl+l",
                 "when": "editorTextFocus"
@@ -206,5 +208,8 @@
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.40",
         "tslint": "^4.5.1"
+    },
+    "dependencies": {
+        "vsce": "^1.31.1"
     }
 }

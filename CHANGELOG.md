@@ -1,5 +1,9 @@
 # Changelog
 ## 1.0
+### 1.1.1
+* add Handlebars, D and Pascal support (#31, #33, #35)
+* add Boost Software License support (#34)
+
 ### 1.0.1
 * add Lua support (#30)
 

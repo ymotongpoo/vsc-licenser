@@ -46,7 +46,6 @@ Programming languages supported in this extension are (alphabetical order):
 * Makefile
 * Markdown
 * Objective-C
-* Pascal
 * Perl
 * PHP
 * Plain text
@@ -62,10 +61,12 @@ Programming languages supported in this extension are (alphabetical order):
 
 Following programing languages are supported in the manuaul configurations in this extension.
 (See `contributes.languages` in `package.json`)
+* Erlang
 * Haskell
 * LISP (CommonLisp, Scheme)
 * OCaml
-* Erlang
+* Pascal
+
 
 ## Configurations
 ### licenser.license

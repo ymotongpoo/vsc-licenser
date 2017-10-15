@@ -52,6 +52,20 @@
                 ]
             },
             {
+                "id": "pascal",
+                "extensions": [
+                    ".pas",
+                    ".pp",
+                    ".lpr",
+                    ".dpr"
+                ],
+                "aliases": [
+                    "Pascal",
+                    "Delphi",
+                    "Object Pascal"
+                ]
+            },
+            {
                 "id": "ocaml",
                 "extensions": [
                     ".ml",

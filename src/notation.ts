@@ -80,6 +80,7 @@ const lua = new Notation("lua", ["--[[", "--]]"], "--", " ");
 const makefile = new Notation("makefile", ["", ""], "#", "");
 const markdown = new Notation("markdown", ["<!---", "-->"], "", " ");
 const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
+const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
 const php = new Notation("php", ["/**", " */"], "//", " * ");
 const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
@@ -124,6 +125,7 @@ export const notations: {[key: string]: Notation} = {
     "makefile": makefile,
     "markdown": markdown,
     "objective-c": objectivec,
+    "pascal": pascal,
     "perl": perl,
     "php": php,
     "plaintext": plaintext,

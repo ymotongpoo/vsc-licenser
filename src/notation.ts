@@ -71,7 +71,6 @@ const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
 const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
-const handlebars = new Notation("handlebars", ["<!--", "-->"], "", " ");
 const html = new Notation("html", ["<!--", "-->"], "", " ");
 const ini = new Notation("ini", ["", ""], ";", "");
 const java = new Notation("java", ["/**", " */"], "//", " *");
@@ -80,7 +79,6 @@ const lua = new Notation("lua", ["--[[", "--]]"], "--", " ");
 const makefile = new Notation("makefile", ["", ""], "#", "");
 const markdown = new Notation("markdown", ["<!---", "-->"], "", " ");
 const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
-const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
 const php = new Notation("php", ["/**", " */"], "//", " * ");
 const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
@@ -97,9 +95,11 @@ const xml = new Notation("xml", ["<!--", "-->"], "", "");
 // custom languages
 const d = new Notation( "d", ["/*", " */"], "//", " *");
 const erlang = new Notation("erlang", ["", ""], "%%", "");
+const handlebars = new Notation("handlebars", ["<!--", "-->"], "", " ");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
+const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -115,7 +115,6 @@ export const notations: {[key: string]: Notation} = {
     "fsharp": fsharp,
     "go": go,
     "groovy": groovy,
-    "handlebars": handlebars,
     "html": html,
     "ini": ini,
     "java": java,
@@ -125,7 +124,6 @@ export const notations: {[key: string]: Notation} = {
     "makefile": makefile,
     "markdown": markdown,
     "objective-c": objectivec,
-    "pascal": pascal,
     "perl": perl,
     "php": php,
     "plaintext": plaintext,
@@ -143,7 +141,9 @@ export const notations: {[key: string]: Notation} = {
 
     "d": d,
     "erlang": erlang,
+    "handlebars": handlebars,
     "haskell": haskell,
     "lisp": lisp,
     "ocaml": ocaml,
+    "pascal": pascal,
 }

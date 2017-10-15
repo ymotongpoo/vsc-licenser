@@ -46,6 +46,7 @@ Programming languages supported in this extension are (alphabetical order):
 * Makefile
 * Markdown
 * Objective-C
+* Pascal
 * Perl
 * PHP
 * Plain text
@@ -185,6 +186,7 @@ Thank you for contributions to "licenser".
 * @dlech
 * @Lexicality
 * @detwin
+* @teo-tsirpanis
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

@@ -107,6 +107,48 @@
                     "Delphi",
                     "Object Pascal"
                 ]
+            },
+            {
+                "id": "crystal",
+                "extensions": [
+                    ".cr"
+                ],
+                "aliases": [
+                    "Crystal",
+                    "crystal"
+                ]
+            },
+            {
+                "id": "julia",
+                "extensions": [
+                    ".jl"
+                ],
+                "aliases": [
+                    "Julia",
+                    "julia"
+                ]
+            },
+            {
+                "id": "nim",
+                "extensions": [
+                    ".nim"
+                ],
+                "aliases": [
+                    "Nim",
+                    "nim",
+                    "Nimrod",
+                    "nimrod"
+                ]
+            },
+            {
+                "id": "nimble",
+                "extensions": [
+                    ".nimble"
+                ],
+                "aliases": [
+                    "Nimble",
+                    "nimble"
+                ]
             }
         ],
         "configuration": {

@@ -93,18 +93,22 @@ const swift = new Notation("swift", ["/**", " */"], "//", " * ");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
 // custom languages
-const d = new Notation( "d", ["/*", " */"], "//", " *");
+const crystal = new Notation("crystal", ["", ""], "#", " ");
+const d = new Notation("d", ["/*", " */"], "//", " *");
 const erlang = new Notation("erlang", ["", ""], "%%", "");
 const handlebars = new Notation("handlebars", ["<!--", "-->"], "", " ");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
+const julia = new Notation("julia", ["#=", " =#"], "#", " ");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
+const nim = new Notation("nim", ["", ""], "#", " ");
+const nimble = new Notation("nimble", ["", ""], "#", " ");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
 const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
 // https://code.visualstudio.com/docs/languages/identifiers
-export const notations: {[key: string]: Notation} = {
+export const notations: { [key: string]: Notation } = {
     "bat": bat,
     "c": c,
     "clojure": lisp,
@@ -139,11 +143,15 @@ export const notations: {[key: string]: Notation} = {
     "swift": swift,
     "xml": xml,
 
+    "crystal": crystal,
     "d": d,
     "erlang": erlang,
     "handlebars": handlebars,
     "haskell": haskell,
+    "julia": julia,
     "lisp": lisp,
+    "nim": nim,
+    "nimble": nimble,
     "ocaml": ocaml,
     "pascal": pascal,
 }

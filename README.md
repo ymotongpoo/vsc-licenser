@@ -61,9 +61,12 @@ Programming languages supported in this extension are (alphabetical order):
 
 Following programing languages are supported in the manuaul configurations in this extension.
 (See `contributes.languages` in `package.json`)
+* Crystal
 * Erlang
 * Haskell
+* Julia
 * LISP (CommonLisp, Scheme)
+* Nim (and Nimble)
 * OCaml
 * Pascal
 
@@ -188,6 +191,7 @@ Thank you for contributions to "licenser".
 * @Lexicality
 * @detwin
 * @teo-tsirpanis
+* @olefasting
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

@@ -25,6 +25,8 @@ import { BSD2 } from "./licenses/bsd2";
 import { BSL1 } from "./licenses/bsl1";
 import { GPLv2 } from "./licenses/gplv2";
 import { GPLv3 } from "./licenses/gplv3";
+import { GPLv2plus } from "./licenses/gplv2plus";
+import { GPLv3plus } from "./licenses/gplv3plus";
 import { LGPLv3 } from "./licenses/lgplv3";
 import { AGPLv3 } from "./licenses/agplv3";
 import { MIT } from "./licenses/mit";
@@ -242,6 +244,12 @@ class Licenser {
                 break;
             case "gplv3":
                 license = new GPLv3(this.author, projectName);
+                break;
+            case "gplv2+":
+                license = new GPLv2plus(this.author, projectName);
+                break;
+            case "gplv3+":
+                license = new GPLv3plus(this.author, projectName);
                 break;
             case "lgplv3":
                 license = new LGPLv3(this.author);

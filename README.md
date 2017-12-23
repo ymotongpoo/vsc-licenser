@@ -86,7 +86,9 @@ Currently, supported licenses are:
 * "BSD3": BSD 3-clause License (New BSD License)
 * "BSL1": Boost Software License - Version 1.0
 * "GPLv2": GNU General Public License version 2
+* "GPLv2+": GNU General Public License version 2 with "or (at your option) any later version" clause
 * "GPLv3": GNU General Public License version 3
+* "GPLv3+": GNU General Public License version 3 with "or (at your option) any later version" clause
 * "LGPLv3": GNU Lesser General Public License version 3
 * "MIT": MIT License
 * "MPLv2": Mozilla Public License version 2

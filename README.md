@@ -165,6 +165,14 @@ This setting defines the text used to create the license header file when the "C
 
 Placeholders and escaping requirements are the same as `licenser.customTermsAndConditions`.
 
+### licenser.disableAutoHeaderInsertion
+
+```
+"licenser.disableAutoHeaderInsertion": false
+```
+
+This setting defines the behavior of header auto-insertion.
+If this setting is set as `true`, licenser will disable auto-insertion of license header on creation of new file.
 
 ## Call to action
 ### Report issues

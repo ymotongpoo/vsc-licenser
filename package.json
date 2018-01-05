@@ -208,6 +208,11 @@
                     "type": "string",
                     "default": "",
                     "description": "User-defined file header"
+                },
+                "licenser.disableAutoHeaderInsertion": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Disable header insertion on creation of new file (defaults to false)."
                 }
             }
         },

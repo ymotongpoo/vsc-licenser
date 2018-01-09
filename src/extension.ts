@@ -190,6 +190,11 @@ class Licenser {
 
     private _onDidChangeActiveTextEditor() {
         vscode.window.onDidChangeActiveTextEditor(e => {
+            let licenserSetting = vscode.workspace.getConfiguration("licenser");
+            let autoInsertionDisabled = licenserSetting.get<boolean>("disableAutoHeaderInsertion");
+            if (autoInsertionDisabled) {
+                return;
+            }
             const fileName = path.win32.basename(e.document.fileName);
             if (fileName !== defaultLicenseFilename) {
                 const doc = e.document;

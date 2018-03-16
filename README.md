@@ -103,6 +103,7 @@ Currently, supported licenses are:
 * "CC-BY-NC-SA-4": Creative Commons Attribution-NonCommercial-ShareAlike 4.0
 * "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
 * "CC0-1": CC0 1.0
+* "WTFPL": Do What The Fuck You Want To Public License
 * "Custom": User-defined (see `licenser.custom*` settings below)
 
 ### licenser.author

@@ -42,6 +42,7 @@ import { CCBYND4 } from "./licenses/ccbynd40";
 import { CCBYSA3 } from "./licenses/ccbysa30";
 import { CCBYSA4 } from "./licenses/ccbysa40";
 import { CC01 } from "./licenses/cczero1";
+import { WTFPL } from "./licenses/wtfpl";
 import path = require("path");
 import os = require("os");
 
@@ -286,6 +287,9 @@ class Licenser {
                 break;
             case "cc-by-nc-nd-4":
                 license = new CCBYNCND4(this.author, projectName);
+                break;
+            case "wtfpl":
+                license = new WTFPL(this.author);
                 break;
             case "custom":
                 let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");

@@ -36,10 +36,10 @@ export class Custom {
     }
 
     private replaceVariables(text: string): string {
-        text = text.replace("@AUTHOR@", this.author);
-        text = text.replace("@YEAR@", this.year);
-        text = text.replace("@PROJECT@", this.project);
-        text = text.replace("@FILE@", this.filePath.base);
+        text = text.replace(/@AUTHOR@/g, this.author);
+        text = text.replace(/@YEAR@/g, this.year);
+        text = text.replace(/@PROJECT@/g, this.project);
+        text = text.replace(/@FILE@/g, this.filePath.base);
         return text;
     }
 

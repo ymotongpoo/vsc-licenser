@@ -1,8 +1,16 @@
 # Changelog
-## 1.0
+## 1.1
 ### 1.1.1
 * add Handlebars, D and Pascal support (#31, #33, #35)
 * add Boost Software License support (#34)
+
+### 1.1.2
+* add Julia, Crystal, Nim and Nimble support (#38)
+* add config to diable auto-insertion (#42)
+* add WTFPL support (#43)
+* fix the bug where the placeholder is replaced only once. (#44)
+
+## 1.0
 
 ### 1.0.1
 * add Lua support (#30)

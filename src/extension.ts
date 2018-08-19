@@ -338,9 +338,9 @@ class Licenser {
     private singleLineCommentHeader(license: License, token: string): string {
         let original = license.header().split("\n");
         let header = "";
-        for (let i in original) {
+        for (const line of original) {
             if (original.length > 0) {
-                header += token + " " + original[i] + "\n";
+                header += token + " " + line + "\n";
             } else {
                 header += token;
             }
@@ -359,9 +359,9 @@ class Licenser {
         let original = license.header().split("\n");
         let header = start + "\n";
 
-        for (let i in original) {
+        for (const line of original) {
             if (original.length > 0) {
-                header += ornament + original[i] + "\n";
+                header += ornament + line + "\n";
             }
         }
         header += end + "\n";

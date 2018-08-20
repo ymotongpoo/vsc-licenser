@@ -361,7 +361,7 @@ class Licenser {
 
         for (let i in original) {
             if (original.length > 0) {
-                header += ornament + original[i] + "\n";
+                header += ornament + " " + original[i] + "\n";
             }
         }
         header += end + "\n";

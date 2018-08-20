@@ -16,7 +16,7 @@ to create a LICENSE file based on the configurations in `settings.json`. This ex
 not only provides shortcuts but also enables auto-insertion of license header on creation
 of new file.
 
-You can call these 2 commands via Command Palette. 
+You can call these 2 commands via Command Palette.
 * "licenser: Create LICENSE file"
   * create LICENSE file into your repository.
 * "licenser: Insert license header"
@@ -121,10 +121,10 @@ license header template.
 "licenser.projectName": "Awesome project"
 ```
 
-**This setting should be in Workspace settings.** This setting defines the project name you are working on. 
-This setting is only used in the template for GPLv2 and GPLv3. Default value would be 
-your workspace root directory name. Be aware that this setting should be in Workspace setting, 
-not in User setting, since User setting affects all workspaces which are not relevant to this project name. 
+**This setting should be in Workspace settings.** This setting defines the project name you are working on.
+This setting is only used in the template for GPLv2 and GPLv3. Default value would be
+your workspace root directory name. Be aware that this setting should be in Workspace setting,
+not in User setting, since User setting affects all workspaces which are not relevant to this project name.
 
 ### licenser.useSingleLineStyle
 

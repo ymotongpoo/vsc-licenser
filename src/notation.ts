@@ -1,11 +1,11 @@
 //    Copyright 2016, 2017 Yoshi Yamaguchi
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //        http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,46 +63,46 @@ class Notation {
 
 // init (alphabetical order)
 const bat = new Notation("bat", ["", ""], "rem", "");
-const c = new Notation("c", ["/**", " */"], "", " * ");
+const c = new Notation("c", ["/**", " */"], "", " *");
 const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
-const csharp = new Notation("csharp", ["/**", " */"], "//", " * ");
+const csharp = new Notation("csharp", ["/**", " */"], "//", " *");
 const css = new Notation("css", ["/**", " */"], "", " *");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
-const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " * ");
+const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " *");
 const go = new Notation("go", ["/**", " */"], "//", " *");
-const groovy = new Notation("groovy", ["/**", " */"], "//", " * ");
-const html = new Notation("html", ["<!--", "-->"], "", " ");
+const groovy = new Notation("groovy", ["/**", " */"], "//", " *");
+const html = new Notation("html", ["<!--", "-->"], "", "");
 const ini = new Notation("ini", ["", ""], ";", "");
 const java = new Notation("java", ["/**", " */"], "//", " *");
-const javascript = new Notation("javascript", ["/**", " */"], "//", " * ");
-const lua = new Notation("lua", ["--[[", "--]]"], "--", " ");
+const javascript = new Notation("javascript", ["/**", " */"], "//", " *");
+const lua = new Notation("lua", ["--[[", "--]]"], "--", "");
 const makefile = new Notation("makefile", ["", ""], "#", "");
-const markdown = new Notation("markdown", ["<!---", "-->"], "", " ");
-const objectivec = new Notation("objective-c", ["/**", " */"], "//", " * ");
-const perl = new Notation("perl", ["=pod", "=cut"], "#", " ");
-const php = new Notation("php", ["/**", " */"], "//", " * ");
+const markdown = new Notation("markdown", ["<!--", "-->"], "", "");
+const objectivec = new Notation("objective-c", ["/**", " */"], "//", " *");
+const perl = new Notation("perl", ["=pod", "=cut"], "#", "");
+const php = new Notation("php", ["/**", " */"], "//", " *");
 const plaintext = new Notation("plaintext", ["", ""], "//", ""); // TODO(ymotongpoo): add feature to support custom single line comment style. (#15)
-const powershell = new Notation("powershell", ["<##", "#>"], "#", " # ");
-const python = new Notation("python", ['"""', '"""'], "#", " ");
-const ruby = new Notation("ruby", ["=begin", "=end"], "#", " ");
-const rust = new Notation("rust", ["/**", " */"], "//", " * ");
-const typescript = new Notation("typescript", ["/**", " */"], "//", " * ");
-const scss = new Notation("scss", ["/**", " */"], "//", " * ");
-const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", " ");
-const swift = new Notation("swift", ["/**", " */"], "//", " * ");
+const powershell = new Notation("powershell", ["<##", "#>"], "#", " #");
+const python = new Notation("python", ['"""', '"""'], "#", "");
+const ruby = new Notation("ruby", ["=begin", "=end"], "#", "");
+const rust = new Notation("rust", ["/**", " */"], "//", " *");
+const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
+const scss = new Notation("scss", ["/**", " */"], "//", " *");
+const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", "");
+const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
 // custom languages
-const crystal = new Notation("crystal", ["", ""], "#", " ");
+const crystal = new Notation("crystal", ["", ""], "#", "");
 const d = new Notation("d", ["/*", " */"], "//", " *");
 const erlang = new Notation("erlang", ["", ""], "%%", "");
-const handlebars = new Notation("handlebars", ["<!--", "-->"], "", " ");
-const haskell = new Notation("haskell", ["{--", "-}"], "--", " - ");
-const julia = new Notation("julia", ["#=", " =#"], "#", " ");
+const handlebars = new Notation("handlebars", ["<!--", "-->"], "", "");
+const haskell = new Notation("haskell", ["{--", "-}"], "--", " -");
+const julia = new Notation("julia", ["#=", " =#"], "#", "");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
-const nim = new Notation("nim", ["", ""], "#", " ");
-const nimble = new Notation("nimble", ["", ""], "#", " ");
-const ocaml = new Notation("ocaml", ["(**", " *)"], "", " * ");
+const nim = new Notation("nim", ["", ""], "#", "");
+const nimble = new Notation("nimble", ["", ""], "#", "");
+const ocaml = new Notation("ocaml", ["(**", " *)"], "", " *");
 const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 
 // map betweeen languageId and its comment notations.

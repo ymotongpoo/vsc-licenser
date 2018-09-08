@@ -34,6 +34,7 @@ Programming languages supported in this extension are (alphabetical order):
 * D
 * Dockerfile
 * Erlang
+* Elixir
 * F#
 * Go
 * Groovy

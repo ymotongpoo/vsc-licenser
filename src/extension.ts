@@ -43,6 +43,7 @@ import { CCBYSA3 } from "./licenses/ccbysa30";
 import { CCBYSA4 } from "./licenses/ccbysa40";
 import { CC01 } from "./licenses/cczero1";
 import { WTFPL } from "./licenses/wtfpl";
+import { Zlib } from "./licenses/zlib";
 import path = require("path");
 import os = require("os");
 
@@ -290,6 +291,9 @@ class Licenser {
                 break;
             case "wtfpl":
                 license = new WTFPL(this.author);
+                break;
+            case "zlib":
+                license = new Zlib(this.author);
                 break;
             case "custom":
                 let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");

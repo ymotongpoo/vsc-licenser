@@ -361,7 +361,7 @@ class Licenser {
 
         for (const line of original) {
             if (original.length > 0) {
-                header += ornament + line + "\n";
+                header += ornament + " " + line + "\n";
             }
         }
         header += end + "\n";

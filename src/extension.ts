@@ -250,7 +250,7 @@ class Licenser {
                 license = new GPLv3(this.author, projectName);
                 break;
             case "lgplv3":
-                license = new LGPLv3(this.author);
+                license = new LGPLv3(this.author, projectName);
                 break;
             case "mit":
                 license = new MIT(this.author);

@@ -63,6 +63,7 @@ Programming languages supported in this extension are (alphabetical order):
 Following programing languages are supported in the manuaul configurations in this extension.
 (See `contributes.languages` in `package.json`)
 * Crystal
+* Elixir
 * Erlang
 * Haskell
 * Julia

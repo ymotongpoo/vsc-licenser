@@ -149,6 +149,17 @@
                     "Nimble",
                     "nimble"
                 ]
+            },
+            {
+                "id": "elixir",
+                "extensions": [
+                    ".ex",
+                    ".exs"
+                ],
+                "aliases": [
+                    "Elixir",
+                    "elixir"
+                ]
             }
         ],
         "configuration": {

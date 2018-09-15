@@ -68,6 +68,7 @@ const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
 const csharp = new Notation("csharp", ["/**", " */"], "//", " *");
 const css = new Notation("css", ["/**", " */"], "", " *");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
+const elixir = new Notation("elixir", ["", ""], "#", " ");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " *");
 const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " *");
@@ -116,6 +117,7 @@ export const notations: { [key: string]: Notation } = {
     "csharp": csharp,
     "css": css,
     "dockerfile": dockerfile,
+    "elixir": elixir,
     "fsharp": fsharp,
     "go": go,
     "groovy": groovy,

@@ -106,6 +106,7 @@ Currently, supported licenses are:
 * "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
 * "CC0-1": CC0 1.0
 * "WTFPL": Do What The Fuck You Want To Public License
+* "zlib": zlib License
 * "Custom": User-defined (see `licenser.custom*` settings below)
 
 ### licenser.author
@@ -203,6 +204,7 @@ Thank you for contributions to "licenser".
 * @detwin
 * @teo-tsirpanis
 * @olefasting
+* @beta
 
 ## Reference
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)

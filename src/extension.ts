@@ -289,6 +289,9 @@ class Licenser {
             case "cc-by-nc-nd-4":
                 license = new CCBYNCND4(this.author, projectName);
                 break;
+            case "cc-0-1":
+                license = new CC01(this.author, projectName);
+                break;
             case "wtfpl":
                 license = new WTFPL(this.author);
                 break;

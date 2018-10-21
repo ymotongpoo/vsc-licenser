@@ -1,5 +1,6 @@
 # Licenser
-An extension for adding license headers and LICENSE file in your workspace.
+
+An extension for adding license headers and LICENSE files into your workspace.
 You can find this extension on [Marketplace for VS Code](https://marketplace.visualstudio.com/items?itemName=ymotongpoo.licenser).
 
 ## Install
@@ -11,20 +12,23 @@ ext install licenser
 ```
 
 ## Commands and features
+
 This extension provides shortcuts to insert license headers to source code files and
-to create a LICENSE file based on the configurations in `settings.json`. This extenstion
+to create a LICENSE file based on the configurations in `settings.json`. This extension
 not only provides shortcuts but also enables auto-insertion of license header on creation
 of new file.
 
-You can call these commands via Command Palette (`Ctrl+Shift+P` on Windows/Linux, `⌘⇧P` on OS X):
-* "licenser: Create LICENSE file"
-  * create LICENSE file into your repository.
-* "licenser: Insert license header"
-  * insert license header to the currently opened source code file.
-* "licenser: Arbitrary license header"
-  * insert arbitrary license header to the currently opened source code file.
+You can call these commands via *Command Palette* (`Ctrl+Shift+P` on Windows/Linux, `⌘⇧P` on OS X):
 
-Programming languages supported in this extension are (alphabetical order):
+* "licenser: Create LICENSE file"
+  * create LICENSE file in your repository.
+* "licenser: Insert license header"
+  * insert license header into the currently opened source code file.
+* "licenser: Arbitrary license header"
+  * insert arbitrary license header into the currently opened source code file.
+
+Programming languages supported by this extension are (alphabetical order):
+
 * bat
 * C
 * Clojure
@@ -60,8 +64,8 @@ Programming languages supported in this extension are (alphabetical order):
 * Swift
 * XML
 
-Following programing languages are supported in the manuaul configurations in this extension.
-(See `contributes.languages` in `package.json`)
+The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
+
 * Crystal
 * Elixir
 * Erlang
@@ -72,8 +76,8 @@ Following programing languages are supported in the manuaul configurations in th
 * OCaml
 * Pascal
 
-
 ## Configurations
+
 ### licenser.license
 
 ```
@@ -158,7 +162,7 @@ The following placeholders can be used:
 * `@YEAR@`: Replaced with the current year
 
 **Note:** Newlines are not allowed in settings strings, so you must use `\n` instead.
-Other characters, such as double-quotes may need to be escaped as well.
+Other characters, such as double-quotes, may need to be escaped as well.
 Consider using a regex replace to convert an existing multi-line file to a single line.
 
 ### licenser.customHeader
@@ -181,17 +185,22 @@ This setting defines the behavior of header auto-insertion.
 If this setting is set as `true`, licenser will disable auto-insertion of license header on creation of new file.
 
 ## Call to action
+
 ### Report issues
+
 Finally the author bought Windows 10 machine, and he can test the app by himself!
 For bug reporting, please create a ticket on [GitHub repository](https://github.com/ymotongpoo/vsc-licenser/issues).
 
 ### Pull requests
+
 This repository is mainly developed under 'develop' branch, so please make pull requests there, not to 'master' branch.
 
 ## Changelogs
-See all changelogs in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).
+
+See all changes in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/master/CHANGELOG.md).
 
 ## Contributors
+
 Thank you for contributions to "licenser".
 
 * @aodag
@@ -209,5 +218,6 @@ Thank you for contributions to "licenser".
 * @beta
 
 ## Reference
+
 * [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)
 * [All CC 4.0 Legal Codes](https://creativecommons.org/2014/01/07/plaintext-versions-of-creative-commons-4-0-licenses/)

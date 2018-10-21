@@ -4,7 +4,7 @@ You can find this extension on [Marketplace for VS Code](https://marketplace.vis
 
 ## Install
 
-Launch your VS Code, open Quick Open box (Mod+P), and run following command.
+Launch VS Code, go to the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on OS X), and type:
 
 ```
 ext install licenser
@@ -16,7 +16,7 @@ to create a LICENSE file based on the configurations in `settings.json`. This ex
 not only provides shortcuts but also enables auto-insertion of license header on creation
 of new file.
 
-You can call these 2 commands via Command Palette.
+You can call these commands via Command Palette (`Ctrl+Shift+P` on Windows/Linux, `⌘⇧P` on OS X):
 * "licenser: Create LICENSE file"
   * create LICENSE file into your repository.
 * "licenser: Insert license header"
@@ -79,6 +79,8 @@ Following programing languages are supported in the manuaul configurations in th
 ```
 "licenser.license": "AL2"
 ```
+
+This setting defines the license used by the project.
 
 Currently, supported licenses are:
 

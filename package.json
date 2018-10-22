@@ -34,7 +34,7 @@
     ],
     "activationEvents": [
         "onCommand:extension.insertLicenseHeader",
-        "onCommand:extension.arbitraryLicenseHeader",
+        "onCommand:extension.anyLicenseHeader",
         "onCommand:extension.createLicenseFile"
     ],
     "main": "./out/src/extension",

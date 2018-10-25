@@ -5,7 +5,7 @@ You can find this extension on [Marketplace for VS Code](https://marketplace.vis
 
 ## Install
 
-Launch VS Code, go to the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on OS X), and type:
+Launch VS Code, go to the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on macOS), and type:
 
 ```
 ext install licenser

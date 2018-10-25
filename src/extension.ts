@@ -46,6 +46,7 @@ import { WTFPL } from "./licenses/wtfpl";
 import { Zlib } from "./licenses/zlib";
 import path = require("path");
 import os = require("os");
+import { isNullOrUndefined } from "util";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -65,6 +66,39 @@ export function activate(context: vscode.ExtensionContext) {
 // constants for default properties.
 const defaultLicenseType: string = "AL2";
 const defaultLicenseFilename: string = "LICENSE";
+const chooseFromList: string = "choose from list";
+
+// map with available licenses
+type LicenseCreatorFn = (a:string, b:string) => License;
+type LicenseInfo = {displayName:string, creatorFn: LicenseCreatorFn};
+
+const availableLicenses: Map<string, LicenseInfo> = new Map<string, LicenseInfo>([
+    ["AL2", { displayName: "AL2", creatorFn: (author, _) => new AL2(author) }],
+    ["BSD3", { displayName: "BSD3", creatorFn: (author, _) => new BSD3(author) }],
+    ["BSD2", { displayName: "BSD2", creatorFn: (author, _) => new BSD2(author) }],
+    ["BSL1", { displayName: "BSL1", creatorFn: (author, _) => new BSL1(author) }],
+    ["GPLV2", { displayName: "GPLv2", creatorFn: (author, projectName) => new GPLv2(author, projectName) }],
+    ["GPLV3", { displayName: "GPLv3", creatorFn: (author, projectName) => new GPLv3(author, projectName) }],
+    ["LGPLV3", { displayName: "LGPLv3", creatorFn: (author, projectName) => new LGPLv3(author, projectName) }],
+    ["AGPLV3", { displayName: "AGPLv3", creatorFn: (author, _) => new AGPLv3(author) }],
+    ["MIT", { displayName: "MIT", creatorFn: (author, _) => new MIT(author) }],
+    ["MPLV2", { displayName: "MPLv2", creatorFn: (author, _) => new MPLv2(author) }],
+    ["CC-BY-3", { displayName: "CC-BY-3", creatorFn: (author, projectName) => new CCBY3(author, projectName) }],
+    ["CC-BY-4", { displayName: "CC-BY-4", creatorFn: (author, projectName) => new CCBY4(author, projectName) }],
+    ["CC-BY-NC-3", { displayName: "CC-BY-NC-3", creatorFn: (author, projectName) => new CCBYNC3(author, projectName) }],
+    ["CC-BY-NC-4", { displayName: "CC-BY-NC-4", creatorFn: (author, projectName) => new CCBYNC4(author, projectName) }],
+    ["CC-BY-NC-ND-3", { displayName: "CC-BY-NC-ND-3", creatorFn: (author, projectName) => new CCBYNCND3(author, projectName) }],
+    ["CC-BY-NC-ND-4", { displayName: "CC-BY-NC-ND-4", creatorFn: (author, projectName) => new CCBYNCND4(author, projectName) }],
+    ["CC-BY-NC-SA-3", { displayName: "CC-BY-NC-SA-3", creatorFn: (author, projectName) => new CCBYNCSA3(author, projectName) }],
+    ["CC-BY-NC-SA-4", { displayName: "CC-BY-NC-SA-4", creatorFn: (author, projectName) => new CCBYNCSA4(author, projectName) }],
+    ["CC-BY-ND-3", { displayName: "CC-BY-ND-3", creatorFn: (author, projectName) => new CCBYND3(author, projectName) }],
+    ["CC-BY-ND-4", { displayName: "CC-BY-ND-4", creatorFn: (author, projectName) => new CCBYND4(author, projectName) }],
+    ["CC-BY-SA-3", { displayName: "CC-BY-SA-3", creatorFn: (author, projectName) => new CCBYSA3(author, projectName) }],
+    ["CC-BY-SA-4", { displayName: "CC-BY-SA-4", creatorFn: (author, projectName) => new CCBYSA4(author, projectName) }],
+    ["CC0-1", { displayName: "CC0-1", creatorFn: (author, projectName) => new CC01(author, projectName) }],
+    ["WTFPL", { displayName: "WTFPL", creatorFn: (author, _) => new WTFPL(author) }],
+    ["ZLIB", { displayName: "zlib", creatorFn: (author, _) => new Zlib(author) }],
+]);
 
 // Licenser handles LICENSE file creation and license header insertion.
 class Licenser {
@@ -99,10 +133,27 @@ class Licenser {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
+
+        this._chooseLicenseType().then(licenseType => {
+            if (!isNullOrUndefined(licenseType)) {
+                const license = this.getLicense(licenseType);
+                this._doCreateLicense(root, license);
+            }
+        });
+    }
+
+    private _chooseLicenseType(): Thenable<string> {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let licenseType = licenserSetting.get<string>("license");
-        const license = this.getLicense(licenseType);
 
+        if (isNullOrUndefined(licenseType) || licenseType.toLowerCase() == chooseFromList) {
+            return vscode.window.showQuickPick(Array.from(availableLicenses.values()).map(info => info.displayName));
+        }
+
+        return new Promise((resolve, _) => resolve(licenseType));
+    }
+
+    private _doCreateLicense(root: String, license: License) {
         const uri = vscode.Uri.parse("untitled:" + root + path.sep + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
@@ -218,7 +269,6 @@ class Licenser {
      * @param typ License type specified in settings.json.
      */
     private getLicense(typ: string): License {
-        let license: License;
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let projectName = licenserSetting.get<string>("projectName", undefined);
         console.log("Project Name from settings: " + projectName);
@@ -227,88 +277,21 @@ class Licenser {
             projectName = path.basename(root);
         }
         console.log("Project Name used: " + projectName);
+        const licenseKey = typ.toUpperCase();
 
-        switch (typ.toLowerCase()) {
-            case "agplv3":
-                license = new AGPLv3(this.author);
-                break;
-            case "al2":
-                license = new AL2(this.author);
-                break;
-            case "bsd2":
-                license = new BSD2(this.author);
-                break;
-            case "bsd3":
-                license = new BSD3(this.author);
-                break;
-            case "bsl1":
-                license = new BSL1(this.author);
-                break;
-            case "gplv2":
-                license = new GPLv2(this.author, projectName);
-                break;
-            case "gplv3":
-                license = new GPLv3(this.author, projectName);
-                break;
-            case "lgplv3":
-                license = new LGPLv3(this.author, projectName);
-                break;
-            case "mit":
-                license = new MIT(this.author);
-                break;
-            case "mplv2":
-                license = new MPLv2(this.author);
-                break;
-            case "cc-by-3":
-                license = new CCBY3(this.author, projectName);
-                break;
-            case "cc-by-4":
-                license = new CCBY4(this.author, projectName);
-                break;
-            case "cc-by-sa-3":
-                license = new CCBYSA3(this.author, projectName);
-                break;
-            case "cc-by-nd-4":
-                license = new CCBYND4(this.author, projectName);
-                break;
-            case "cc-by-nc-3":
-                license = new CCBYNC3(this.author, projectName);
-                break;
-            case "cc-by-nc-4":
-                license = new CCBYNC4(this.author, projectName);
-                break;
-            case "cc-by-nc-sa-3":
-                license = new CCBYNCSA3(this.author, projectName);
-                break;
-            case "cc-by-nc-sa-4":
-                license = new CCBYNCSA4(this.author, projectName);
-                break;
-            case "cc-by-nc-nd-3":
-                license = new CCBYNCND3(this.author, projectName);
-                break;
-            case "cc-by-nc-nd-4":
-                license = new CCBYNCND4(this.author, projectName);
-                break;
-            case "cc-0-1":
-                license = new CC01(this.author, projectName);
-                break;
-            case "wtfpl":
-                license = new WTFPL(this.author);
-                break;
-            case "zlib":
-                license = new Zlib(this.author);
-                break;
-            case "custom":
-                let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
-                let customHeader = licenserSetting.get<string>("customHeader");
-                let fileName = vscode.window.activeTextEditor.document.fileName;
-                license = new Custom(this.author, projectName, customTermsAndConditions, customHeader, fileName);
-                break;
-            default:
-                license = new AL2(this.author);
-                break;
+        if (licenseKey === "CUSTOM") {
+            let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
+            let customHeader = licenserSetting.get<string>("customHeader");
+            let fileName = vscode.window.activeTextEditor.document.fileName;
+            return new Custom(this.author, projectName, customTermsAndConditions, customHeader, fileName);
         }
-        return license;
+
+        let info = availableLicenses.get(licenseKey);
+        if (isNullOrUndefined(info)) {
+            info = availableLicenses.get(defaultLicenseType);
+        }
+
+        return info.creatorFn(this.author, projectName);
     }
 
     /**

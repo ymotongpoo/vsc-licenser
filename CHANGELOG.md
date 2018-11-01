@@ -1,4 +1,15 @@
 # Changelog
+## 1.3
+### 1.3.1
+* fix README
+
+### 1.3.0
+* dynamic license chooser (#55)
+* fix command name (#56)
+
+## 1.2
+(skipped)
+
 ## 1.1
 ### 1.1.1
 * add Handlebars, D and Pascal support (#31, #33, #35)

@@ -1,4 +1,7 @@
 # Changelog
+## 1.4
+* add Unlicense support
+
 ## 1.3
 ### 1.3.1
 * fix README

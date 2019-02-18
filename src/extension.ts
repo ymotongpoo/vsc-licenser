@@ -42,6 +42,7 @@ import { CCBYND4 } from "./licenses/ccbynd40";
 import { CCBYSA3 } from "./licenses/ccbysa30";
 import { CCBYSA4 } from "./licenses/ccbysa40";
 import { CC01 } from "./licenses/cczero1";
+import { UNL } from "./licenses/unl";
 import { WTFPL } from "./licenses/wtfpl";
 import { Zlib } from "./licenses/zlib";
 import path = require("path");
@@ -96,6 +97,7 @@ const availableLicenses: Map<string, LicenseInfo> = new Map<string, LicenseInfo>
     ["CC-BY-SA-3", { displayName: "CC-BY-SA-3", creatorFn: (author, projectName) => new CCBYSA3(author, projectName) }],
     ["CC-BY-SA-4", { displayName: "CC-BY-SA-4", creatorFn: (author, projectName) => new CCBYSA4(author, projectName) }],
     ["CC0-1", { displayName: "CC0-1", creatorFn: (author, projectName) => new CC01(author, projectName) }],
+    ["UNL", { displayName: "UNL", creatorFn: (author, _) => new WTFPL(author) }],
     ["WTFPL", { displayName: "WTFPL", creatorFn: (author, _) => new WTFPL(author) }],
     ["ZLIB", { displayName: "zlib", creatorFn: (author, _) => new Zlib(author) }],
 ]);

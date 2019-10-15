@@ -67,6 +67,7 @@ const c = new Notation("c", ["/**", " */"], "", " *");
 const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
 const csharp = new Notation("csharp", ["/**", " */"], "//", " *");
 const css = new Notation("css", ["/**", " */"], "", " *");
+const dart = new Notation("dart", ["/**", " */"], "//", " *");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
 const elixir = new Notation("elixir", ["", ""], "#", " ");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " *");
@@ -100,6 +101,7 @@ const erlang = new Notation("erlang", ["", ""], "%%", "");
 const handlebars = new Notation("handlebars", ["<!--", "-->"], "", "");
 const haskell = new Notation("haskell", ["{--", "-}"], "--", " -");
 const julia = new Notation("julia", ["#=", " =#"], "#", "");
+const latex = new Notation("latex", ["", ""], "%", "");
 const lisp = new Notation("lisp", ["", ""], ";;", "");
 const nim = new Notation("nim", ["", ""], "#", "");
 const nimble = new Notation("nimble", ["", ""], "#", "");
@@ -116,6 +118,7 @@ export const notations: { [key: string]: Notation } = {
     "cpp": cpp,
     "csharp": csharp,
     "css": css,
+    "dart": dart,
     "dockerfile": dockerfile,
     "elixir": elixir,
     "fsharp": fsharp,
@@ -151,6 +154,7 @@ export const notations: { [key: string]: Notation } = {
     "handlebars": handlebars,
     "haskell": haskell,
     "julia": julia,
+    "latex": latex,
     "lisp": lisp,
     "nim": nim,
     "nimble": nimble,

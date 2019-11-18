@@ -46,6 +46,7 @@ import { UNL } from "./licenses/unl";
 import { WTFPL } from "./licenses/wtfpl";
 import { Zlib } from "./licenses/zlib";
 import path = require("path");
+import fs = require("fs");
 import os = require("os");
 import { isNullOrUndefined } from "util";
 
@@ -123,6 +124,7 @@ class Licenser {
         vscode.commands.registerCommand("extension.createLicenseFile", () => { this.create() });
         vscode.commands.registerCommand("extension.anyLicenseHeader", () => { this.arbitrary() });
         vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() });
+        vscode.commands.registerCommand("extension.insertMultipleLicenseHeaders", (context) => { this.insertMultiple(context) });
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
@@ -206,6 +208,50 @@ class Licenser {
         });
     }
 
+    private _insertMultiple(license: License, dirPath: string) {
+        const dirContents = fs.readdirSync(dirPath);
+        const dirs = dirContents.filter((item) => {
+            return this._isDir(path.join(dirPath, item));
+        });
+        const files = dirContents.filter((item) => {
+            return !this._isDir(path.join(dirPath, item));
+        });
+        dirs.forEach((dir) => {
+            this._insertMultiple(license, path.join(dirPath, dir));
+        });
+        files.forEach(async (file) => {
+            let langId = null;
+            const fullPath = path.join(dirPath, file);
+            const openSetting = vscode.Uri.parse("file:///" + fullPath);
+            await vscode.workspace.openTextDocument(openSetting).then(doc => {
+                langId = doc.languageId;
+            });
+            const header = this.getLicenseHeader(license, langId);
+            let fileContent = fs.readFileSync(fullPath);
+            if (!fileContent.includes(header)) {
+                const newFileContent = header + fileContent;
+                try {
+                    fs.writeFileSync(fullPath, newFileContent);
+                    console.log("Inserted license header");
+                } catch (e) {
+                    console.log("Error adding to files", e);
+                    vscode.window.showErrorMessage("Error adding license header to files");
+                }
+            } else {
+                console.log("File already contains license header");
+            }
+        });
+    }
+
+    private _isDir(resourcePath: string) {
+        try {
+            const stat = fs.lstatSync(resourcePath);
+            return stat.isDirectory();
+        } catch (e) {
+            return false;
+        }
+    }
+
     /**
      * insert embeds license header text into the first line of the opened file.
      */
@@ -214,6 +260,17 @@ class Licenser {
         let licenseType = licenserSetting.get<string>("license");
         const license = this.getLicense(licenseType);
         this._insert(license);
+    }
+
+    /**
+     * insertMultiple embeds license header text into the first line of all files within a selected directory.
+     */
+    insertMultiple(context) {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license");
+        const license = this.getLicense(licenseType);
+        let folderPath = context.fsPath;
+        this._insertMultiple(license, folderPath);
     }
 
     arbitrary() {

@@ -35,7 +35,8 @@
     "activationEvents": [
         "onCommand:extension.insertLicenseHeader",
         "onCommand:extension.anyLicenseHeader",
-        "onCommand:extension.createLicenseFile"
+        "onCommand:extension.createLicenseFile",
+        "onCommand:extension.insertMultipleLicenseHeaders"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -242,8 +243,23 @@
             {
                 "command": "extension.createLicenseFile",
                 "title": "licenser: Create LICENSE file"
+            },
+            {
+                "command": "extension.insertMultipleLicenseHeaders",
+                "title": "licenser: Insert license headers to contents"
             }
         ],
+        "menus": {
+            "commandPalette": [{
+                "command": "extension.insertMultipleLicenseHeaders",
+                "when": "false"
+            }],
+            "explorer/context": [{
+                "when": "explorerResourceIsFolder",
+                "command": "extension.insertMultipleLicenseHeaders",
+                "group": "7_modification"
+            }]
+        },
         "keybindings": [
             {
                 "command": "extension.createLicenseFile",

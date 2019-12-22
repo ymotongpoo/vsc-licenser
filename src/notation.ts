@@ -71,6 +71,7 @@ const dart = new Notation("dart", ["/**", " */"], "//", " *");
 const dockerfile = new Notation("dockerfile", ["", ""], "#", " ");
 const elixir = new Notation("elixir", ["", ""], "#", " ");
 const fsharp = new Notation("fsharp", ["(**", " *)"], "//", " *");
+const gn = new Notation("gn", ["", ""], "#", "");
 const go = new Notation("go", ["/**", " */"], "//", " *");
 const groovy = new Notation("groovy", ["/**", " */"], "//", " *");
 const html = new Notation("html", ["<!--", "-->"], "", "");
@@ -91,6 +92,7 @@ const rust = new Notation("rust", ["/**", " */"], "//", " *");
 const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
 const scss = new Notation("scss", ["/**", " */"], "//", " *");
 const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", "");
+const starlark = new Notation("starlark", ["", ""], "#", "");
 const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
 
@@ -122,6 +124,7 @@ export const notations: { [key: string]: Notation } = {
     "dockerfile": dockerfile,
     "elixir": elixir,
     "fsharp": fsharp,
+    "gn": gn,
     "go": go,
     "groovy": groovy,
     "html": html,
@@ -145,6 +148,7 @@ export const notations: { [key: string]: Notation } = {
     "sass": scss,
     "scss": scss,
     "shellscript": shellscript,
+    "starlark", starlark,
     "swift": swift,
     "xml": xml,
 

@@ -1,6 +1,9 @@
 # Changelog
-## 1.4
-* add Unlicense support
+## 1.4.0
+* add Unlicense support (#61)
+* supoprt LaTeX and Dart (#63)
+* support inserting license header to multiple file (#65)
+* support GN and Starlark (#67)
 
 ## 1.3
 ### 1.3.1

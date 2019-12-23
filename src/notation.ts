@@ -148,7 +148,7 @@ export const notations: { [key: string]: Notation } = {
     "sass": scss,
     "scss": scss,
     "shellscript": shellscript,
-    "starlark", starlark,
+    "starlark": starlark,
     "swift": swift,
     "xml": xml,
 

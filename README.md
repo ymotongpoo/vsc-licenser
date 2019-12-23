@@ -26,6 +26,8 @@ You can call these commands via *Command Palette* (`Ctrl+Shift+P` on Windows/Lin
   * insert license header into the currently opened source code file.
 * "licenser: Arbitrary license header"
   * insert arbitrary license header into the currently opened source code file.
+* "licenser: Insert license headers to contents"
+  * insert license header into multiple files under specific directory.
 
 Programming languages supported by this extension are (alphabetical order):
 
@@ -36,21 +38,30 @@ Programming languages supported by this extension are (alphabetical order):
 * C#
 * CSS
 * D
+* Dart
 * Dockerfile
-* Erlang
 * Elixir
+* Erlang
 * F#
+* GN
 * Go
 * Groovy
+* Haskell
 * HTML
 * ini
 * Java
 * JavaScript
+* Julia
 * JSX (JavaScript, TypeScript support)
+* LaTeX
+* LISP (CommonLisp, Scheme)
 * Lua
 * Makefile
 * Markdown
+* Nim (and Nimble)
 * Objective-C
+* OCaml
+* Pascal
 * Perl
 * PHP
 * Plain text
@@ -61,20 +72,26 @@ Programming languages supported by this extension are (alphabetical order):
 * TypeScript
 * SCSS (Sass)
 * ShellScript
+* Starlark
 * Swift
 * XML
 
 The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
 
 * Crystal
+* D
+* Dart
 * Elixir
 * Erlang
+* GN
 * Haskell
 * Julia
+* LaTeX
 * LISP (CommonLisp, Scheme)
 * Nim (and Nimble)
 * OCaml
 * Pascal
+* Starlark (used in Bazel)
 
 ## Configurations
 

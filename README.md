@@ -5,7 +5,7 @@ You can find this extension on [Marketplace for VS Code](https://marketplace.vis
 
 ## Install
 
-Launch VS Code, go to the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on macOS), and type:
+Launch VS Code, go to the _Quick Open_ menu (`Ctrl+P` on Windows/Linux, `⌘P` on macOS), and type:
 
 ```
 ext install licenser
@@ -18,80 +18,80 @@ to create a LICENSE file based on the configurations in `settings.json`. This ex
 not only provides shortcuts but also enables auto-insertion of license header on creation
 of new file.
 
-You can call these commands via *Command Palette* (`Ctrl+Shift+P` on Windows/Linux, `⌘⇧P` on OS X):
+You can call these commands via _Command Palette_ (`Ctrl+Shift+P` on Windows/Linux, `⌘⇧P` on OS X):
 
-* "licenser: Create LICENSE file"
-  * create LICENSE file in your repository.
-* "licenser: Insert license header"
-  * insert license header into the currently opened source code file.
-* "licenser: Arbitrary license header"
-  * insert arbitrary license header into the currently opened source code file.
-* "licenser: Insert license headers to contents"
-  * insert license header into multiple files under specific directory.
+- "licenser: Create LICENSE file"
+  - create LICENSE file in your repository.
+- "licenser: Insert license header"
+  - insert license header into the currently opened source code file.
+- "licenser: Arbitrary license header"
+  - insert arbitrary license header into the currently opened source code file.
+- "licenser: Insert license headers to contents"
+  - insert license header into multiple files under specific directory.
 
 Programming languages supported by this extension are (alphabetical order):
 
-* bat
-* C
-* Clojure
-* C++
-* C#
-* CSS
-* D
-* Dart
-* Dockerfile
-* Elixir
-* Erlang
-* F#
-* GN
-* Go
-* Groovy
-* Haskell
-* HTML
-* ini
-* Java
-* JavaScript
-* Julia
-* JSX (JavaScript, TypeScript support)
-* LaTeX
-* LISP (CommonLisp, Scheme)
-* Lua
-* Makefile
-* Markdown
-* Nim (and Nimble)
-* Objective-C
-* OCaml
-* Pascal
-* Perl
-* PHP
-* Plain text
-* PowerShell
-* Python
-* Ruby
-* Rust
-* TypeScript
-* SCSS (Sass)
-* ShellScript
-* Starlark
-* Swift
-* XML
+- bat
+- C
+- Clojure
+- C++
+- C#
+- CSS
+- D
+- Dart
+- Dockerfile
+- Elixir
+- Erlang
+- F#
+- GN
+- Go
+- Groovy
+- Haskell
+- HTML
+- ini
+- Java
+- JavaScript
+- Julia
+- JSX (JavaScript, TypeScript support)
+- LaTeX
+- LISP (CommonLisp, Scheme)
+- Lua
+- Makefile
+- Markdown
+- Nim (and Nimble)
+- Objective-C
+- OCaml
+- Pascal
+- Perl
+- PHP
+- Plain text
+- PowerShell
+- Python
+- Ruby
+- Rust
+- TypeScript
+- SCSS (Sass)
+- ShellScript
+- Starlark
+- Swift
+- XML
 
 The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
 
-* Crystal
-* D
-* Dart
-* Elixir
-* Erlang
-* GN
-* Haskell
-* Julia
-* LaTeX
-* LISP (CommonLisp, Scheme)
-* Nim (and Nimble)
-* OCaml
-* Pascal
-* Starlark (used in Bazel)
+- Crystal
+- D
+- Dart
+- Elixir
+- Erlang
+- GN
+- Haskell
+- Julia
+- LaTeX
+- LISP (CommonLisp, Scheme)
+- Nim (and Nimble)
+- OCaml
+- Pascal
+- Starlark (used in Bazel)
 
 ## Configurations
 
@@ -105,33 +105,33 @@ This setting defines the license used by the project.
 
 Currently, supported licenses are:
 
-* "AGPLv3": GNU Affero General Public License version 3
-* "AL2": Apache License version 2
-* "BSD2": BSD 2-clause License
-* "BSD3": BSD 3-clause License (New BSD License)
-* "BSL1": Boost Software License - Version 1.0
-* "GPLv2": GNU General Public License version 2
-* "GPLv3": GNU General Public License version 3
-* "LGPLv3": GNU Lesser General Public License version 3
-* "MIT": MIT License
-* "MPLv2": Mozilla Public License version 2
-* "CC-BY-3": Creative Commons Attribution 3.0
-* "CC-BY-SA-3": Creative Commons Attribution-ShareAlike 3.0
-* "CC-BY-NC-3": Creative Commons Attribution-NonCommercial 3.0
-* "CC-BY-ND-3": Creative Commons Attribution-NoDerivs 3.0
-* "CC-BY-NC-SA-3": Creative Commons Attribution-NonCommercial-ShareAlike 3.0
-* "CC-BY-NC-ND-3": Creative Commons Attribution-NonCommercial-NoDerivs 3.0
-* "CC-BY-4": Creative Commons Attribution 4.0
-* "CC-BY-SA-4": Creative Commons Attribution-ShareAlike 4.0
-* "CC-BY-NC-4": Creative Commons Attribution-NonCommercial 4.0
-* "CC-BY-ND-4": Creative Commons Attribution-NoDerivs 4.0
-* "CC-BY-NC-SA-4": Creative Commons Attribution-NonCommercial-ShareAlike 4.0
-* "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
-* "CC0-1": CC0 1.0
-* "UNL": The Unlicense
-* "WTFPL": Do What The Fuck You Want To Public License
-* "zlib": zlib License
-* "Custom": User-defined (see `licenser.custom*` settings below)
+- "AGPLv3": GNU Affero General Public License version 3
+- "AL2": Apache License version 2
+- "BSD2": BSD 2-clause License
+- "BSD3": BSD 3-clause License (New BSD License)
+- "BSL1": Boost Software License - Version 1.0
+- "GPLv2": GNU General Public License version 2
+- "GPLv3": GNU General Public License version 3
+- "LGPLv3": GNU Lesser General Public License version 3
+- "MIT": MIT License
+- "MPLv2": Mozilla Public License version 2
+- "CC-BY-3": Creative Commons Attribution 3.0
+- "CC-BY-SA-3": Creative Commons Attribution-ShareAlike 3.0
+- "CC-BY-NC-3": Creative Commons Attribution-NonCommercial 3.0
+- "CC-BY-ND-3": Creative Commons Attribution-NoDerivs 3.0
+- "CC-BY-NC-SA-3": Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+- "CC-BY-NC-ND-3": Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+- "CC-BY-4": Creative Commons Attribution 4.0
+- "CC-BY-SA-4": Creative Commons Attribution-ShareAlike 4.0
+- "CC-BY-NC-4": Creative Commons Attribution-NonCommercial 4.0
+- "CC-BY-ND-4": Creative Commons Attribution-NoDerivs 4.0
+- "CC-BY-NC-SA-4": Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+- "CC-BY-NC-ND-4": Creative Commons Attribution-NonCommercial-NoDerivs 4.0
+- "CC0-1": CC0 1.0
+- "UNL": The Unlicense
+- "WTFPL": Do What The Fuck You Want To Public License
+- "zlib": zlib License
+- "Custom": User-defined (see `licenser.custom*` settings below)
 
 ### licenser.author
 
@@ -174,10 +174,10 @@ This setting defines the text used to create the `LICENSE` file when the "Custom
 
 The following placeholders can be used:
 
-* `@AUTHOR@`: Replaced with `licenser.author`
-* `@FILE@`: Replaced with the current file name (only useful for custom header).
-* `@PROJECT@`: Replaced with `licenser.projectName`
-* `@YEAR@`: Replaced with the current year
+- `@AUTHOR@`: Replaced with `licenser.author`
+- `@FILE@`: Replaced with the current file name (only useful for custom header).
+- `@PROJECT@`: Replaced with `licenser.projectName`
+- `@YEAR@`: Replaced with the current year
 
 **Note:** Newlines are not allowed in settings strings, so you must use `\n` instead.
 Other characters, such as double-quotes, may need to be escaped as well.
@@ -221,21 +221,21 @@ See all changes in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/m
 
 Thank you for contributions to "licenser".
 
-* @aodag
-* @Cologler
-* @jimmidyson
-* @simonmika
-* @marchrock
-* @dtl
-* @jrobeson
-* @dlech
-* @Lexicality
-* @detwin
-* @teo-tsirpanis
-* @olefasting
-* @beta
+- @aodag
+- @Cologler
+- @jimmidyson
+- @simonmika
+- @marchrock
+- @dtl
+- @jrobeson
+- @dlech
+- @Lexicality
+- @detwin
+- @teo-tsirpanis
+- @olefasting
+- @beta
 
 ## Reference
 
-* [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)
-* [All CC 4.0 Legal Codes](https://creativecommons.org/2014/01/07/plaintext-versions-of-creative-commons-4-0-licenses/)
+- [All CC 3.0 Legal Codes](https://creativecommons.org/2011/04/15/plaintext-versions-of-creative-commons-licenses-and-cc0/)
+- [All CC 4.0 Legal Codes](https://creativecommons.org/2014/01/07/plaintext-versions-of-creative-commons-4-0-licenses/)

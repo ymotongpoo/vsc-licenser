@@ -17,19 +17,19 @@
 import { License } from "./type";
 
 export class MIT {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `MIT License
+  public termsAndConditions(): string {
+    let template = `MIT License
 
-Copyright (c) ${ this.year } ${ this.author }
+Copyright (c) ${this.year} ${this.author}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -47,16 +47,15 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`
-        return template;
-    }
+SOFTWARE.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright (c) ${ this.year } ${ this.author }
+  public header(): string {
+    let template = `Copyright (c) ${this.year} ${this.author}
 
 This software is released under the MIT License.
 https://opensource.org/licenses/MIT`;
-        return template;
-    }
+    return template;
+  }
 }
-

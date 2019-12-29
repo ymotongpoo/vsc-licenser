@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class AGPLv3 {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `                    GNU AFFERO GENERAL PUBLIC LICENSE
+  public termsAndConditions(): string {
+    let template = `                    GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -687,12 +687,12 @@ specific requirements.
   You should also get your employer (if you work as a programmer) or school,
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
-<http://www.gnu.org/licenses/>.`
-        return template;
-    }
+<http://www.gnu.org/licenses/>.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright (C) ${this.year} ${this.author}
+  public header(): string {
+    let template = `Copyright (C) ${this.year} ${this.author}
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -705,7 +705,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.`
-        return template;
-    }
+along with this program.  If not, see <http://www.gnu.org/licenses/>.`;
+    return template;
+  }
 }

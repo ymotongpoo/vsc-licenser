@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class UNL {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        const date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    const date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        const template = `This is free and unencumbered software released into the public domain.
+  public termsAndConditions(): string {
+    const template = `This is free and unencumbered software released into the public domain.
 
         Anyone is free to copy, modify, publish, use, compile, sell, or
         distribute this software, either in source code form or as a compiled
@@ -50,14 +50,14 @@ export class UNL {
         ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
         OTHER DEALINGS IN THE SOFTWARE.
         
-        For more information, please refer to <http://unlicense.org/>`
-        return template;
-    }
+        For more information, please refer to <http://unlicense.org/>`;
+    return template;
+  }
 
-    public header(): string {
-        const template = `Copyright ${this.year} ${this.author}.
+  public header(): string {
+    const template = `Copyright ${this.year} ${this.author}.
 Use of this source code is governed by The Unlicense
 which can be found in the LICENSE file.`;
-        return template;
-    }
+    return template;
+  }
 }

@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class AL2 {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `                                 Apache License
+  public termsAndConditions(): string {
+    let template = `                                 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
@@ -228,11 +228,11 @@ export class AL2 {
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.`;
-        return template;
-    }
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright ${this.year} ${this.author}
+  public header(): string {
+    let template = `Copyright ${this.year} ${this.author}
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -245,6 +245,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.`;
-        return template;
-    }
+    return template;
+  }
 }

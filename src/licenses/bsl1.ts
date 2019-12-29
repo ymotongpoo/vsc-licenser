@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class BSL1 {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `Boost Software License - Version 1.0 - August 17th, 2003
+  public termsAndConditions(): string {
+    let template = `Boost Software License - Version 1.0 - August 17th, 2003
 
 Permission is hereby granted, free of charge, to any person or organization
 obtaining a copy of the software and accompanying documentation covered by
@@ -49,15 +49,15 @@ FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
 SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
 FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.`
-        return template;
-    }
+DEALINGS IN THE SOFTWARE.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright ${ this.author } ${ this.year }.
+  public header(): string {
+    let template = `Copyright ${this.author} ${this.year}.
 Distributed under the Boost Software License, Version 1.0.
 See accompanying file LICENSE
 or copy at http://www.boost.org/LICENSE_1_0.txt`;
-        return template;
-    }
+    return template;
+  }
 }

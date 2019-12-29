@@ -17,19 +17,19 @@
 import { License } from "./type";
 
 export class LGPLv3 {
-    public author: string;
-    public year: string;
-    public productName: string;
+  public author: string;
+  public year: string;
+  public productName: string;
 
-    constructor(author: string, productName: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-        this.productName = productName;
-    }
+  constructor(author: string, productName: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+    this.productName = productName;
+  }
 
-    public termsAndConditions(): string {
-        let template = `                   GNU LESSER GENERAL PUBLIC LICENSE
+  public termsAndConditions(): string {
+    let template = `                   GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -194,24 +194,24 @@ whether future versions of the GNU Lesser General Public License shall
 apply, that proxy"s public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.`;
-        return template;
-    }
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright (C) ${ this.year } ${ this.author }
+  public header(): string {
+    let template = `Copyright (C) ${this.year} ${this.author}
 
-${ this.productName } is free software: you can redistribute it and/or modify
+${this.productName} is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-${ this.productName } is distributed in the hope that it will be useful,
+${this.productName} is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with ${ this.productName }. If not, see <http://www.gnu.org/licenses/>.`
-        return template;
-    }
+along with ${this.productName}. If not, see <http://www.gnu.org/licenses/>.`;
+    return template;
+  }
 }

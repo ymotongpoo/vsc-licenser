@@ -1,11 +1,11 @@
 //    Copyright 2016 Yoshi Yamaguchi
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //        http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class MPLv2 {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `Mozilla Public License Version 2.0
+  public termsAndConditions(): string {
+    let template = `Mozilla Public License Version 2.0
 ==================================
 
 1. Definitions
@@ -399,17 +399,16 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
 ---------------------------------------------------------
 
   This Source Code Form is "Incompatible With Secondary Licenses", as
-  defined by the Mozilla Public License, v. 2.0.`
-        return template;
-    }
+  defined by the Mozilla Public License, v. 2.0.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright (c) ${ this.year } ${ this.author }
+  public header(): string {
+    let template = `Copyright (c) ${this.year} ${this.author}
 
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.`;
-        return template;
-    }
+    return template;
+  }
 }
-

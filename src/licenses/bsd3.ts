@@ -17,19 +17,19 @@
 import { License } from "./type";
 
 export class BSD3 {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        let template = `BSD 3-Clause License
+  public termsAndConditions(): string {
+    let template = `BSD 3-Clause License
 
-Copyright (c) ${ this.year }, ${ this.author }
+Copyright (c) ${this.year}, ${this.author}
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -55,14 +55,14 @@ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
 SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`
-        return template;
-    }
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `Copyright ${ this.year } ${ this.author }. All rights reserved.
+  public header(): string {
+    let template = `Copyright ${this.year} ${this.author}. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.`;
-        return template;
-    }
+    return template;
+  }
 }

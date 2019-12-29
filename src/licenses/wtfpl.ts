@@ -17,17 +17,17 @@
 import { License } from "./type";
 
 export class WTFPL {
-    public author: string;
-    public year: string;
+  public author: string;
+  public year: string;
 
-    constructor(author: string) {
-        this.author = author;
-        const date = new Date();
-        this.year = date.getFullYear().toString();
-    }
+  constructor(author: string) {
+    this.author = author;
+    const date = new Date();
+    this.year = date.getFullYear().toString();
+  }
 
-    public termsAndConditions(): string {
-        const template = `DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  public termsAndConditions(): string {
+    const template = `DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 Version 2, December 2004
 
 Copyright (C) ${this.year} ${this.author}
@@ -39,14 +39,14 @@ as the name is changed.
 DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
-0. You just DO WHAT THE FUCK YOU WANT TO.`
-        return template;
-    }
+0. You just DO WHAT THE FUCK YOU WANT TO.`;
+    return template;
+  }
 
-    public header(): string {
-        const template = `Copyright ${this.year} ${this.author}.
+  public header(): string {
+    const template = `Copyright ${this.year} ${this.author}.
 Use of this source code is governed by the WTFPL
 license that can be found in the LICENSE file.`;
-        return template;
-    }
+    return template;
+  }
 }

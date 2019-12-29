@@ -17,16 +17,16 @@
 import { License } from "./type";
 
 export class CC01 {
-    public author: string;
-    public productName: string;
+  public author: string;
+  public productName: string;
 
-    constructor(author: string, productName: string) {
-        this.author = author;
-        this.productName = productName;
-    }
+  constructor(author: string, productName: string) {
+    this.author = author;
+    this.productName = productName;
+  }
 
-    public termsAndConditions(): string {
-        let template = `Creative Commons Legal Code
+  public termsAndConditions(): string {
+    let template = `Creative Commons Legal Code
 
 CC0 1.0 Universal
 
@@ -146,19 +146,19 @@ express Statement of Purpose.
     Work.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
-    this CC0 or use of the Work.`
-        return template;
-    }
+    this CC0 or use of the Work.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `${this.productName} (c) by ${this.author}
+  public header(): string {
+    let template = `${this.productName} (c) by ${this.author}
 
 To the extent possible under law, the person who associated CC0 with
 ${this.productName} has waived all copyright and related or neighboring rights
 to ${this.productName}.
 
 You should have received a copy of the CC0 legalcode along with this
-work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.`
-        return template;
-    }
+work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.`;
+    return template;
+  }
 }

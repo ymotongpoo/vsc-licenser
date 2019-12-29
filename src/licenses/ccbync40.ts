@@ -17,16 +17,16 @@
 import { License } from "./type";
 
 export class CCBYNC4 {
-    public author: string;
-    public productName: string;
+  public author: string;
+  public productName: string;
 
-    constructor(author: string, productName: string) {
-        this.author = author;
-        this.productName = productName;
-    }
+  constructor(author: string, productName: string) {
+    this.author = author;
+    this.productName = productName;
+  }
 
-    public termsAndConditions(): string {
-        let template = `Attribution-NonCommercial 4.0 International
+  public termsAndConditions(): string {
+    let template = `Attribution-NonCommercial 4.0 International
 
 =======================================================================
 
@@ -432,18 +432,18 @@ understandings, or agreements concerning use of licensed material. For
 the avoidance of doubt, this paragraph does not form part of the
 public licenses.
 
-Creative Commons may be contacted at creativecommons.org.`
-        return template;
-    }
+Creative Commons may be contacted at creativecommons.org.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `${this.productName} (c) by ${this.author}
+  public header(): string {
+    let template = `${this.productName} (c) by ${this.author}
 
 ${this.productName} is licensed under a
 Creative Commons Attribution-NonCommercial 4.0 International License.
 
 You should have received a copy of the license along with this
-work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.`
-        return template;
-    }
+work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.`;
+    return template;
+  }
 }

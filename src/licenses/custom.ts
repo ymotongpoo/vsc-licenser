@@ -18,38 +18,44 @@ import { License } from "./type";
 import path = require("path");
 
 export class Custom {
-    public author: string;
-    public year: string;
-    public project: string;
-    public customTermsAndConditions: string;
-    public customHeader: string;
-    public filePath: path.ParsedPath;
+  public author: string;
+  public year: string;
+  public project: string;
+  public customTermsAndConditions: string;
+  public customHeader: string;
+  public filePath: path.ParsedPath;
 
-    constructor(author: string, project: string, customTermsAndConditions: string, customHeader: string, filePath: string) {
-        this.author = author;
-        let date = new Date();
-        this.year = date.getFullYear().toString();
-        this.project = project;
-        this.customTermsAndConditions = customTermsAndConditions;
-        this.customHeader = customHeader;
-        this.filePath = path.parse(filePath);
-    }
+  constructor(
+    author: string,
+    project: string,
+    customTermsAndConditions: string,
+    customHeader: string,
+    filePath: string
+  ) {
+    this.author = author;
+    let date = new Date();
+    this.year = date.getFullYear().toString();
+    this.project = project;
+    this.customTermsAndConditions = customTermsAndConditions;
+    this.customHeader = customHeader;
+    this.filePath = path.parse(filePath);
+  }
 
-    private replaceVariables(text: string): string {
-        text = text.replace(/@AUTHOR@/g, this.author);
-        text = text.replace(/@YEAR@/g, this.year);
-        text = text.replace(/@PROJECT@/g, this.project);
-        text = text.replace(/@FILE@/g, this.filePath.base);
-        return text;
-    }
+  private replaceVariables(text: string): string {
+    text = text.replace(/@AUTHOR@/g, this.author);
+    text = text.replace(/@YEAR@/g, this.year);
+    text = text.replace(/@PROJECT@/g, this.project);
+    text = text.replace(/@FILE@/g, this.filePath.base);
+    return text;
+  }
 
-    public termsAndConditions(): string {
-        let template = this.replaceVariables(this.customTermsAndConditions);
-        return template;
-    }
+  public termsAndConditions(): string {
+    let template = this.replaceVariables(this.customTermsAndConditions);
+    return template;
+  }
 
-    public header(): string {
-        let template = this.replaceVariables(this.customHeader);
-        return template;
-    }
+  public header(): string {
+    let template = this.replaceVariables(this.customHeader);
+    return template;
+  }
 }

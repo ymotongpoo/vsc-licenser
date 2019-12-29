@@ -17,16 +17,16 @@
 import { License } from "./type";
 
 export class CCBYSA3 {
-    public author: string;
-    public productName: string;
+  public author: string;
+  public productName: string;
 
-    constructor(author: string, productName: string) {
-        this.author = author;
-        this.productName = productName;
-    }
+  constructor(author: string, productName: string) {
+    this.author = author;
+    this.productName = productName;
+  }
 
-    public termsAndConditions(): string {
-        let template = `Creative Commons Legal Code
+  public termsAndConditions(): string {
+    let template = `Creative Commons Legal Code
 
 Attribution-ShareAlike 3.0 Unported
 
@@ -384,18 +384,18 @@ Creative Commons Notice
     available upon request from time to time. For the avoidance of doubt,
     this trademark restriction does not form part of the License.
 
-    Creative Commons may be contacted at https://creativecommons.org/.`
-        return template;
-    }
+    Creative Commons may be contacted at https://creativecommons.org/.`;
+    return template;
+  }
 
-    public header(): string {
-        let template = `${this.productName} (c) by ${this.author}
+  public header(): string {
+    let template = `${this.productName} (c) by ${this.author}
 
 ${this.productName} is licensed under a
 Creative Commons Attribution-ShareAlike 3.0 Unported License.
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by-sa/3.0/>.`
-        return template;
-    }
+work.  If not, see <http://creativecommons.org/licenses/by-sa/3.0/>.`;
+    return template;
+  }
 }

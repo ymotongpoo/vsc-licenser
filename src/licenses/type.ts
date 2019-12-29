@@ -15,7 +15,7 @@
 "use script";
 
 export interface License {
-    author: string;
-    termsAndConditions(): string;
-    header(): string;
+  author: string;
+  termsAndConditions(): string;
+  header(): string;
 }

@@ -17,48 +17,53 @@
  * TODO(ymotongpoo): add default recommended commenting style in Enum.
  */
 class Notation {
-    private _languageId: string;
-    private _multi: [string, string];
-    private _single: string;
-    private _ornament: string;
+  private _languageId: string;
+  private _multi: [string, string];
+  private _single: string;
+  private _ornament: string;
 
-    constructor(id: string, multi: [string, string], single: string, ornament: string) {
-        this._languageId = id;
-        this._multi = multi;
-        this._single = single;
-        this._ornament = ornament;
-    }
+  constructor(
+    id: string,
+    multi: [string, string],
+    single: string,
+    ornament: string
+  ) {
+    this._languageId = id;
+    this._multi = multi;
+    this._single = single;
+    this._ornament = ornament;
+  }
 
-    get languageId(): string {
-        return this._languageId;
-    }
+  get languageId(): string {
+    return this._languageId;
+  }
 
-    get multi(): [string, string] {
-        return this._multi;
-    }
+  get multi(): [string, string] {
+    return this._multi;
+  }
 
-    get single(): string {
-        return this._single;
-    }
+  get single(): string {
+    return this._single;
+  }
 
-    get ornament(): string {
-        return this._ornament;
-    }
+  get ornament(): string {
+    return this._ornament;
+  }
 
-    /**
-     * hasMulti returns if the Notation instance has multiple line comment style tokens.
-     */
-    hasMulti(): Boolean {
-        const [l, r] = this._multi;
-        return l.length > 0 && r.length > 0;
-    }
+  /**
+   * hasMulti returns if the Notation instance has multiple line comment style tokens.
+   */
+  hasMulti(): Boolean {
+    const [l, r] = this._multi;
+    return l.length > 0 && r.length > 0;
+  }
 
-    /**
-     * hasSingle returns if the Notation instance has single line comment style tokens.
-     */
-    hasSingle(): Boolean {
-        return this._single.length > 0;
-    }
+  /**
+   * hasSingle returns if the Notation instance has single line comment style tokens.
+   */
+  hasSingle(): Boolean {
+    return this._single.length > 0;
+  }
 }
 
 // init (alphabetical order)
@@ -108,60 +113,60 @@ const lisp = new Notation("lisp", ["", ""], ";;", "");
 const nim = new Notation("nim", ["", ""], "#", "");
 const nimble = new Notation("nimble", ["", ""], "#", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " *");
-const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
+const pascal = new Notation("pascal", ["(*", "*)"], "//", "");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
 // https://code.visualstudio.com/docs/languages/identifiers
 export const notations: { [key: string]: Notation } = {
-    "bat": bat,
-    "c": c,
-    "clojure": lisp,
-    "cpp": cpp,
-    "csharp": csharp,
-    "css": css,
-    "dart": dart,
-    "dockerfile": dockerfile,
-    "elixir": elixir,
-    "fsharp": fsharp,
-    "gn": gn,
-    "go": go,
-    "groovy": groovy,
-    "html": html,
-    "ini": ini,
-    "java": java,
-    "javascript": javascript,
-    "javascriptreact": javascript,
-    "lua": lua,
-    "makefile": makefile,
-    "markdown": markdown,
-    "objective-c": objectivec,
-    "perl": perl,
-    "php": php,
-    "plaintext": plaintext,
-    "powershell": powershell,
-    "python": python,
-    "ruby": ruby,
-    "rust": rust,
-    "typescript": typescript,
-    "typescriptreact": typescript,
-    "sass": scss,
-    "scss": scss,
-    "shellscript": shellscript,
-    "starlark": starlark,
-    "swift": swift,
-    "xml": xml,
+  bat: bat,
+  c: c,
+  clojure: lisp,
+  cpp: cpp,
+  csharp: csharp,
+  css: css,
+  dart: dart,
+  dockerfile: dockerfile,
+  elixir: elixir,
+  fsharp: fsharp,
+  gn: gn,
+  go: go,
+  groovy: groovy,
+  html: html,
+  ini: ini,
+  java: java,
+  javascript: javascript,
+  javascriptreact: javascript,
+  lua: lua,
+  makefile: makefile,
+  markdown: markdown,
+  "objective-c": objectivec,
+  perl: perl,
+  php: php,
+  plaintext: plaintext,
+  powershell: powershell,
+  python: python,
+  ruby: ruby,
+  rust: rust,
+  typescript: typescript,
+  typescriptreact: typescript,
+  sass: scss,
+  scss: scss,
+  shellscript: shellscript,
+  starlark: starlark,
+  swift: swift,
+  xml: xml,
 
-    "crystal": crystal,
-    "d": d,
-    "erlang": erlang,
-    "handlebars": handlebars,
-    "haskell": haskell,
-    "julia": julia,
-    "latex": latex,
-    "lisp": lisp,
-    "nim": nim,
-    "nimble": nimble,
-    "ocaml": ocaml,
-    "pascal": pascal,
-}
+  crystal: crystal,
+  d: d,
+  erlang: erlang,
+  handlebars: handlebars,
+  haskell: haskell,
+  julia: julia,
+  latex: latex,
+  lisp: lisp,
+  nim: nim,
+  nimble: nimble,
+  ocaml: ocaml,
+  pascal: pascal
+};

@@ -78,6 +78,7 @@ Programming languages supported by this extension are (alphabetical order):
 
 The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
 
+* ADVPL
 * Crystal
 * D
 * Dart

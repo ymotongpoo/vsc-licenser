@@ -1,7 +1,3 @@
-# Changelog
-## 1.4.1
-* support to ADVPL language
-
 ## 1.4.0
 * add Unlicense support (#61)
 * supoprt LaTeX and Dart (#63)

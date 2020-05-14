@@ -109,6 +109,7 @@ const nim = new Notation("nim", ["", ""], "#", "");
 const nimble = new Notation("nimble", ["", ""], "#", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " *");
 const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
+const advpl = new Notation("advpl", ["/**", "*/"], "//", "");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -164,4 +165,5 @@ export const notations: { [key: string]: Notation } = {
     "nimble": nimble,
     "ocaml": ocaml,
     "pascal": pascal,
+    "advpl": advpl
 }

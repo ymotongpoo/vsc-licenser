@@ -340,9 +340,11 @@ class Licenser {
 
         if (licenseKey === "CUSTOM") {
             let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
+            let customTermsAndConditionsFile = licenserSetting.get<string>("customTermsAndConditionsFile");
             let customHeader = licenserSetting.get<string>("customHeader");
+            let customHeaderFile = licenserSetting.get<string>("customHeaderFile");
             let fileName = vscode.window.activeTextEditor.document.fileName;
-            return new Custom(this.author, projectName, customTermsAndConditions, customHeader, fileName);
+            return new Custom(this.author, projectName, customTermsAndConditions, customTermsAndConditionsFile, customHeader, customHeaderFile, fileName);
         }
 
         let info = availableLicenses.get(licenseKey);

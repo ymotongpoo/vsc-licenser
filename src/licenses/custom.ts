@@ -16,6 +16,7 @@
 
 import { License } from "./type";
 import path = require("path");
+import fs = require("fs");
 
 export class Custom {
     public author: string;
@@ -25,7 +26,7 @@ export class Custom {
     public customHeader: string;
     public filePath: path.ParsedPath;
 
-    constructor(author: string, project: string, customTermsAndConditions: string, customHeader: string, filePath: string) {
+    constructor(author: string, project: string, customTermsAndConditions: string, customTermsAndConditionsFile: string, customHeader: string, customHeaderFile: string, filePath: string, ) {
         this.author = author;
         let date = new Date();
         this.year = date.getFullYear().toString();
@@ -33,6 +34,14 @@ export class Custom {
         this.customTermsAndConditions = customTermsAndConditions;
         this.customHeader = customHeader;
         this.filePath = path.parse(filePath);
+
+        if (customTermsAndConditionsFile) {
+            this.customHeader = fs.readFileSync(customTermsAndConditionsFile).toString();
+        }
+
+        if (customHeaderFile) {
+            this.customHeader = fs.readFileSync(customHeaderFile).toString();
+        }
     }
 
     private replaceVariables(text: string): string {

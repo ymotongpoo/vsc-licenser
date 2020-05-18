@@ -230,10 +230,20 @@
                     "default": "",
                     "description": "User-defined terms and conditions"
                 },
+                "licenser.customTermsAndConditionsFile": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Path to a file containing a user-defined custom terms and conditions. Overrides Custom Terms And Conditions when present."
+                },
                 "licenser.customHeader": {
                     "type": "string",
                     "default": "",
                     "description": "User-defined file header"
+                },
+                "licenser.customHeaderFile": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Path to a file containing a user-defined custom header. Overrides Custom Header when present."
                 },
                 "licenser.disableAutoHeaderInsertion": {
                     "type": "boolean",

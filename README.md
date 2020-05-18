@@ -184,6 +184,17 @@ The following placeholders can be used:
 Other characters, such as double-quotes, may need to be escaped as well.
 Consider using a regex replace to convert an existing multi-line file to a single line.
 
+### licenser.customTermsAndConditionsFile
+
+```
+"licenser.customTermsAndConditionsFile": "path/to/terms.txt"
+```
+
+This setting defines the path to a file that contains the text for the custom terms and conditions.
+This will override `licenser.customTermsAndConditions` if present.
+
+Placeholders are the same as `licenser.customTermsAndConditions`.
+
 ### licenser.customHeader
 
 ```
@@ -193,6 +204,17 @@ Consider using a regex replace to convert an existing multi-line file to a singl
 This setting defines the text used to create the license header file when the "Custom" license type is selected.
 
 Placeholders and escaping requirements are the same as `licenser.customTermsAndConditions`.
+
+### licenser.customHeaderFile
+
+```
+"licenser.customHeaderFile": "path/to/header.txt"
+```
+
+This setting defines the path to a file that contains the text for the custom header.
+This will override `licenser.customHeader` if present.
+
+Placeholders are the same as `licenser.customTermsAndConditions`.
 
 ### licenser.disableAutoHeaderInsertion
 

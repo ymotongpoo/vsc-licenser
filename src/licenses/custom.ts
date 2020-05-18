@@ -40,6 +40,7 @@ export class Custom {
         text = text.replace(/@YEAR@/g, this.year);
         text = text.replace(/@PROJECT@/g, this.project);
         text = text.replace(/@FILE@/g, this.filePath.base);
+        text = text.replace(/\\n/g, "\n");
         return text;
     }
 

@@ -20,6 +20,7 @@ import { notations } from "./notation";
 import { License } from "./licenses/type";
 import { Custom } from "./licenses/custom";
 import { AL2 } from "./licenses/al2";
+import { BSD0 } from "./licenses/bsd0";
 import { BSD3 } from "./licenses/bsd3";
 import { BSD2 } from "./licenses/bsd2";
 import { BSL1 } from "./licenses/bsl1";
@@ -76,6 +77,7 @@ type LicenseInfo = {displayName:string, creatorFn: LicenseCreatorFn};
 
 const availableLicenses: Map<string, LicenseInfo> = new Map<string, LicenseInfo>([
     ["AL2", { displayName: "AL2", creatorFn: (author, _) => new AL2(author) }],
+    ["BSD0", { displayName: "BSD0", creatorFn: (author, _) => new BSD0(author) }],
     ["BSD3", { displayName: "BSD3", creatorFn: (author, _) => new BSD3(author) }],
     ["BSD2", { displayName: "BSD2", creatorFn: (author, _) => new BSD2(author) }],
     ["BSL1", { displayName: "BSL1", creatorFn: (author, _) => new BSL1(author) }],

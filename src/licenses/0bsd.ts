@@ -16,7 +16,7 @@
 
 import { License } from "./type";
 
-export class BSD0 {
+export class BSD0 {  // Because class definition can't start with numbers
     public author: string;
     public year: string;
 

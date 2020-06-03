@@ -1,4 +1,12 @@
-# Changelog 
+# Changelog
+
+## 1.5.0
+* fix config for BSL1 (#74)
+* change alias for Pascal (#75)
+* support ADVPL (#76)
+* fix new lines in custom header (#79)
+* add 0BSD support (#81)
+* fix double-quote in AGPL v3 (#82)
 
 ## 1.4.0
 * add Unlicense support (#61)
@@ -8,9 +16,11 @@
 
 ## 1.3
 ### 1.3.1
+
 * fix README
 
 ### 1.3.0
+
 * dynamic license chooser (#55)
 * fix command name (#56)
 

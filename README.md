@@ -242,21 +242,7 @@ See all changes in [CHANGELOG](https://github.com/ymotongpoo/vsc-licenser/blob/m
 
 ## Contributors
 
-Thank you for contributions to "licenser".
-
-* @aodag
-* @Cologler
-* @jimmidyson
-* @simonmika
-* @marchrock
-* @dtl
-* @jrobeson
-* @dlech
-* @Lexicality
-* @detwin
-* @teo-tsirpanis
-* @olefasting
-* @beta
+See `CONTRIBUTORS` file for all contributors so far. Thank you for your contributions!
 
 ## Reference
 

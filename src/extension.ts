@@ -228,10 +228,13 @@ class Licenser {
             await vscode.workspace.openTextDocument(openSetting).then(doc => {
                 langId = doc.languageId;
             });
+            license.filePath = path.parse(fullPath);
             const header = this.getLicenseHeader(license, langId);
-            let fileContent = fs.readFileSync(fullPath);
+            let fileContent = fs.readFileSync(fullPath) + '';
             if (!fileContent.includes(header)) {
-                const newFileContent = header + fileContent;
+                const firstLine = fileContent.split('\n', 1)[0] +'\n';
+                const position = this.findInsertionPosition(firstLine, langId);
+                const newFileContent = fileContent.substring(0, position) + header + fileContent.substring(position);
                 try {
                     fs.writeFileSync(fullPath, newFileContent);
                     console.log("Inserted license header");

@@ -228,7 +228,8 @@ class Licenser {
             await vscode.workspace.openTextDocument(openSetting).then(doc => {
                 langId = doc.languageId;
             });
-            license.filePath = path.parse(fullPath);
+            //license.filePath = path.parse(fullPath);
+
             const header = this.getLicenseHeader(license, langId);
             let fileContent = fs.readFileSync(fullPath) + '';
             if (!fileContent.includes(header)) {

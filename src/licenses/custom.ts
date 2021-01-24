@@ -36,12 +36,44 @@ export class Custom {
         this.filePath = path.parse(filePath);
 
         if (customTermsAndConditionsFile) {
-            this.customHeader = fs.readFileSync(customTermsAndConditionsFile).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customTermsAndConditionsFile)).toString();
         }
 
         if (customHeaderFile) {
-            this.customHeader = fs.readFileSync(customHeaderFile).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customHeaderFile)).toString();
         }
+    }
+
+    private evaluateEnvVars(value : string) : string {
+
+        if (value == null) 
+            return '';
+
+            try 
+            {
+                return value.replace(/\$\{(.*?)\}/g, (source, match) => {
+
+                    // support for os environment variables
+                    Object.keys(process.env).forEach(function(key) {
+                        if (key == match)
+                            return process.env[key]
+                    });
+
+                    // support for custom variables mapped from vscode.
+                    switch(match)
+                    {
+                        case 'workspaceFolder':
+                            return vscode.workspace.rootPath;
+
+                        default: 
+                            return '';
+                    }
+                });
+            }
+            catch(error)
+            {
+                return '';
+            }
     }
 
     private replaceVariables(text: string): string {

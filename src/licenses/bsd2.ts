@@ -61,4 +61,11 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ this.year } ${ this.author }.
+SPDX-License-Identifier: BSD-2-Clause`
+        return template;
+    }
 }

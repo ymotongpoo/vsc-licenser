@@ -18,4 +18,5 @@ export interface License {
     author: string;
     termsAndConditions(): string;
     header(): string;
+    spdxHeader(): string;
 }

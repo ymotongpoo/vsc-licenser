@@ -226,6 +226,11 @@
                     "default": true,
                     "description": "Priority to use single line comment style to multiple line comment style for license header."
                 },
+                "licenser.useSPDXLicenseFormat": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use SPDX license format (short format) instead full license information."
+                },
                 "licenser.customTermsAndConditions": {
                     "type": "string",
                     "default": "",
@@ -245,6 +250,11 @@
                     "type": "string",
                     "default": "",
                     "description": "Path to a file containing a user-defined custom header. Overrides Custom Header when present."
+                },
+                "licenser.customSPDXId": {
+                    "type": "string",
+                    "default": "",
+                    "description": "The SPDX License Id for your custom license."
                 },
                 "licenser.disableAutoHeaderInsertion": {
                     "type": "boolean",

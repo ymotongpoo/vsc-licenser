@@ -228,7 +228,7 @@ class Licenser {
             await vscode.workspace.openTextDocument(openSetting).then(doc => {
                 langId = doc.languageId;
             });
-            license.filePath = path.parse(fullPath);
+            //license.filePath = path.parse(fullPath);
             const header = this.getLicenseHeader(license, langId);
             let fileContent = fs.readFileSync(fullPath) + '';
             if (!fileContent.includes(header)) {
@@ -367,21 +367,23 @@ class Licenser {
      */
     private getLicenseHeader(license: License, langId: string): string {
         let notation = notations[langId] ? notations[langId] : notations["plaintext"]; // return plaintext's comment when langId is unexpected.
-
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        
+        const spdxFormatEnabled = licenserSetting.get<boolean>("useSPDXLicenseFormat",false);
         const preferSingleLineStyle = licenserSetting.get<boolean>("useSingleLineStyle", true);
         const [l, r] = notation.multi;
+        
         if (preferSingleLineStyle) {
             if (notation.hasSingle()) {
-                return this.singleLineCommentHeader(license, notation.single);
+                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled);
             } else if (notation.hasMulti()) {
-                return this.multiLineCommentHeader(license, l, r, notation.ornament);
+                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled);
             }
         } else {
             if (notation.hasMulti()) {
-                return this.multiLineCommentHeader(license, l, r, notation.ornament);
+                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled);
             } else if (notation.hasSingle()) {
-                return this.singleLineCommentHeader(license, notation.single);
+                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled);
             }
         }
     }
@@ -391,8 +393,16 @@ class Licenser {
      * @param license License instance initialzed from licenser.license.
      * @param token single line comment token.
      */
-    private singleLineCommentHeader(license: License, token: string): string {
-        let original = license.header().split("\n");
+    private singleLineCommentHeader(license: License, token: string, spdxFormat? : boolean): string {
+
+
+        let original : string[];
+
+        if (spdxFormat == true) {
+            original = license.spdxHeader().split("\n");
+        } else {
+            original = license.header().split("\n");
+        }
         let header = "";
         for (const line of original) {
             if (original.length > 0) {
@@ -411,9 +421,15 @@ class Licenser {
      * @param end multiple line comment end string.
      * @param ornament multiple line comment ornament string.
      */
-    private multiLineCommentHeader(license: License, start, end, ornament: string): string {
-        let original = license.header().split("\n");
+    private multiLineCommentHeader(license: License, start, end, ornament: string, spdxFormat? : boolean): string {
+        let original: string[];
         let header = start + "\n";
+
+        if (spdxFormat == true) {
+            original = license.spdxHeader().split("\n");
+        } else {
+            original = license.header().split("\n");
+        }
 
         for (const line of original) {
             if (original.length > 0) {

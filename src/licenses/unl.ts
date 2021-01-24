@@ -60,4 +60,11 @@ Use of this source code is governed by The Unlicense
 which can be found in the LICENSE file.`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: Unlicense`
+        return template;
+    }
 }

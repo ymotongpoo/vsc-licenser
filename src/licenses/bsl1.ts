@@ -60,4 +60,11 @@ See accompanying file LICENSE
 or copy at http://www.boost.org/LICENSE_1_0.txt`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: BSL-1.0`
+        return template;
+    }
 }

@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 "use strict";
-
+import * as vscode from 'vscode';
 import { License } from "./type";
 import path = require("path");
 import fs = require("fs");
@@ -60,6 +60,16 @@ export class Custom {
 
     public header(): string {
         let template = this.replaceVariables(this.customHeader);
+        return template;
+    }
+
+    public spdxHeader(): string
+    {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let customSpdxId = licenserSetting.get<string>("customSPDXId", "");
+
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: ${customSpdxId}`
         return template;
     }
 }

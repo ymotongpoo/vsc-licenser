@@ -36,7 +36,8 @@
         "onCommand:extension.insertLicenseHeader",
         "onCommand:extension.anyLicenseHeader",
         "onCommand:extension.createLicenseFile",
-        "onCommand:extension.insertMultipleLicenseHeaders"
+        "onCommand:extension.insertMultipleLicenseHeaders",
+        "onStartupFinished"
     ],
     "main": "./out/src/extension",
     "contributes": {

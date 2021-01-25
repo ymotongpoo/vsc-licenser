@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 "use strict";
-
+import * as vscode from 'vscode';
 import { License } from "./type";
 import path = require("path");
 import fs = require("fs");
@@ -36,12 +36,44 @@ export class Custom {
         this.filePath = path.parse(filePath);
 
         if (customTermsAndConditionsFile) {
-            this.customHeader = fs.readFileSync(customTermsAndConditionsFile).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customTermsAndConditionsFile)).toString();
         }
 
         if (customHeaderFile) {
-            this.customHeader = fs.readFileSync(customHeaderFile).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customHeaderFile)).toString();
         }
+    }
+
+    private evaluateEnvVars(value : string) : string {
+
+        if (value == null) 
+            return '';
+
+            try 
+            {
+                return value.replace(/\$\{(.*?)\}/g, (source, match) => {
+
+                    // support for os environment variables
+                    Object.keys(process.env).forEach(function(key) {
+                        if (key == match)
+                            return process.env[key]
+                    });
+
+                    // support for custom variables mapped from vscode.
+                    switch(match)
+                    {
+                        case 'workspaceFolder':
+                            return vscode.workspace.rootPath;
+
+                        default: 
+                            return '';
+                    }
+                });
+            }
+            catch(error)
+            {
+                return '';
+            }
     }
 
     private replaceVariables(text: string): string {
@@ -60,6 +92,16 @@ export class Custom {
 
     public header(): string {
         let template = this.replaceVariables(this.customHeader);
+        return template;
+    }
+
+    public spdxHeader(): string
+    {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let customSpdxId = licenserSetting.get<string>("customSPDXId", "");
+
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: ${customSpdxId}`
         return template;
     }
 }

@@ -359,4 +359,11 @@ work.  If not, see <http://creativecommons.org/licenses/by/3.0/>.`
 
         return template;
     }
+    
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }. All rights reserved.
+SPDX-License-Identifier: CC-BY-3.0`
+        return template;
+    }
 }

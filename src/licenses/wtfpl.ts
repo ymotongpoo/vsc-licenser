@@ -49,4 +49,11 @@ Use of this source code is governed by the WTFPL
 license that can be found in the LICENSE file.`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: WTFPL`
+        return template;
+    }
 }

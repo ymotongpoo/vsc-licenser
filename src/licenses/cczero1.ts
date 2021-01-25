@@ -161,4 +161,11 @@ You should have received a copy of the CC0 legalcode along with this
 work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.`
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: CC0-1.0`
+        return template;
+    }
 }

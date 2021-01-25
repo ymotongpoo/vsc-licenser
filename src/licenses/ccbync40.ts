@@ -446,4 +446,11 @@ You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.`
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: CC-BY-NC-4.0 `
+        return template;
+    }
 }

@@ -214,4 +214,11 @@ You should have received a copy of the GNU Lesser General Public License
 along with ${ this.productName }. If not, see <http://www.gnu.org/licenses/>.`
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
+SPDX-License-Identifier: LGPL-3.0-only`
+        return template;
+    }
 }

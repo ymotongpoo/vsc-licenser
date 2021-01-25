@@ -91,7 +91,7 @@ const ruby = new Notation("ruby", ["=begin", "=end"], "#", "");
 const rust = new Notation("rust", ["/**", " */"], "//", " *");
 const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
 const scss = new Notation("scss", ["/**", " */"], "//", " *");
-const shellscript = new Notation("shellscript", ["<<LICENSE", ">>"], "#", "");
+const shellscript = new Notation("shellscript", ["", ""], "#", "");
 const starlark = new Notation("starlark", ["", ""], "#", "");
 const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");

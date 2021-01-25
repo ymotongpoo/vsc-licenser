@@ -247,4 +247,11 @@ See the License for the specific language governing permissions and
 limitations under the License.`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ this.year } ${ this.author }.
+SPDX-License-Identifier: Apache-2.0`
+        return template;
+    }
 }

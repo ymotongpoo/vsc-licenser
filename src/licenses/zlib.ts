@@ -69,4 +69,11 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.`;
         return template;
     }
+
+    public spdxHeader(): string
+    {
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }. All rights reserved.
+SPDX-License-Identifier: Zlib`
+        return template;
+    }
 }

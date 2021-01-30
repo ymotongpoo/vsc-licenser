@@ -280,6 +280,10 @@
             {
                 "command": "extension.insertMultipleLicenseHeaders",
                 "title": "licenser: Insert license headers to contents"
+            },
+            {
+                "command": "extension.InsertLicensesOnEntireWorkspace",
+                "title": "licenser: Insert license headers to all files on the workspace."
             }
         ],
         "menus": {

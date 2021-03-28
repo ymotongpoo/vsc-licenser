@@ -72,7 +72,7 @@ freely, subject to the following restrictions:
 
     public spdxHeader(): string
     {
-        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }. All rights reserved.
+        let template = `Copyright ${ new Date().getFullYear().toString() } ${ this.author }.
 SPDX-License-Identifier: Zlib`
         return template;
     }

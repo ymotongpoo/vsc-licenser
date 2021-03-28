@@ -127,6 +127,8 @@ class Licenser {
         vscode.commands.registerCommand("extension.anyLicenseHeader", () => { this.arbitrary() });
         vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() });
         vscode.commands.registerCommand("extension.insertMultipleLicenseHeaders", (context) => { this.insertMultiple(context) });
+        vscode.commands.registerCommand("extension.InsertLicensesOnEntireWorkspace", () => { this.insertMultiple(null) });
+        
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
@@ -224,7 +226,7 @@ class Licenser {
         files.forEach(async (file) => {
             let langId = null;
             const fullPath = path.join(dirPath, file);
-            const openSetting = vscode.Uri.parse("file:///" + fullPath);
+            const openSetting = vscode.Uri.parse("file://" + fullPath);
             await vscode.workspace.openTextDocument(openSetting).then(doc => {
                 langId = doc.languageId;
             });
@@ -274,7 +276,7 @@ class Licenser {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let licenseType = licenserSetting.get<string>("license");
         const license = this.getLicense(licenseType);
-        let folderPath = context.fsPath;
+        let folderPath = context != null && context != undefined ? context.fsPath: vscode.workspace.rootPath;
         this._insertMultiple(license, folderPath);
     }
 

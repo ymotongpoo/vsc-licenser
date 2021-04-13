@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "publisher": "ymotongpoo",
     "galleryBanner": {
         "color": "#EEF7FF",
@@ -19,7 +19,7 @@
         "url": "https://github.com/ymotongpoo/vsc-licenser/issues"
     },
     "engines": {
-        "vscode": "^1.10.0"
+        "vscode": "^1.55.0"
     },
     "categories": [
         "Other",
@@ -316,18 +316,17 @@
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "compile": "tsc -watch -p ./"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.7",
-        "@types/node": "^12.12.21",
+        "@types/node": "^14.14.37",
+        "@types/vscode": "^1.55.0",
         "mocha": "^7.2.0",
         "tslint": "^5.20.1",
-        "typescript": "^3.7.4",
-        "vscode": "^1.1.36"
+        "typescript": "^3.9.9"
     },
     "dependencies": {
-        "vsce": "^1.71.0"
+        "vsce": "^1.87.1"
     }
 }

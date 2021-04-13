@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0
+* fix onStartupFinished activate event to initialize extension on startup (#99)
+* add SPDX license (#96)
+* fix nonexitent multiline notation for shellscript (#99)
+* add support for environment variables (#99)
+* change for multiple file mode to respect shebang (#91)
 ## 1.5.0
 * fix config for BSL1 (#74)
 * change alias for Pascal (#75)

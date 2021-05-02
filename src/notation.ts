@@ -165,5 +165,6 @@ export const notations: { [key: string]: Notation } = {
     "nimble": nimble,
     "ocaml": ocaml,
     "pascal": pascal,
+    "postcss": css,
     "advpl": advpl
 }

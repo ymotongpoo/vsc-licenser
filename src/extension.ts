@@ -215,10 +215,10 @@ class Licenser {
     private _insertMultiple(license: License, dirPath: string) {
         const dirContents = fs.readdirSync(dirPath);
         const dirs = dirContents.filter((item) => {
-            return this._isDir(path.join(dirPath, item));
+            return this._isDir(path.join(dirPath, item)) && !item.startsWith('.');
         });
         const files = dirContents.filter((item) => {
-            return !this._isDir(path.join(dirPath, item));
+            return !this._isDir(path.join(dirPath, item)) && !item.startsWith('.');
         });
         dirs.forEach((dir) => {
             this._insertMultiple(license, path.join(dirPath, dir));

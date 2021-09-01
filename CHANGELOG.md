@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0
+* fix to ignore hidden (dot-started) files (#110)
+* fix to add postcss (#103)
+* fix vulnerabilities
+
 ## 1.6.0
 * fix onStartupFinished activate event to initialize extension on startup (#99)
 * add SPDX license (#96)

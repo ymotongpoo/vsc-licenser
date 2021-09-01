@@ -3,13 +3,13 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "publisher": "ymotongpoo",
     "galleryBanner": {
         "color": "#EEF7FF",
         "theme": "light"
     },
-    "license": "SEE LICENSE IN LICENSE",
+    "license": "Apache-2.0",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
     "repository": {
         "type": "git",

@@ -128,7 +128,7 @@ class Licenser {
         vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() });
         vscode.commands.registerCommand("extension.insertMultipleLicenseHeaders", (context) => { this.insertMultiple(context) });
         vscode.commands.registerCommand("extension.InsertLicensesOnEntireWorkspace", () => { this.insertMultiple(null) });
-        
+
         vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
     }
 
@@ -370,11 +370,11 @@ class Licenser {
     private getLicenseHeader(license: License, langId: string): string {
         let notation = notations[langId] ? notations[langId] : notations["plaintext"]; // return plaintext's comment when langId is unexpected.
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        
+
         const spdxFormatEnabled = licenserSetting.get<boolean>("useSPDXLicenseFormat",false);
         const preferSingleLineStyle = licenserSetting.get<boolean>("useSingleLineStyle", true);
         const [l, r] = notation.multi;
-        
+
         if (preferSingleLineStyle) {
             if (notation.hasSingle()) {
                 return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled);
@@ -444,11 +444,12 @@ class Licenser {
 
     /**
      * getAuthor fetches author name string from one of the followings in this order.
-     *   1. licenser.author
-     *   2. OS environment.
+     *   1. licenser.author in workspace setting
+     *   2. licenser.author in user setting
+     *   3. OS environment.
      */
     private getAuthor(): string {
-        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenserSetting = vscode.workspace.getConfiguration("licenser.author");
         let author = licenserSetting.get<string>("author", undefined);
         console.log("Author from setting: " + author);
         if (author !== undefined && author.length !== 0) {

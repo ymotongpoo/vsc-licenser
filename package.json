@@ -9,7 +9,7 @@
         "color": "#EEF7FF",
         "theme": "light"
     },
-    "license": "SEE LICENSE IN LICENSE",
+    "license": "Apache-2.0",
     "homepage": "https://github.com/ymotongpoo/vsc-licenser/README.md",
     "repository": {
         "type": "git",

@@ -327,6 +327,6 @@
         "typescript": "^3.9.9"
     },
     "dependencies": {
-        "vsce": "^1.87.1"
+        "vsce": "^1.96.2"
     }
 }

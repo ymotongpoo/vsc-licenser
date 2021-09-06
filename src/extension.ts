@@ -449,7 +449,7 @@ class Licenser {
      *   3. OS environment.
      */
     private getAuthor(): string {
-        let licenserSetting = vscode.workspace.getConfiguration("licenser.author");
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let author = licenserSetting.get<string>("author", undefined);
         console.log("Author from setting: " + author);
         if (author !== undefined && author.length !== 0) {

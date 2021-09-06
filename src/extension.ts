@@ -49,7 +49,6 @@ import { Zlib } from "./licenses/zlib";
 import path = require("path");
 import fs = require("fs");
 import os = require("os");
-import { isNullOrUndefined } from "util";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -143,7 +142,7 @@ class Licenser {
         }
 
         this._chooseLicenseType().then(licenseType => {
-            if (!isNullOrUndefined(licenseType)) {
+            if (licenseType !== null && licenseType !== undefined) {
                 const license = this.getLicense(licenseType);
                 this._doCreateLicense(root, license);
             }
@@ -154,7 +153,7 @@ class Licenser {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let licenseType = licenserSetting.get<string>("license");
 
-        if (isNullOrUndefined(licenseType) || licenseType.toLowerCase() == chooseFromList) {
+        if (licenseType === null || licenseType === undefined || licenseType.toLowerCase() == chooseFromList) {
             return vscode.window.showQuickPick(Array.from(availableLicenses.values()).map(info => info.displayName));
         }
 
@@ -355,7 +354,7 @@ class Licenser {
         }
 
         let info = availableLicenses.get(licenseKey);
-        if (isNullOrUndefined(info)) {
+        if (info === null || info === undefined) {
             info = availableLicenses.get(defaultLicenseType);
         }
 

@@ -24,6 +24,7 @@ import { BSD0 } from "./licenses/0bsd";
 import { BSD3 } from "./licenses/bsd3";
 import { BSD2 } from "./licenses/bsd2";
 import { BSL1 } from "./licenses/bsl1";
+import { BUSLv1_1 } from "./licenses/busl1_1";
 import { GPLv2 } from "./licenses/gplv2";
 import { GPLv3 } from "./licenses/gplv3";
 import { LGPLv3 } from "./licenses/lgplv3";
@@ -81,6 +82,7 @@ const availableLicenses: Map<string, LicenseInfo> = new Map<string, LicenseInfo>
     ["BSD3", { displayName: "BSD3", creatorFn: (author, _) => new BSD3(author) }],
     ["BSD2", { displayName: "BSD2", creatorFn: (author, _) => new BSD2(author) }],
     ["BSL1", { displayName: "BSL1", creatorFn: (author, _) => new BSL1(author) }],
+    ["BUSL-1.1", { displayName: "BUSL-1.1", creatorFn: (author, _) => new BUSLv1_1(author) }],
     ["GPLV2", { displayName: "GPLv2", creatorFn: (author, projectName) => new GPLv2(author, projectName) }],
     ["GPLV3", { displayName: "GPLv3", creatorFn: (author, projectName) => new GPLv3(author, projectName) }],
     ["LGPLV3", { displayName: "LGPLv3", creatorFn: (author, projectName) => new LGPLv3(author, projectName) }],

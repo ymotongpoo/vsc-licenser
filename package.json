@@ -317,7 +317,7 @@
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",
-        "lint": "eslint src/**/*.ts"
+        "lint": "eslint src/**/*.ts test/**/*.ts" 
     },
     "devDependencies": {
         "@types/mocha": "^5.2.7",

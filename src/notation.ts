@@ -150,7 +150,9 @@ export const notations: { [key: string]: Notation } = {
     "scss": scss,
     "shellscript": shellscript,
     "starlark": starlark,
+    "svelte": html,
     "swift": swift,
+    "vue": html,
     "xml": xml,
 
     "crystal": crystal,

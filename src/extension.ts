@@ -136,6 +136,8 @@ class Licenser {
      */
     create() {
         const root = vscode.workspace.rootPath;
+        const licesnerSetting = vscode.workspace.getConfiguration("licenser");
+        const autosave = !licesnerSetting.get<boolean>("disableAutoSave", false);
         if (root === undefined) {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
@@ -144,7 +146,7 @@ class Licenser {
         this._chooseLicenseType().then(licenseType => {
             if (licenseType !== null && licenseType !== undefined) {
                 const license = this.getLicense(licenseType);
-                this._doCreateLicense(root, license);
+                this._doCreateLicense(root, license, autosave);
             }
         });
     }
@@ -160,14 +162,14 @@ class Licenser {
         return new Promise((resolve, _) => resolve(licenseType));
     }
 
-    private _doCreateLicense(root: String, license: License) {
+    private _doCreateLicense(root: String, license: License, autoSave: boolean) {
         const uri = vscode.Uri.parse("untitled:" + root + path.sep + defaultLicenseFilename);
         vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
                 editor.edit((ed) => {
                     ed.insert(doc.positionAt(0), license.termsAndConditions());
                 }).then((done) => {
-                    if (done) {
+                    if (done && autoSave) {
                         doc.save().then((saved) => {
                             vscode.window.showInformationMessage(`Successfully saved: ${uri}`);
                         }, (reason) => {
@@ -185,7 +187,7 @@ class Licenser {
         });
     }
 
-    private _insert(license: License) {
+    private _insert(license: License, autosave: boolean) {
         const editor = vscode.window.activeTextEditor;
         const doc = editor.document;
         const langId = editor.document.languageId;
@@ -198,7 +200,7 @@ class Licenser {
             console.log("header:", header);
             ed.insert(doc.positionAt(position), header);
         }).then((done) => {
-            if (done) {
+            if (done && autosave) {
                 doc.save().then((saved) => {
                     console.log("Inserted license header");
                 }, (reason) => {
@@ -264,8 +266,9 @@ class Licenser {
     insert() {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
         let licenseType = licenserSetting.get<string>("license");
+        const autosave = !licenserSetting.get<boolean>("disableAutoSave", false);
         const license = this.getLicense(licenseType);
-        this._insert(license);
+        this._insert(license, autosave);
     }
 
     /**
@@ -280,13 +283,15 @@ class Licenser {
     }
 
     arbitrary() {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        const autosave = !licenserSetting.get<boolean>("disableAutoSave", false);
         vscode.window.showInputBox({
             prompt: "Specify the license short name to insert. (see package.json for all the candidates)",
             placeHolder: "AL2",
         }).then((shortName) => {
             if (shortName !== undefined) {
                 const license = this.getLicense(shortName);
-                this._insert(license);
+                this._insert(license, autosave);
             }
         })
     }

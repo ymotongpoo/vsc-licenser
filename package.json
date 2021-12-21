@@ -261,6 +261,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Disable header insertion on creation of new file (defaults to false)."
+                },
+                "licenser.disableAutoSave": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Disable auto save after an operation (defaults to false)."
                 }
             }
         },

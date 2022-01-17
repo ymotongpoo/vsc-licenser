@@ -75,8 +75,9 @@ Programming languages supported by this extension are (alphabetical order):
 * Starlark
 * Swift
 * XML
+* YAML
 
-The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
+The following programing languages/frameworks are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
 
 * ADVPL
 * Crystal
@@ -92,7 +93,10 @@ The following programing languages are supported in the manual configurations of
 * Nim (and Nimble)
 * OCaml
 * Pascal
+* PureScript
 * Starlark (used in Bazel)
+* Svelte
+* Vue
 
 ## Configurations
 

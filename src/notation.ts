@@ -96,6 +96,7 @@ const shellscript = new Notation("shellscript", ["", ""], "#", "");
 const starlark = new Notation("starlark", ["", ""], "#", "");
 const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
+const yaml = new Notation("yaml", ["", ""], "#", "");
 
 // custom languages
 const crystal = new Notation("crystal", ["", ""], "#", "");
@@ -157,6 +158,7 @@ export const notations: { [key: string]: Notation } = {
     "swift": swift,
     "vue": html,
     "xml": xml,
+    "yaml": yaml,
 
     "crystal": crystal,
     "d": d,

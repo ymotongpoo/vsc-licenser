@@ -89,6 +89,7 @@ const powershell = new Notation("powershell", ["<##", "#>"], "#", " #");
 const python = new Notation("python", ['"""', '"""'], "#", "");
 const ruby = new Notation("ruby", ["=begin", "=end"], "#", "");
 const rust = new Notation("rust", ["/**", " */"], "//", " *");
+const terraform = new Notation("terraform", ["/**", " */"], "#", " *");
 const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
 const scss = new Notation("scss", ["/**", " */"], "//", " *");
 const shellscript = new Notation("shellscript", ["", ""], "#", "");
@@ -142,10 +143,10 @@ export const notations: { [key: string]: Notation } = {
     "php": php,
     "plaintext": plaintext,
     "powershell": powershell,
-    "purescript": purescript,
     "python": python,
     "ruby": ruby,
     "rust": rust,
+    "terraform": terraform,
     "typescript": typescript,
     "typescriptreact": typescript,
     "sass": scss,

@@ -110,6 +110,7 @@ const nimble = new Notation("nimble", ["", ""], "#", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " *");
 const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 const advpl = new Notation("advpl", ["/**", "*/"], "//", "");
+const purescript = new Notation("purescript", ["{-", "-}"], "--", " -");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -141,6 +142,7 @@ export const notations: { [key: string]: Notation } = {
     "php": php,
     "plaintext": plaintext,
     "powershell": powershell,
+    "purescript": purescript,
     "python": python,
     "ruby": ruby,
     "rust": rust,
@@ -168,5 +170,6 @@ export const notations: { [key: string]: Notation } = {
     "ocaml": ocaml,
     "pascal": pascal,
     "postcss": css,
-    "advpl": advpl
+    "advpl": advpl,
+    "purescript": purescript
 }

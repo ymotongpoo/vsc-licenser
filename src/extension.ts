@@ -315,6 +315,9 @@ class Licenser {
 
     private _onDidChangeActiveTextEditor() {
         vscode.window.onDidChangeActiveTextEditor(e => {
+            if (e === undefined) {
+                return;
+            }
             let licenserSetting = vscode.workspace.getConfiguration("licenser");
             let autoInsertionDisabled = licenserSetting.get<boolean>("disableAutoHeaderInsertion");
             if (autoInsertionDisabled) {

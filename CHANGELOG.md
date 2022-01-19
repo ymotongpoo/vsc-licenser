@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.9.0
+* add support for yaml
+
+## 1.8.0
+* add purescript, terraform, vue, svelite (#122, #123)
+* add BUSL-1.1 support (#124)
+
 ## 1.7.0
 * fix to ignore hidden (dot-started) files (#110)
 * fix to add postcss (#103)

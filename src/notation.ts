@@ -89,12 +89,14 @@ const powershell = new Notation("powershell", ["<##", "#>"], "#", " #");
 const python = new Notation("python", ['"""', '"""'], "#", "");
 const ruby = new Notation("ruby", ["=begin", "=end"], "#", "");
 const rust = new Notation("rust", ["/**", " */"], "//", " *");
+const terraform = new Notation("terraform", ["/**", " */"], "#", " *");
 const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
 const scss = new Notation("scss", ["/**", " */"], "//", " *");
 const shellscript = new Notation("shellscript", ["", ""], "#", "");
 const starlark = new Notation("starlark", ["", ""], "#", "");
 const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
+const yaml = new Notation("yaml", ["", ""], "#", "");
 
 // custom languages
 const crystal = new Notation("crystal", ["", ""], "#", "");
@@ -110,6 +112,7 @@ const nimble = new Notation("nimble", ["", ""], "#", "");
 const ocaml = new Notation("ocaml", ["(**", " *)"], "", " *");
 const pascal = new Notation("pascal", ["(*", "*)"], "//", "")
 const advpl = new Notation("advpl", ["/**", "*/"], "//", "");
+const purescript = new Notation("purescript", ["{-", "-}"], "--", " -");
 
 // map betweeen languageId and its comment notations.
 // LanguageId is listed here.
@@ -144,14 +147,18 @@ export const notations: { [key: string]: Notation } = {
     "python": python,
     "ruby": ruby,
     "rust": rust,
+    "terraform": terraform,
     "typescript": typescript,
     "typescriptreact": typescript,
     "sass": scss,
     "scss": scss,
     "shellscript": shellscript,
     "starlark": starlark,
+    "svelte": html,
     "swift": swift,
+    "vue": html,
     "xml": xml,
+    "yaml": yaml,
 
     "crystal": crystal,
     "d": d,
@@ -166,5 +173,6 @@ export const notations: { [key: string]: Notation } = {
     "ocaml": ocaml,
     "pascal": pascal,
     "postcss": css,
-    "advpl": advpl
+    "advpl": advpl,
+    "purescript": purescript
 }

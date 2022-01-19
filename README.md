@@ -75,8 +75,9 @@ Programming languages supported by this extension are (alphabetical order):
 * Starlark
 * Swift
 * XML
+* YAML
 
-The following programing languages are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
+The following programing languages/frameworks are supported in the manual configurations of this extension (see `contributes.languages` in `package.json`):
 
 * ADVPL
 * Crystal
@@ -92,7 +93,10 @@ The following programing languages are supported in the manual configurations of
 * Nim (and Nimble)
 * OCaml
 * Pascal
+* PureScript
 * Starlark (used in Bazel)
+* Svelte
+* Vue
 
 ## Configurations
 
@@ -111,6 +115,7 @@ Currently, supported licenses are:
 * "BSD2": BSD 2-clause License
 * "BSD3": BSD 3-clause License (New BSD License)
 * "BSL1": Boost Software License - Version 1.0
+* "BUSL-1.1": Business Source License 1.1
 * "GPLv2": GNU General Public License version 2
 * "GPLv3": GNU General Public License version 3
 * "LGPLv3": GNU Lesser General Public License version 3

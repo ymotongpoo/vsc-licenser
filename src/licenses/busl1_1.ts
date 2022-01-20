@@ -14,7 +14,7 @@
 
 "use strict";
 
-export class BUSLv1_1 {
+export class BUSL11 {
     public author: string;
     public year: string;
 

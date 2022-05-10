@@ -158,7 +158,7 @@ ${this.productName} has waived all copyright and related or neighboring rights
 to ${this.productName}.
 
 You should have received a copy of the CC0 legalcode along with this
-work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.`
+work.  If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.`
         return template;
     }
 

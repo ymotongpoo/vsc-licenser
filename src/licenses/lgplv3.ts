@@ -32,7 +32,7 @@ export class LGPLv3 {
         let template = `                   GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 
@@ -211,7 +211,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with ${ this.productName }. If not, see <http://www.gnu.org/licenses/>.`
+along with ${ this.productName }. If not, see <https://www.gnu.org/licenses/>.`
         return template;
     }
 

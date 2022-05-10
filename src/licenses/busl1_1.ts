@@ -28,26 +28,26 @@ export class BUSL11 {
         let template = `Business Source License 1.1
 
         Parameters
-        
+
         Licensor:             <Licensor>
         Licensed Work:        <Product>
                               The Licensed Work is (c) <year> <Licensor>
         Additional Use Grant: <None or More>.
-        
+
         Change Date:          <Ideally 3 years from the launch>
-        
+
         Change License:       <change license after BUSL>
-        
+
         For information about alternative licensing arrangements for the Software,
         please visit: <company site>
-        
+
         Notice
-        
+
         License text copyright (c) 2017 MariaDB Corporation Ab, All Rights Reserved.
         “Business Source License” is a trademark of MariaDB Corporation Ab.
-        
+
         -----------------------------------------------------------------------------
-        
+
         Business Source License 1.1
 
         Terms
@@ -121,7 +121,7 @@ export class BUSL11 {
 
     public header(): string {
         let template = `Copyright (C)  ${ this.year } ${ this.author }
-Use of this software is govered by the Business Source License included in the LICENSE.TXT file and at www.mariadb.com/bsl11.
+Use of this software is governed by the Business Source License included in the LICENSE.TXT file and at www.mariadb.com/bsl11.
 
 Change Date:
 

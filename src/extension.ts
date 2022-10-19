@@ -324,6 +324,22 @@ class Licenser {
                 return;
             }
             const fileName = path.win32.basename(e.document.fileName);
+
+            if (fileName.includes(".") && !fileName.endsWith(".")) {
+                const fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length).toLocaleLowerCase();
+
+                let exludedFileExtensions = licenserSetting.get<string[]>("excludeFileExtensions");
+
+                const isInExcludedInList = exludedFileExtensions.some((e) => {
+                    return e.toLocaleLowerCase() === fileExtension
+                });
+
+                if (isInExcludedInList) {
+                    console.log("File: " + fileName + " exluded based on extension: " + fileExtension);
+                    return;
+                }
+            }
+
             if (fileName !== defaultLicenseFilename) {
                 const doc = e.document;
                 const contents = doc.getText();

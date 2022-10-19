@@ -230,6 +230,13 @@ Placeholders are the same as `licenser.customTermsAndConditions`.
 This setting defines the behavior of header auto-insertion.
 If this setting is set as `true`, licenser will disable auto-insertion of license header on creation of new file.
 
+
+### licenser.excludeFileExtensions
+
+```
+"licenser.excludeFileExtensions": ["txt", "c"]
+```
+This setting will exclude files with a matching extension in their name from having a license header auto inserted. There is no limit in the amount of entries this array can have. This setting is case insensitive. 
 ## Call to action
 
 ### Report issues

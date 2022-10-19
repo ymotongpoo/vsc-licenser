@@ -267,6 +267,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Disable auto save after an operation (defaults to false)."
+                },
+                "licenser.excludeFileExtensions": {
+                    "type": "array",
+                    "default": [],
+                    "description": "Exclude files from having a license automatically inserted based on file extension."
                 }
             }
         },

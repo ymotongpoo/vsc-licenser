@@ -20,7 +20,7 @@ export class EUPL12 {
     constructor(author: string) {
         this.author = author;
         let date = new Date();
-        this.year = date.getFullYear.toString();
+        this.year = date.getFullYear().toString();
     }
 
     public termsAndConditions(): string {

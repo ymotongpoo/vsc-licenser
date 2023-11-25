@@ -323,7 +323,7 @@ class Licenser {
             if (autoInsertionDisabled) {
                 return;
             }
-            const fileName = path.win32.basename(e.document.fileName);
+            const fileName = path.basename(e.document.fileName);
             if (fileName !== defaultLicenseFilename) {
                 const doc = e.document;
                 const contents = doc.getText();

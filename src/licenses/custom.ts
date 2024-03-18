@@ -36,11 +36,11 @@ export class Custom {
         this.filePath = path.parse(filePath);
 
         if (customTermsAndConditionsFile) {
-            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customTermsAndConditionsFile)).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customTermsAndConditionsFile)).toString().trim();
         }
 
         if (customHeaderFile) {
-            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customHeaderFile)).toString();
+            this.customHeader = fs.readFileSync(this.evaluateEnvVars(customHeaderFile)).toString().trim();
         }
     }
 

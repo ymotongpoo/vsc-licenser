@@ -323,8 +323,8 @@ class Licenser {
             if (autoInsertionDisabled) {
                 return;
             }
-            const fileName = path.win32.basename(e.document.fileName);
 
+            const fileName = path.basename(e.document.fileName);
             if (fileName.includes(".") && !fileName.endsWith(".")) {
                 const fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length).toLocaleLowerCase();
 
@@ -339,7 +339,6 @@ class Licenser {
                     return;
                 }
             }
-
             if (fileName !== defaultLicenseFilename) {
                 const doc = e.document;
                 const contents = doc.getText();

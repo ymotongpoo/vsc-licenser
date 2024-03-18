@@ -73,6 +73,7 @@ Programming languages supported by this extension are (alphabetical order):
 * TypeScript
 * SCSS (Sass)
 * ShellScript
+* SQL
 * Starlark
 * Swift
 * XML
@@ -117,6 +118,7 @@ Currently, supported licenses are:
 * "BSD3": BSD 3-clause License (New BSD License)
 * "BSL1": Boost Software License - Version 1.0
 * "BUSL-1.1": Business Source License 1.1
+* "EUPL-1.2": European Union Public License version 1.2
 * "GPLv2": GNU General Public License version 2
 * "GPLv3": GNU General Public License version 3
 * "LGPLv3": GNU Lesser General Public License version 3
@@ -231,13 +233,14 @@ Placeholders are the same as `licenser.customTermsAndConditions`.
 This setting defines the behavior of header auto-insertion.
 If this setting is set as `true`, licenser will disable auto-insertion of license header on creation of new file.
 
-
 ### licenser.excludeFileExtensions
 
 ```
 "licenser.excludeFileExtensions": ["txt", "c"]
 ```
-This setting will exclude files with a matching extension in their name from having a license header auto inserted. There is no limit in the amount of entries this array can have. This setting is case insensitive. 
+
+This setting will exclude files with a matching extension in their name from having a license header auto inserted. There is no limit in the amount of entries this array can have. This setting is case insensitive.
+
 ## Call to action
 
 ### Report issues

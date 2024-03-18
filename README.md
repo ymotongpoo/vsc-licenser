@@ -34,6 +34,7 @@ Programming languages supported by this extension are (alphabetical order):
 * bat
 * C
 * Clojure
+* CMake
 * C++
 * C#
 * CSS

@@ -64,6 +64,7 @@ class Notation {
 // init (alphabetical order)
 const bat = new Notation("bat", ["", ""], "rem", "");
 const c = new Notation("c", ["/**", " */"], "", " *");
+const cmake = new Notation("cmake", ["", ""], "#", "");
 const cpp = new Notation("cpp", ["/**", " */"], "//", " *");
 const csharp = new Notation("csharp", ["/**", " */"], "//", " *");
 const css = new Notation("css", ["/**", " */"], "", " *");
@@ -122,6 +123,7 @@ export const notations: { [key: string]: Notation } = {
     "bat": bat,
     "c": c,
     "clojure": lisp,
+    "cmake": cmake,
     "cpp": cpp,
     "csharp": csharp,
     "css": css,

@@ -93,6 +93,7 @@ const terraform = new Notation("terraform", ["/**", " */"], "#", " *");
 const typescript = new Notation("typescript", ["/**", " */"], "//", " *");
 const scss = new Notation("scss", ["/**", " */"], "//", " *");
 const shellscript = new Notation("shellscript", ["", ""], "#", "");
+const sql = new Notation("sql", ["", ""], "--", "");
 const starlark = new Notation("starlark", ["", ""], "#", "");
 const swift = new Notation("swift", ["/**", " */"], "//", " *");
 const xml = new Notation("xml", ["<!--", "-->"], "", "");
@@ -153,6 +154,7 @@ export const notations: { [key: string]: Notation } = {
     "sass": scss,
     "scss": scss,
     "shellscript": shellscript,
+    "sql": sql,
     "starlark": starlark,
     "svelte": html,
     "swift": swift,

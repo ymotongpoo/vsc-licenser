@@ -206,7 +206,7 @@ Placeholders are the same as `licenser.customTermsAndConditions`.
 ### licenser.customHeader
 
 ```
-"licenser.customHeader": "@FILENAME@ - @PROJECT@\n\nCopyright @YEAR@ @AUTHOR@\n\nThis is my license..."
+"licenser.customHeader": "@FILE@ - @PROJECT@\n\nCopyright @YEAR@ @AUTHOR@\n\nThis is my license..."
 ```
 
 This setting defines the text used to create the license header file when the "Custom" license type is selected.

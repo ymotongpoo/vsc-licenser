@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.10.0
+## upcoming
+
+* fix the document for custom header bug (#144)
+
+## 1.10
+
+### 1.10.0
 
 * add cmake support (#142)
 * add EUPL-1.2 support (#140)

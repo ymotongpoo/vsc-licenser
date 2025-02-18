@@ -339,7 +339,7 @@
         "@typescript-eslint/eslint-plugin": "^5.5.0",
         "@typescript-eslint/parser": "^5.5.0",
         "eslint": "^8.3.0",
-        "mocha": "^9.2.2",
+        "mocha": "^11.1.0",
         "typescript": "^3.9.9"
     },
     "dependencies": {

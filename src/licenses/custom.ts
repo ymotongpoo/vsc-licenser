@@ -45,35 +45,25 @@ export class Custom {
     }
 
     private evaluateEnvVars(value : string) : string {
-
-        if (value == null) 
+        if (value == null) {
             return '';
+        }
 
-            try 
-            {
-                return value.replace(/\$\{(.*?)\}/g, (source, match) => {
-
-                    // support for os environment variables
-                    Object.keys(process.env).forEach(function(key) {
-                        if (key == match)
-                            return process.env[key]
-                    });
-
-                    // support for custom variables mapped from vscode.
-                    switch(match)
-                    {
-                        case 'workspaceFolder':
-                            return vscode.workspace.rootPath;
-
-                        default: 
-                            return '';
-                    }
-                });
+        return value.replace(/\$\{(.*?)\}/g, (source, match) => {
+            const envValue = process.env[match];
+            if (envValue !== undefined) {
+                return envValue;
             }
-            catch(error)
-            {
-                return '';
+
+            if (match === 'workspaceFolder') {
+                const folders = vscode.workspace.workspaceFolders;
+                if (folders && folders.length > 0) {
+                    return folders[0].uri.fsPath;
+                }
             }
+
+            return '';
+        });
     }
 
     private replaceVariables(text: string): string {

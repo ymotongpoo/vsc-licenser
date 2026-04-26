@@ -6,6 +6,10 @@
         "lib": [
             "es6","dom"
         ],
+        "types": [
+            "node",
+            "vscode"
+        ],
         "sourceMap": true,
         "rootDir": "."
     },

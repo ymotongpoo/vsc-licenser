@@ -64,6 +64,14 @@ export function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     let licenser = new Licenser();
+
+    // Listener for auto-updating Last Modified on Save
+    context.subscriptions.push(
+        vscode.workspace.onDidSaveTextDocument((document) => {
+            licenser.updateLastModified(document);
+        })
+    );
+
     context.subscriptions.push(licenser);
 }
 
@@ -110,13 +118,13 @@ const availableLicenses: Map<string, LicenseInfo> = new Map<string, LicenseInfo>
 
 // Licenser handles LICENSE file creation and license header insertion.
 class Licenser {
-    private licenseTemplate: string;
+    private licenseTemplate!: string;
     private author: string;
-    private _disposable: vscode.Disposable;
+    private _disposable!: vscode.Disposable;
 
     constructor() {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let licenseType = licenserSetting.get<string>("license", undefined);
+        let licenseType = licenserSetting.get<string>("license", "AL2"); // Or use ""
         if (licenseType === undefined) {
             vscode.window.showWarningMessage("set your preferred license as 'licenser.license' in configuration. Apache License version 2.0 will be used as default.")
             licenseType = defaultLicenseType;
@@ -125,14 +133,17 @@ class Licenser {
         this.author = this.getAuthor();
         console.log("Licenser.author: " + this.author);
 
-        const subscriptions: vscode.Disposable[] = [];
-        vscode.commands.registerCommand("extension.createLicenseFile", () => { this.create() });
-        vscode.commands.registerCommand("extension.anyLicenseHeader", () => { this.arbitrary() });
-        vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() });
-        vscode.commands.registerCommand("extension.insertMultipleLicenseHeaders", (context) => { this.insertMultiple(context) });
-        vscode.commands.registerCommand("extension.InsertLicensesOnEntireWorkspace", () => { this.insertMultiple(null) });
-
-        vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this, subscriptions)
+        this._disposable = vscode.Disposable.from(
+            vscode.commands.registerCommand("extension.createLicenseFile", () => { this.create() }),
+            vscode.commands.registerCommand("extension.anyLicenseHeader", () => { this.arbitrary() }),
+            vscode.commands.registerCommand("extension.insertLicenseHeader", () => { this.insert() }),
+            vscode.commands.registerCommand("extension.insertMultipleLicenseHeaders", (context) => { this.insertMultiple(context) }),
+            vscode.commands.registerCommand("extension.updateLicenseHeader", () => { this.update() }),
+            vscode.commands.registerCommand("extension.updateMultipleLicenseHeaders", (context) => { this.updateMultiple(context) }),
+            vscode.commands.registerCommand("extension.InsertLicensesOnEntireWorkspace", () => { this.insertMultiple(null) }),
+            vscode.commands.registerCommand("extension.UpdateLicensesOnEntireWorkspace", () => { this.updateMultiple(null) }),
+            vscode.window.onDidChangeActiveTextEditor(this._onDidChangeActiveTextEditor, this)
+        );
     }
 
     /**
@@ -142,7 +153,7 @@ class Licenser {
         const root = vscode.workspace.rootPath;
         const licesnerSetting = vscode.workspace.getConfiguration("licenser");
         const autosave = !licesnerSetting.get<boolean>("disableAutoSave", false);
-        if (root === undefined) {
+        if (!root) {
             vscode.window.showErrorMessage("No directory is opened.");
             return;
         }
@@ -160,7 +171,7 @@ class Licenser {
         let licenseType = licenserSetting.get<string>("license");
 
         if (licenseType === null || licenseType === undefined || licenseType.toLowerCase() == chooseFromList) {
-            return vscode.window.showQuickPick(Array.from(availableLicenses.values()).map(info => info.displayName));
+            return vscode.window.showQuickPick(Array.from(availableLicenses.values()).map(info => info.displayName)) as Thenable<string>;
         }
 
         return new Promise((resolve, _) => resolve(licenseType));
@@ -193,9 +204,10 @@ class Licenser {
 
     private _insert(license: License, autosave: boolean) {
         const editor = vscode.window.activeTextEditor;
+        if (!editor) return;
         const doc = editor.document;
         const langId = editor.document.languageId;
-        const header = this.getLicenseHeader(license, langId);
+        const header = this.getLicenseHeader(license, langId, doc.fileName);
 
         // handle shebang
         const firstLine = doc.getText(new vscode.Range(0, 0, 1, 0));
@@ -217,26 +229,41 @@ class Licenser {
         });
     }
 
-    private _insertMultiple(license: License, dirPath: string) {
+    private async _insertMultiple(license: License, dirPath: string) {
         const dirContents = fs.readdirSync(dirPath);
         const dirs = dirContents.filter((item) => {
-            return this._isDir(path.join(dirPath, item)) && !item.startsWith('.');
+            return this._isDir(path.join(dirPath, item)) && !item.startsWith('.') && item !== 'node_modules';
         });
         const files = dirContents.filter((item) => {
             return !this._isDir(path.join(dirPath, item)) && !item.startsWith('.');
         });
-        dirs.forEach((dir) => {
-            this._insertMultiple(license, path.join(dirPath, dir));
-        });
-        files.forEach(async (file) => {
-            let langId = null;
+        for (const dir of dirs) {
+            await this._insertMultiple(license, path.join(dirPath, dir));
+        }
+        
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let excludedFileExtensions = licenserSetting.get<string[]>("excludeFileExtensions", []).map(ext => ext.toLowerCase());
+
+        for (const file of files) {
+            const fileExtension = path.extname(file).replace('.', '').toLowerCase();
+            if (excludedFileExtensions.includes(fileExtension)) {
+                continue;
+            }
+
+            let langId: string = "plaintext";
             const fullPath = path.join(dirPath, file);
-            const openSetting = vscode.Uri.parse("file://" + fullPath);
-            await vscode.workspace.openTextDocument(openSetting).then(doc => {
+            const openSetting = vscode.Uri.file(fullPath);
+            try {
+                const doc = await vscode.workspace.openTextDocument(openSetting);
                 langId = doc.languageId;
-            });
-            //license.filePath = path.parse(fullPath);
-            const header = this.getLicenseHeader(license, langId);
+            } catch (err) {
+                console.log(`Failed to open text document ${fullPath}:`, err);
+                continue;
+            }
+            if (!notations[langId]) {
+                continue;
+            }
+            const header = this.getLicenseHeader(license, langId, fullPath);
             let fileContent = fs.readFileSync(fullPath) + '';
             if (!fileContent.includes(header)) {
                 const firstLine = fileContent.split('\n', 1)[0] +'\n';
@@ -252,7 +279,109 @@ class Licenser {
             } else {
                 console.log("File already contains license header");
             }
+        }
+    }
+
+    private _update(license: License, autosave: boolean) {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) return;
+        const doc = editor.document;
+        const langId = doc.languageId;
+        const header = this.getLicenseHeader(license, langId, doc.fileName);
+
+        const content = doc.getText();
+        const firstLine = content.split('\n', 1)[0] + '\n';
+        const position = this.findInsertionPosition(firstLine, langId);
+        const contentWithoutOldHeader = this.stripOldHeader(content, langId);
+        
+        if (contentWithoutOldHeader === content) {
+            vscode.window.showInformationMessage("No existing license header found to update.");
+            return;
+        }
+        
+        const newContent = contentWithoutOldHeader.substring(0, position) + header + contentWithoutOldHeader.substring(position);
+        
+        if (content !== newContent) {
+            const fullRange = new vscode.Range(
+                doc.positionAt(0),
+                doc.positionAt(content.length)
+            );
+            editor.edit((ed) => {
+                ed.replace(fullRange, newContent);
+            }).then((done) => {
+                if (done && autosave) {
+                    doc.save().then(() => {
+                        console.log("Updated license header");
+                    });
+                }
+            }, (reason) => {
+                console.log("editor.edit", reason);
+                vscode.window.showErrorMessage(reason);
+            });
+        }
+    }
+
+    private async _updateMultiple(license: License, dirPath: string) {
+        const dirContents = fs.readdirSync(dirPath);
+        const dirs = dirContents.filter((item) => {
+            return this._isDir(path.join(dirPath, item)) && !item.startsWith('.') && item !== 'node_modules';
         });
+        const files = dirContents.filter((item) => {
+            return !this._isDir(path.join(dirPath, item)) && !item.startsWith('.');
+        });
+        for (const dir of dirs) {
+            await this._updateMultiple(license, path.join(dirPath, dir));
+        }
+        
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let excludedFileExtensions = licenserSetting.get<string[]>("excludeFileExtensions", []).map(ext => ext.toLowerCase());
+
+        for (const file of files) {
+            const fileExtension = path.extname(file).replace('.', '').toLowerCase();
+            if (excludedFileExtensions.includes(fileExtension)) {
+                continue;
+            }
+
+            let langId: string = "plaintext";
+            const fullPath = path.join(dirPath, file);
+            const openSetting = vscode.Uri.file(fullPath);
+            try {
+                const doc = await vscode.workspace.openTextDocument(openSetting);
+                langId = doc.languageId;
+            } catch (err) {
+                console.log(`Failed to open text document ${fullPath}:`, err);
+                continue;
+            }
+            
+            if (!notations[langId]) {
+                continue;
+            }
+
+            const header = this.getLicenseHeader(license, langId, fullPath);
+            let fileContent = fs.readFileSync(fullPath, 'utf8');
+            const firstLine = fileContent.split('\n', 1)[0] + '\n';
+            const position = this.findInsertionPosition(firstLine, langId);
+            const contentWithoutOldHeader = this.stripOldHeader(fileContent, langId);
+            
+            if (contentWithoutOldHeader === fileContent) {
+                console.log(`No existing license header found in ${file}, skipping update.`);
+                continue;
+            }
+
+            const newFileContent = contentWithoutOldHeader.substring(0, position) + header + contentWithoutOldHeader.substring(position);
+            
+            if (fileContent !== newFileContent) {
+                try {
+                    fs.writeFileSync(fullPath, newFileContent);
+                    console.log("Updated license header in " + file);
+                } catch (e) {
+                    console.log("Error updating file", e);
+                    vscode.window.showErrorMessage("Error updating license header in files");
+                }
+            } else {
+                console.log("File license header is already up-to-date");
+            }
+        }
     }
 
     private _isDir(resourcePath: string) {
@@ -269,7 +398,7 @@ class Licenser {
      */
     insert() {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let licenseType = licenserSetting.get<string>("license");
+        let licenseType = licenserSetting.get<string>("license", defaultLicenseType);
         const autosave = !licenserSetting.get<boolean>("disableAutoSave", false);
         const license = this.getLicense(licenseType);
         this._insert(license, autosave);
@@ -278,12 +407,38 @@ class Licenser {
     /**
      * insertMultiple embeds license header text into the first line of all files within a selected directory.
      */
-    insertMultiple(context) {
+    insertMultiple(context: any) {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let licenseType = licenserSetting.get<string>("license");
+        let licenseType = licenserSetting.get<string>("license", defaultLicenseType);
         const license = this.getLicense(licenseType);
         let folderPath = context != null && context != undefined ? context.fsPath: vscode.workspace.rootPath;
-        this._insertMultiple(license, folderPath);
+        if (folderPath) {
+            this._insertMultiple(license, folderPath).catch(err => console.error(err));
+        }
+    }
+
+    /**
+     * update replaces the existing license header in the opened file.
+     */
+    update() {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license", defaultLicenseType);
+        const autosave = !licenserSetting.get<boolean>("disableAutoSave", false);
+        const license = this.getLicense(licenseType);
+        this._update(license, autosave);
+    }
+
+    /**
+     * updateMultiple replaces the existing license header in all files within a selected directory.
+     */
+    updateMultiple(context: any) {
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let licenseType = licenserSetting.get<string>("license", defaultLicenseType);
+        const license = this.getLicense(licenseType);
+        let folderPath = context != null && context != undefined ? context.fsPath : vscode.workspace.rootPath;
+        if (folderPath) {
+            this._updateMultiple(license, folderPath).catch(err => console.error(err));
+        }
     }
 
     arbitrary() {
@@ -315,45 +470,98 @@ class Licenser {
         }
     }
 
-    private _onDidChangeActiveTextEditor() {
-        vscode.window.onDidChangeActiveTextEditor(e => {
-            if (e === undefined) {
+    private tryStripNotation(contentAfterShebang: string, notation: any, originalContent: string, position: number): string {
+        const multiL = notation.multi ? notation.multi[0] : undefined;
+        const multiR = notation.multi ? notation.multi[1] : undefined;
+        const single = notation.single;
+        
+        if (multiL && multiR) {
+            const escapedL = multiL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const escapedR = multiR.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const multiRegex = new RegExp(`^\\s*${escapedL}[\\s\\S]*?${escapedR}\\s*\\n?`);
+            const match = contentAfterShebang.match(multiRegex);
+            // Remove the block only if it looks like a license or copyright header
+            if (match && (match[0].toLowerCase().includes('copyright') || match[0].toLowerCase().includes('license'))) {
+                return originalContent.substring(0, position) + contentAfterShebang.replace(multiRegex, '');
+            }
+        }
+        
+        if (single) {
+            const escapedSingle = single.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const singleRegex = new RegExp(`^(?:\\s*${escapedSingle}.*(?:\\r?\\n|$))+`);
+            const match = contentAfterShebang.match(singleRegex);
+            if (match && (match[0].toLowerCase().includes('copyright') || match[0].toLowerCase().includes('license'))) {
+                return originalContent.substring(0, position) + contentAfterShebang.replace(singleRegex, '');
+            }
+        }
+        
+        return originalContent;
+    }
+
+    private stripOldHeader(content: string, langId: string): string {
+        const firstLine = content.split('\n', 1)[0] + '\n';
+        const position = this.findInsertionPosition(firstLine, langId);
+        const contentAfterShebang = content.substring(position);
+        
+        let preferredNotation = notations[langId] ? notations[langId] : notations["plaintext"];
+        
+        // 1. Try stripping with the proper notation for this language
+        let strippedContent = this.tryStripNotation(contentAfterShebang, preferredNotation, content, position);
+        if (strippedContent !== content) {
+            return strippedContent;
+        }
+
+        // 2. If no valid header found, try all other notations to "repair" broken/incorrect headers
+        for (const key in notations) {
+            const notation = notations[key];
+            if (notation === preferredNotation) continue;
+
+            strippedContent = this.tryStripNotation(contentAfterShebang, notation, content, position);
+            if (strippedContent !== content) {
+                return strippedContent; // Successfully removed a broken header
+            }
+        }
+        
+        return content;
+    }
+
+    private _onDidChangeActiveTextEditor(e: vscode.TextEditor | undefined) {
+        if (!e) {
+            return;
+        }
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        let autoInsertionDisabled = licenserSetting.get<boolean>("disableAutoHeaderInsertion");
+        if (autoInsertionDisabled) {
+            return;
+        }
+
+        const fileName = path.basename(e.document.fileName);
+        if (fileName.includes(".") && !fileName.endsWith(".")) {
+            const fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length).toLocaleLowerCase();
+
+            let excludedFileExtensions = licenserSetting.get<string[]>("excludeFileExtensions", []);
+
+            const isInExcludedInList = excludedFileExtensions.some((ext) => {
+                return ext.toLocaleLowerCase() === fileExtension;
+            });
+
+            if (isInExcludedInList) {
+                console.log("File: " + fileName + " excluded based on extension: " + fileExtension);
                 return;
             }
-            let licenserSetting = vscode.workspace.getConfiguration("licenser");
-            let autoInsertionDisabled = licenserSetting.get<boolean>("disableAutoHeaderInsertion");
-            if (autoInsertionDisabled) {
+        }
+        if (fileName !== defaultLicenseFilename) {
+            const doc = e.document;
+            const contents = doc.getText();
+            if (contents.length > 0) {
                 return;
             }
-
-            const fileName = path.basename(e.document.fileName);
-            if (fileName.includes(".") && !fileName.endsWith(".")) {
-                const fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length).toLocaleLowerCase();
-
-                let exludedFileExtensions = licenserSetting.get<string[]>("excludeFileExtensions");
-
-                const isInExcludedInList = exludedFileExtensions.some((e) => {
-                    return e.toLocaleLowerCase() === fileExtension
-                });
-
-                if (isInExcludedInList) {
-                    console.log("File: " + fileName + " exluded based on extension: " + fileExtension);
-                    return;
+            for (let id in notations) {
+                if (id === doc.languageId) {
+                    this.insert();
                 }
             }
-            if (fileName !== defaultLicenseFilename) {
-                const doc = e.document;
-                const contents = doc.getText();
-                if (contents.length > 0) {
-                    return;
-                }
-                for (let id in notations) {
-                    if (id === doc.languageId) {
-                        this.insert();
-                    }
-                }
-            }
-        });
+        }
     }
 
     /**
@@ -362,27 +570,32 @@ class Licenser {
      */
     private getLicense(typ: string): License {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let projectName = licenserSetting.get<string>("projectName", undefined);
+        let projectName = licenserSetting.get<string>("projectName", "");
         console.log("Project Name from settings: " + projectName);
-        if (projectName !== undefined && projectName === "") {
-            let root = vscode.workspace.rootPath;
+        let root = vscode.workspace.rootPath;
+        if (projectName === "" && root) {
             projectName = path.basename(root);
         }
         console.log("Project Name used: " + projectName);
         const licenseKey = typ.toUpperCase();
 
         if (licenseKey === "CUSTOM") {
-            let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions");
-            let customTermsAndConditionsFile = licenserSetting.get<string>("customTermsAndConditionsFile");
-            let customHeader = licenserSetting.get<string>("customHeader");
-            let customHeaderFile = licenserSetting.get<string>("customHeaderFile");
-            let fileName = vscode.window.activeTextEditor.document.fileName;
+            let customTermsAndConditions = licenserSetting.get<string>("customTermsAndConditions", "");
+            let customTermsAndConditionsFile = licenserSetting.get<string>("customTermsAndConditionsFile", "");
+            let customHeader = licenserSetting.get<string>("customHeader", "");
+            let customHeaderFile = licenserSetting.get<string>("customHeaderFile", "");
+            const editor = vscode.window.activeTextEditor;
+            let fileName = editor ? editor.document.fileName : "";
             return new Custom(this.author, projectName, customTermsAndConditions, customTermsAndConditionsFile, customHeader, customHeaderFile, fileName);
         }
 
         let info = availableLicenses.get(licenseKey);
         if (info === null || info === undefined) {
             info = availableLicenses.get(defaultLicenseType);
+        }
+
+        if (!info) {
+            throw new Error(`License type '${licenseKey}' is not available and default license '${defaultLicenseType}' could not be found.`);
         }
 
         return info.creatorFn(this.author, projectName);
@@ -393,7 +606,7 @@ class Licenser {
      * @param license License instance initialized from lincenser.license.
      * @param langId language ID for the file working on.
      */
-    private getLicenseHeader(license: License, langId: string): string {
+    private getLicenseHeader(license: License, langId: string, fileName?: string): string {
         let notation = notations[langId] ? notations[langId] : notations["plaintext"]; // return plaintext's comment when langId is unexpected.
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
 
@@ -403,17 +616,18 @@ class Licenser {
 
         if (preferSingleLineStyle) {
             if (notation.hasSingle()) {
-                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled);
+                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled, fileName);
             } else if (notation.hasMulti()) {
-                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled);
+                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled, fileName);
             }
         } else {
             if (notation.hasMulti()) {
-                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled);
+                return this.multiLineCommentHeader(license, l, r, notation.ornament, spdxFormatEnabled, fileName);
             } else if (notation.hasSingle()) {
-                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled);
+                return this.singleLineCommentHeader(license, notation.single, spdxFormatEnabled, fileName);
             }
         }
+        return "";
     }
 
     /**
@@ -421,25 +635,28 @@ class Licenser {
      * @param license License instance initialzed from licenser.license.
      * @param token single line comment token.
      */
-    private singleLineCommentHeader(license: License, token: string, spdxFormat? : boolean): string {
-
-
+    private singleLineCommentHeader(license: License, token: string, spdxFormat? : boolean, fileName?: string): string {
         let original : string[];
+        let activeFile = fileName;
+        if (!activeFile) {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return ""; 
+            activeFile = editor.document.fileName || "";
+        }
+        if (!activeFile) return ""; // Guard against no open file
 
-        if (spdxFormat == true) {
+        if (spdxFormat) {
             original = license.spdxHeader().split("\n");
         } else {
             original = license.header().split("\n");
         }
+
         let header = "";
-        for (const line of original) {
-            if (original.length > 0) {
-                header += token + " " + line + "\n";
-            } else {
-                header += token;
-            }
+        for (let line of original) {
+            line = this.replacePlaceholders(line, activeFile);
+            header += (original.length > 0) ? (token + " " + line + "\n") : token;
         }
-        return header + "\n";
+        return header;
     }
 
     /**
@@ -449,9 +666,16 @@ class Licenser {
      * @param end multiple line comment end string.
      * @param ornament multiple line comment ornament string.
      */
-    private multiLineCommentHeader(license: License, start, end, ornament: string, spdxFormat? : boolean): string {
+    private multiLineCommentHeader(license: License, start: string, end: string, ornament: string, spdxFormat? : boolean, fileName?: string): string {
         let original: string[];
         let header = start + "\n";
+        let activeFile = fileName;
+        if (!activeFile) {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) return ""; 
+            activeFile = editor.document.fileName || "";
+        }
+        if (!activeFile) return ""; // Guard against no open file
 
         if (spdxFormat == true) {
             original = license.spdxHeader().split("\n");
@@ -459,13 +683,14 @@ class Licenser {
             original = license.header().split("\n");
         }
 
-        for (const line of original) {
+        for (let line of original) {
+            line = this.replacePlaceholders(line, activeFile);
             if (original.length > 0) {
                 header += ornament + " " + line + "\n";
             }
         }
         header += end + "\n";
-        return header + "\n";
+        return header;
     }
 
     /**
@@ -476,35 +701,92 @@ class Licenser {
      */
     private getAuthor(): string {
         let licenserSetting = vscode.workspace.getConfiguration("licenser");
-        let author = licenserSetting.get<string>("author", undefined);
+        let author = licenserSetting.get<string>("author", process.env.USER || "Unknown-Author");
         console.log("Author from setting: " + author);
         if (author !== undefined && author.length !== 0) {
             return author;
         }
-        vscode.window.showWarningMessage("set author name as ’licenser.author’ in configuration. OS username will be used as default.")
-        switch (os.platform()) {
-            case "win32":
-                const userprofile = process.env.USERPROFILE
-                if (userprofile === undefined) {
-                    vscode.window.showErrorMessage("Set USERPROFILE in your environment variables.")
-                }
-                author = userprofile.split(path.sep)[2];
-                break;
-            case "darwin":
-                author = process.env.USER;
-                break;
-            case "linux":
-                author = process.env.USER;
-                break;
-            default:
-                vscode.window.showErrorMessage("Unsupported OS.")
-                break;
+        try {
+            const userInfo = os.userInfo();
+            if (userInfo && userInfo.username) {
+                author = userInfo.username;
+            }
+        } catch (e) {
+            vscode.window.showWarningMessage("set author name as ’licenser.author’ in configuration. OS username will be used as default.");
+            author = process.env.USER || process.env.USERNAME || "Unknown-Author";
         }
         return author;
     }
 
     public dispose() {
         this._disposable.dispose();
+    }
+
+    private replacePlaceholders(text: string, fileName: string): string {
+        const stats = fs.statSync(fileName);
+        
+        // @FILENAME@ -> subdir/filename.ext
+        // We use workspace root to get the relative path
+        const relativePath = vscode.workspace.asRelativePath(fileName);
+    
+        // Dates formatting (YYYY-MM-DD)
+        const createdDate = this.getFileCreatedDate(fileName);
+        const modifiedDate = stats.mtime.toISOString().split('T')[0];
+    
+        return text
+            .replace(/@FILENAME@/g, relativePath)
+            .replace(/@FILE@/g, relativePath) // Fallback for standard @FILE@
+            .replace(/@CREATED@/g, createdDate)
+            .replace(/@LAST_MODIFIED@/g, modifiedDate);
+    }
+
+    private getFileCreatedDate(filePath: string): string {
+        try {
+            const stats = fs.statSync(filePath);
+            return stats.birthtime.toISOString().split('T')[0];
+        } catch (e) {
+            return new Date().toISOString().split('T')[0];
+        }
+    }
+
+    public async updateLastModified(document: vscode.TextDocument) {
+        // Prevent running on VS Code settings or workspace files where the template might be stored
+        const fileName = path.basename(document.fileName);
+        if (fileName === 'settings.json' || fileName.endsWith('.code-workspace')) {
+            return;
+        }
+
+        let licenserSetting = vscode.workspace.getConfiguration("licenser");
+        const autoUpdate = licenserSetting.get<boolean>("autoUpdateLastModified", true);
+        
+        if (!autoUpdate) return;
+    
+        // Only check the top of the file where the header is located to avoid modifying random code
+        const maxLinesToCheck = Math.min(document.lineCount, 50);
+        // Regex looks for "lastModified: 2026-04-26
+        const lastModifiedRegex = /(lastModified:\s*)(@LAST_MODIFIED@|\d{4}-\d{2}-\d{2})/;
+        const currentTime = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        let changed = false;
+        
+        const edit = new vscode.WorkspaceEdit();
+
+        for (let i = 0; i < maxLinesToCheck; i++) {
+            const line = document.lineAt(i);
+            if (lastModifiedRegex.test(line.text)) {
+                const newText = line.text.replace(lastModifiedRegex, `$1${currentTime}`);
+                if (newText !== line.text) {
+                    edit.replace(document.uri, line.range, newText);
+                    changed = true;
+                }
+                break; // Stop after finding the first match
+            }
+        }
+
+        if (changed) {
+            await vscode.workspace.applyEdit(edit);
+            // Save the document again after the edit
+            document.save();
+        }
     }
 }
 

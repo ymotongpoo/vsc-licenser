@@ -3,7 +3,7 @@
     "displayName": "licenser",
     "description": "inserts license header in source files and creates license file.",
     "icon": "image/logo.png",
-    "version": "1.10.0",
+    "version": "1.12.7",
     "publisher": "ymotongpoo",
     "galleryBanner": {
         "color": "#EEF7FF",
@@ -19,7 +19,7 @@
         "url": "https://github.com/ymotongpoo/vsc-licenser/issues"
     },
     "engines": {
-        "vscode": "^1.87.0"
+        "vscode": "^1.116.0"
     },
     "categories": [
         "Other",
@@ -37,6 +37,10 @@
         "onCommand:extension.anyLicenseHeader",
         "onCommand:extension.createLicenseFile",
         "onCommand:extension.insertMultipleLicenseHeaders",
+        "onCommand:extension.updateLicenseHeader",
+        "onCommand:extension.updateMultipleLicenseHeaders",
+        "onCommand:extension.InsertLicensesOnEntireWorkspace",
+        "onCommand:extension.UpdateLicensesOnEntireWorkspace",
         "onStartupFinished"
     ],
     "main": "./out/src/extension",
@@ -269,6 +273,11 @@
                     "default": false,
                     "description": "Disable auto save after an operation (defaults to false)."
                 },
+                "licenser.autoUpdateLastModified": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "It uses a Regex to find the line and replaces the date with the current timestamp at @LAST_MODIFIED@."
+                },
                 "licenser.excludeFileExtensions": {
                     "type": "array",
                     "default": [],
@@ -280,6 +289,10 @@
             {
                 "command": "extension.insertLicenseHeader",
                 "title": "licenser: Insert license header"
+            },
+            {
+                "command": "extension.updateLicenseHeader",
+                "title": "licenser: Update license header"
             },
             {
                 "command": "extension.anyLicenseHeader",
@@ -294,8 +307,16 @@
                 "title": "licenser: Insert license headers to contents"
             },
             {
+                "command": "extension.updateMultipleLicenseHeaders",
+                "title": "licenser: Update license headers to contents"
+            },
+            {
                 "command": "extension.InsertLicensesOnEntireWorkspace",
                 "title": "licenser: Insert license headers to all files on the workspace."
+            },
+            {
+                "command": "extension.UpdateLicensesOnEntireWorkspace",
+                "title": "licenser: Update license headers to all files on the workspace."
             }
         ],
         "menus": {
@@ -303,12 +324,35 @@
                 {
                     "command": "extension.insertMultipleLicenseHeaders",
                     "when": "false"
+                },
+                {
+                    "command": "extension.updateMultipleLicenseHeaders",
+                    "when": "false"
+                },
+                {
+                    "command": "extension.InsertLicensesOnEntireWorkspace"
+                },
+                {
+                    "command": "extension.UpdateLicensesOnEntireWorkspace"
                 }
             ],
             "explorer/context": [
                 {
                     "when": "explorerResourceIsFolder",
                     "command": "extension.insertMultipleLicenseHeaders",
+                    "group": "7_modification"
+                },
+                {
+                    "when": "explorerResourceIsFolder",
+                    "command": "extension.updateMultipleLicenseHeaders",
+                    "group": "7_modification"
+                },
+                {
+                    "command": "extension.InsertLicensesOnEntireWorkspace",
+                    "group": "7_modification"
+                },
+                {
+                    "command": "extension.UpdateLicensesOnEntireWorkspace",
                     "group": "7_modification"
                 }
             ]
@@ -323,6 +367,11 @@
                 "command": "extension.insertLicenseHeader",
                 "key": "shift+cmd+ctrl+i",
                 "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.updateLicenseHeader",
+                "key": "shift+cmd+ctrl+u",
+                "when": "editorTextFocus"
             }
         ]
     },
@@ -332,17 +381,16 @@
         "lint": "eslint src/**/*.ts test/**/*.ts"
     },
     "devDependencies": {
-        "@delagen/eslint-plugin-deprecation": "1.3.0",
-        "@types/mocha": "^5.2.7",
-        "@types/node": "^14.14.37",
-        "@types/vscode": "^1.55.0",
-        "@typescript-eslint/eslint-plugin": "^5.5.0",
-        "@typescript-eslint/parser": "^5.5.0",
-        "eslint": "^8.3.0",
-        "mocha": "^9.2.2",
-        "typescript": "^3.9.9"
-    },
-    "dependencies": {
-        "vsce": "^1.25.1"
+        "@delagen/eslint-plugin-deprecation": "1.3.2",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^25.6.0",
+        "@types/vscode": "^1.116.0",
+        "@typescript-eslint/eslint-plugin": "^8.59.0",
+        "@typescript-eslint/parser": "^8.59.0",
+        "@vscode/vsce": "^3.9.1",
+        "@vscode/test-electron": "2.5.2",
+        "eslint": "^10.2.1",
+        "mocha": "^11.7.5",
+        "typescript": "^6.0.3"
     }
 }

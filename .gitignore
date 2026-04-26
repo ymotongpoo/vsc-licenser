@@ -1,3 +1,7 @@
 out
 node_modules
 .DS_Store
+*.vsix
+checks.json
+package-lock.json
+yarn.lock

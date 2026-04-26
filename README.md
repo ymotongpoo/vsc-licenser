@@ -184,9 +184,13 @@ This setting defines the text used to create the `LICENSE` file when the "Custom
 The following placeholders can be used:
 
 * `@AUTHOR@`: Replaced with `licenser.author`
-* `@FILE@`: Replaced with the current file name (only useful for custom header).
+* `@FILE@`: Replaced with the current file relative path and file name (only useful for custom header).
+* `@FILENAME@`: Replaced with the current file relative path and file name (only useful for custom header).
 * `@PROJECT@`: Replaced with `licenser.projectName`
 * `@YEAR@`: Replaced with the current year
+* `@CREATED@`: Replaced with the file creation date (only useful for custom header).
+* `@LAST_MODIFIED@`: Replaced with the file modification date (only useful for custom header).
+
 
 **Note:** Newlines are not allowed in settings strings, so you must use `\n` instead.
 Other characters, such as double-quotes, may need to be escaped as well.
@@ -206,7 +210,7 @@ Placeholders are the same as `licenser.customTermsAndConditions`.
 ### licenser.customHeader
 
 ```
-"licenser.customHeader": "@FILE@ - @PROJECT@\n\nCopyright @YEAR@ @AUTHOR@\n\nThis is my license..."
+"licenser.customHeader": "SPDX-FileCopyrightText: Copyright (c) @YEAR@ @AUTHOR@ All Rights Reserved.\nSPDX-License-Identifier: Apache-2.0\nproject: @PROJECT@\nfile: @FILENAME@\ncreated: @CREATED@\nlastModified: @LAST_MODIFIED@",
 ```
 
 This setting defines the text used to create the license header file when the "Custom" license type is selected.
@@ -240,6 +244,20 @@ If this setting is set as `true`, licenser will disable auto-insertion of licens
 ```
 
 This setting will exclude files with a matching extension in their name from having a license header auto inserted. There is no limit in the amount of entries this array can have. This setting is case insensitive.
+
+### Commands
+
+```
+insertLicenseHeader - "licenser: Insert license header"
+updateLicenseHeader - "licenser: Update license header"
+anyLicenseHeader - "licenser: Insert arbitrary license header"
+createLicenseFile - "licenser: Create LICENSE file"
+insertMultipleLicenseHeaders - "licenser: Insert license headers to contents"
+updateMultipleLicenseHeaders - "licenser: Update license headers to contents"
+InsertLicensesOnEntireWorkspace - "licenser: Insert license headers to entire workspace"
+UpdateLicensesOnEntireWorkspace - "licenser: Update license headers to entire workspace"
+```
+
 
 ## Call to action
 

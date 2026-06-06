@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check-types
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run package
+
+      - name: Package VSIX
+        run: npx vsce package --out licenser.vsix
+
+      - name: Upload VSIX to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: licenser.vsix
+
+      - name: Publish to Open VSX Registry
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        if: ${{ env.OVSX_PAT != '' }}
+        run: npx ovsx publish licenser.vsix -p "$OVSX_PAT"
+
+      - name: Publish to VS Code Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        if: ${{ env.VSCE_PAT != '' }}
+        run: npx vsce publish --packagePath licenser.vsix -p "$VSCE_PAT"

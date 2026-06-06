@@ -1,30 +1,59 @@
-// Available variables which can be used inside of strings.
-// ${workspaceRoot}: the root folder of the team
-// ${file}: the current opened file
-// ${fileBasename}: the current opened file's basename
-// ${fileDirname}: the current opened file's dirname
-// ${fileExtname}: the current opened file's extension
-// ${cwd}: the current working directory of the spawned process
-
-// A task runner that calls a custom npm script that compiles the extension.
 {
     "version": "2.0.0",
-
-    // we want to run npm
-    "command": "npm",
-
-    // the command is a shell script
-    "isShellCommand": true,
-
-    // show the output window only if unrecognized errors occur.
-    "showOutput": "silent",
-
-    // we run the custom script "compile" as defined in package.json
-    "args": ["run", "compile", "--loglevel", "silent"],
-
-    // The tsc compiler is started in watching mode
-    "isBackground": true,
-
-    // use the standard tsc in watch mode problem matcher to find compile problems in the output.
-    "problemMatcher": "$tsc-watch"
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "watch",
+            "problemMatcher": [
+                "$tsc-watch",
+                "$esbuild-watch"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never",
+                "group": "watchers"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "label": "npm: watch"
+        },
+        {
+            "type": "npm",
+            "script": "watch:tsc",
+            "group": "build",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "label": "npm: watch:tsc",
+            "presentation": {
+                "group": "watchers",
+                "reveal": "never"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "watch:esbuild",
+            "group": "build",
+            "problemMatcher": "$esbuild-watch",
+            "isBackground": true,
+            "label": "npm: watch:esbuild",
+            "presentation": {
+                "group": "watchers",
+                "reveal": "never"
+            }
+        },
+        {
+            "label": "tasks: watch-tests",
+            "type": "npm",
+            "script": "watch-tests",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never",
+                "group": "watchers"
+            },
+            "group": "build"
+        }
+    ]
 }

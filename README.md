@@ -1,14 +1,39 @@
 # Licenser
 
 An extension for adding license headers and LICENSE files into your workspace.
-You can find this extension on [Marketplace for VS Code](https://marketplace.visualstudio.com/items?itemName=ymotongpoo.licenser).
+
+This extension is distributed through the following channels:
+
+* [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ymotongpoo.licenser) (for VS Code)
+* [Open VSX Registry](https://open-vsx.org/extension/ymotongpoo/licenser) (for VSCodium, Cursor, Gitpod, Theia, and other VS Code-compatible editors)
+* [GitHub Releases](https://github.com/ymotongpoo/vsc-licenser/releases) (`.vsix` file for manual install)
 
 ## Install
 
-Launch VS Code, go to the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on macOS), and type:
+### From the VS Code Marketplace
+
+Launch VS Code, open the *Quick Open* menu (`Ctrl+P` on Windows/Linux, `⌘P` on macOS), and type:
 
 ```
-ext install licenser
+ext install ymotongpoo.licenser
+```
+
+### From Open VSX (VSCodium / Cursor / Theia etc.)
+
+Open the Extensions view in your editor and search for `licenser`, or run:
+
+```
+code --install-extension ymotongpoo.licenser
+```
+
+(Replace `code` with your editor's CLI command, e.g. `codium`, `cursor`.)
+
+### From a `.vsix` file (manual install)
+
+Download the latest `licenser.vsix` from the [GitHub Releases](https://github.com/ymotongpoo/vsc-licenser/releases) page and run:
+
+```
+code --install-extension licenser.vsix
 ```
 
 ## Commands and features

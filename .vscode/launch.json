@@ -1,27 +1,31 @@
-// A launch configuration that compiles the extension and then opens it inside a new window
 {
-    "version": "0.1.0",
-    "configurations": [{
-            "name": "Launch Extension",
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Extension",
             "type": "extensionHost",
             "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": ["--extensionDevelopmentPath=${workspaceRoot}"],
-            "stopOnEntry": false,
-            "sourceMaps": true,
-            "outDir": "${workspaceRoot}/out/src",
-            "preLaunchTask": "npm"
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            "preLaunchTask": "${defaultBuildTask}"
         },
         {
-            "name": "Launch Tests",
+            "name": "Extension Tests",
             "type": "extensionHost",
             "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": ["--extensionDevelopmentPath=${workspaceRoot}", "--extensionTestsPath=${workspaceRoot}/out/test"],
-            "stopOnEntry": false,
-            "sourceMaps": true,
-            "outDir": "${workspaceRoot}/out/test",
-            "preLaunchTask": "npm"
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensionTestsPath=${workspaceFolder}/out/test/extension.test.js"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js",
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            "preLaunchTask": "tasks: watch-tests"
         }
     ]
 }
